@@ -105,15 +105,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    let view = <>
-
-      <Header setView={this.setView} />
-      <AddEvent setView={this.setView} createEvent={this.createEvent} resort={this.state.resort} params={this.state.view.params} />
-    </>;
-    // <>
-    //   <Header setView={this.setView} />
-    //   <HostPage setView='host' event={this.state.user2} setUser2={this.setUser2}/>
-    // </>;
+    let view = null;
 
     if (this.state.view.name === 'home') {
       view = <Homepage setView={this.setView} />;

@@ -1,5 +1,4 @@
 import React from 'react';
-// import Profile from './profile';
 
 export default class CreateProfile extends React.Component {
   constructor(props) {
@@ -42,7 +41,9 @@ export default class CreateProfile extends React.Component {
         <form className="container col-11">
           <div className="form-group">
             <label htmlFor="formGroupExampleInput"><h3 className="mt-2">Create Profile</h3></label>
-            <input onChange={this.handleChange} value={this.state.name} name="name" type="text" className="form-control mb-4" id="formGroupExampleInput" placeholder="name" />
+            <input onChange={this.handleChange}
+              value={this.state.name}
+              name="name" type="text" className="form-control mb-4" id="formGroupExampleInput" placeholder="name" />
             <input onChange={this.handleChange} value={this.state.email} name="email" type="email" className="form-control mb-4 create-email" id="email-id" placeholder="email" />
             <select onChange={this.handleChange} value={this.state.skill} name="skill" className="form-control mb-4">
               <option>skill level</option>
