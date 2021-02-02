@@ -52,11 +52,12 @@ export default class EventList extends React.Component {
               href="#"
               onClick={() => this.props.setView('host', {})}>Your Event</a>
           </li>
-
         </ul>
-        <div className="event-card">
-          {this.eventList()}
 
+        <div className="event-card container">
+          <div className="row d-flex justify-content-center">
+            {this.eventList()}
+          </div>
         </div>
       </div>
 
