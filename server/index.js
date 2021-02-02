@@ -119,13 +119,13 @@ app.get('/api/events', (req, res, next) => {
   select "e"."eventId",
     "r"."imgUrl" as "resortImage",
     "r"."name"as "resortName",
-    "p"."name" as "profileName",
+
     "e"."description" as "eventDescription",
     "e"."startDate" as "start",
     "e"."endDate" as "end"
     from "event" as "e"
     join "resort" as "r" using ("resortId")
-    join "profile" as "p" using ("profileId")
+
 
     `;
   db.query(sql)
