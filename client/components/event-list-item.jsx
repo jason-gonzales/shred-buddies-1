@@ -12,20 +12,20 @@ export default function EventListItem(props) {
   const end = new Date(props.events.end);
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="m-md-auto col-md-4" onClick={handleClick}>
-          <div className="card bg-dark text-white my-3">
-            <img className="event-img" src={props.events.resortImage} alt="Card image" />
-            <div className="card-img-overlay">
-              <div className="d-flex">
-                <h5 className="card-title">{props.events.resortName}</h5>
-                <img className="host-pic ml-auto" src="/images/chewbacca.png" alt="shredder-host" />
-              </div>
-              <p className="mt-n2">starts: {start.toDateString()}</p>
-              <p className="mt-n4">ends: {end.toDateString()}</p>
-              <p className="card-text my-2">{props.events.eventDescription}</p>
-            </div>
+
+    <div className="event-size col-md-4 m-auto" onClick={handleClick}>
+      <div className="card bg-dark text-white my-3">
+        <img className="event-img" src={props.events.resortImage} alt="Card image" />
+        <div className="card-img-overlay">
+          <div className="d-flex">
+            <h5 className="card-title">{props.events.resortName}</h5>
+            <img className="host-pic ml-auto" src="/images/chewbacca.png" alt="shredder-host"/>
+          </div>
+          <p className="mt-n2">starts: {start.toDateString()}</p>
+          <p className="mt-n4">ends: {end.toDateString()}</p>
+          <p className="card-text my-2">{props.events.eventDescription}</p>
+          <div>attending:
+            <img className="attending-pic pl-2" src="/images/chewbacca.png" alt="shredder-host" />
           </div>
         </div>
       </div>

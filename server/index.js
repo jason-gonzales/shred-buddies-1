@@ -93,7 +93,7 @@ app.get('/api/event', (req, res, next) => {
           from event
   `;
   db.query(select)
-    .then(result => res.status(200).json(result.rows[0]))
+    .then(result => res.status(200).json(result.rows))
     .catch(err => next(err));
 });
 
@@ -114,6 +114,20 @@ app.get('/api/event/:eventId', (req, res, next) => {
     });
 });
 
+// app.get('/api/events', (req, res, next) => {
+//   const sql = `
+//  select "e"."eventId",
+//   "r"."imgUrl" as "resortImage"
+//     from "event" as "e"
+//     join "resort" as "r" using ("resortId")
+
+//     `;
+//   db.query(sql)
+//     .then(result => {
+//       return res.status(200).json(result.rows[0]);
+//     });
+
+// });
 app.get('/api/events', (req, res, next) => {
   const sql = `
   select "e"."eventId",
@@ -129,9 +143,8 @@ app.get('/api/events', (req, res, next) => {
 
     `;
   db.query(sql)
-    .then(result => {
-      res.status(200).json(result.rows);
-    });
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => console.error(err));
 
 });
 
@@ -162,7 +175,7 @@ app.post('/api/event', (req, res, next) => {
       `;
       db.query(select, [result.eventId])
         .then(result => {
-          res.status(201).json(result.rows[0]);
+          res.status(201).json(result.rows);
         });
     })
     .catch(err => {

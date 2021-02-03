@@ -6,7 +6,6 @@ export default function Notification(props) {
       <h4>Notification</h4>
       <div className="row border">
         <p className="ml-3">someone want to join your event</p>
-        <img className="host-pic" src="../chewbacca.png" alt="shredder-host" />
       </div>
     </div>
   );

@@ -43,6 +43,7 @@ export default class EventDetails extends React.Component {
             </div>
             <div>
               <div className=" text-center detail-title"> <p><i className="fas fa-tram"></i>{events.resortName}</p></div>
+              <div>HOST: {events.resortName}</div>
               <div className="col-md-6 card-body">
                 <p><i className="fas fa-calendar-day"></i> Start : {start.toDateString()}</p>
                 <p><i className="fas fa-calendar-day"></i> End : {end.toDateString()}</p>
@@ -53,7 +54,7 @@ export default class EventDetails extends React.Component {
                 </div>
               </div>
               <div className="text-center">
-                <button onClick={this.handleClick} className="btn-eventdetail mb-1">request to join</button>
+                <button onClick={this.handleClick} className="btn-eventdetail">request to join</button>
               </div>
             </div>
           </div>
