@@ -19,7 +19,7 @@ export default class App extends React.Component {
     this.state = {
       view: {
 
-        name: 'home',
+        name: 'login',
         params: {}
       },
       profile: null,
@@ -30,7 +30,7 @@ export default class App extends React.Component {
       events: null
     };
     this.setView = this.setView.bind(this);
-    this.setUser = this.setUser.bind(this);
+    // this.setUser = this.setUser.bind(this);
     this.createProfile = this.createProfile.bind(this);
     this.createEvent = this.createEvent.bind(this);
     this.addUser = this.addUser.bind(this);
@@ -42,11 +42,11 @@ export default class App extends React.Component {
     });
   }
 
-  setUser(user) {
-    this.setState({
-      user: user
-    });
-  }
+  // setUser(user) {
+  //   this.setState({
+  //     user: user
+  //   });
+  // }
 
   setUser2(user2) {
     this.setState({
@@ -136,7 +136,7 @@ export default class App extends React.Component {
             params={this.state.view.params}
             profile={this.state.profile}
             addUser={this.addUser}
-            setUser={this.setUser}
+            // setUser={this.setUser}
             getUserProfile={this.getUserProfile}/>
           <Footer setView={this.setView} />
         </>;
@@ -212,7 +212,7 @@ export default class App extends React.Component {
           <Login setView={this.setView}
             addUser={this.addUser}
             createProfile={this.createProfile}
-            params={this.state.view.params} />
+            params={this.state.view} />
         </>;
     }
 

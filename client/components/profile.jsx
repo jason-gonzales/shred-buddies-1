@@ -29,8 +29,8 @@ class Profile extends React.Component {
       return (
         <div className="profile-page">
           <h2 className="ml-2 my-3 text-center">Profile</h2>
-          <div className="mx-2 profile-info row d-flex align-items-end justify-content-center mt-lg-5">
-            <div className="col-lg-11 content-container mb-3 mt-5 mt-xl-6 position-relative">
+          <div className="mx-2 profile-info row d-flex align-items-end justify-content-center">
+            <div className="col-lg-11 content-container mb-3 mt-5 position-relative">
               <div className="pic-box row mx-auto justify-content-center position-relative mb-2">
                 <img className="profile-pic m-auto"
                   src={imgUrl} alt={name} />

@@ -26,14 +26,13 @@ class Login extends React.Component {
   handleChange(event) {
     const index = event.target.selectedIndex;
     const selected = event.target.childNodes[index];
-    const id = selected.getAttribute('profileId');
+    const id = selected.getAttribute('profileid');
     // this.props.addUser({
     //   profile: event.target.value,
     //   profileId: parseInt(id)
     // });
 
     this.props.setView('profile', { profileId: id });
-    // this.props.setView('profile', {profileId});
 
   }
 
@@ -48,8 +47,9 @@ class Login extends React.Component {
             {/* <option value="145" userId="1">Mark Gallardo</option>
             <option value="144" userId="2">Jason Gonzales</option> */}
             {this.state.profiles.map(profile => {
+
               return (
-                <option key={profile.profileId} profileId={profile.profileId}>{profile.name}</option>
+                <option key={profile.profileId} profileid={profile.profileId}>{profile.name}</option>
               );
             })}
 
