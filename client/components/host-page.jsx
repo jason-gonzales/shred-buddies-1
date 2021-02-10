@@ -8,6 +8,16 @@ export default class HostPage extends React.Component {
       eventId: null
     };
     this.handleClick = this.handleClick.bind(this);
+    this.getEvents = this.getEvents.bind(this);
+  }
+
+  getEvents() {
+    fetch('/api/events')
+      .then(res => res.json())
+      .then(data => this.setState({
+        event: data
+      }))
+      .catch(err => console.error(err));
   }
 
   handleClick(event) {
@@ -18,6 +28,7 @@ export default class HostPage extends React.Component {
   }
 
   render() {
+
     const { description, startDate, endDate, resortImg, resortName } = this.props.event;
     if (!this.props.event) {
       return null;
