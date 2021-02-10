@@ -92,8 +92,12 @@ h2 {
   padding-top: 10px;
 }
 @media only screen and (min-width: 730px) {
+  .resort-detail {
+    display: flex;
+  }
   .resort-img {
    padding-top: 60px;
+    object-fit: contain;
 
   }
 
@@ -102,11 +106,20 @@ h2 {
   }
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 540px) {
   .resort-img img {
-   max-height:200px;
+   width: 100%;
+
   }
+
+.resort-description {
+  background: white;
+  box-shadow: 2px 2px 4px rgb(0 0 0 / 15%)
 }
+}
+
+
+
 
 
 .login {
@@ -300,7 +313,7 @@ width:350px;
 
 .resort-card {
   width: 350px;
-
+box-shadow: 2px 2px 4px rgb(0 0 0 / 15%)
 }
 
 .resort-list-page {

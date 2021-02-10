@@ -19,14 +19,14 @@ export default class App extends React.Component {
     this.state = {
       view: {
 
-        name: 'main',
+        name: 'home',
         params: {}
       },
       profile: null,
       user: null,
       event: null,
       resort: null,
-      user2: null,
+      host: null,
       events: null
     };
     this.setView = this.setView.bind(this);
@@ -48,11 +48,11 @@ export default class App extends React.Component {
   //   });
   // }
 
-  setUser2(user2) {
-    this.setState({
-      user2: user2
-    });
-  }
+  // setUser2(user2) {
+  //   this.setState({
+  //     user2: user2
+  //   });
+  // }
 
   setView(name, params) {
     this.setState({
@@ -86,18 +86,37 @@ export default class App extends React.Component {
       body: JSON.stringify(object)
     };
 
-    fetch('/api/event', requestOption)
+    fetch(`/api/event/${this.state.profile.profileId}`, requestOption)
       .then(result => result.json())
       .then(data => this.setState({
         view: { name: 'host', params: {} },
         event: data.eventId,
-        profile: data.profileId,
+        profile: data,
         resort: data.resortId,
-        user2: data
+        host: data
       }))
       .catch(err => console.error(err));
-
   }
+
+  // createEvent(object) {
+  //   const requestOption = {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(object)
+  //   };
+
+  //   fetch('/api/event', requestOption)
+  //     .then(result => result.json())
+  //     .then(data => this.setState({
+  //       view: { name: 'host', params: {} },
+  //       event: data.eventId,
+  //       profile: data.profileId,
+  //       resort: data.resortId,
+  //       user2: data
+  //     }))
+  //     .catch(err => console.error(err));
+
+  // }
 
   deleteEvent(object) {
 
@@ -201,7 +220,7 @@ export default class App extends React.Component {
           <Header setView={this.setView} />
           <HostPage setView={this.setView}
             params={this.state.view.params}
-            event={this.state.user2}
+            event={this.state.host}
             deleteEvent={this.deleteEvent} />
           <Footer setView={this.setView} />
         </>;
