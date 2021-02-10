@@ -114,20 +114,6 @@ app.get('/api/event/:eventId', (req, res, next) => {
     });
 });
 
-// app.get('/api/events', (req, res, next) => {
-//   const sql = `
-//  select "e"."eventId",
-//   "r"."imgUrl" as "resortImage"
-//     from "event" as "e"
-//     join "resort" as "r" using ("resortId")
-
-//     `;
-//   db.query(sql)
-//     .then(result => {
-//       return res.status(200).json(result.rows[0]);
-//     });
-
-// });
 app.get('/api/events', (req, res, next) => {
   const sql = `
   select "e"."eventId",
@@ -164,18 +150,17 @@ app.post('/api/event', (req, res, next) => {
                 "e"."startDate",
                 "e"."endDate",
                 "e"."description",
-                "p"."name" as "profileName",
-                "p"."imgUrl"as "profileImg",
+
                 "r"."name" as "resortName",
                 "r"."imgUrl" as "resortImg"
                 from "event" as "e"
-                join "profile" as "p" using("profileId")
+
                 join "resort" as "r" using("resortId")
                 where "e"."eventId" = $1
       `;
       db.query(select, [result.eventId])
         .then(result => {
-          res.status(201).json(result.rows);
+          res.status(201).json(result.rows[0]);
         });
     })
     .catch(err => {

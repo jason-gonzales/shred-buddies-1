@@ -327,3 +327,40 @@ width:350px;
   background-color: #c9d6df;
   border: none;
 }
+
+.event-info {
+  background-color: white;
+   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+@media only screen and (max-width:375px ){
+.imgEventDetails {
+  width: 100%;
+}
+.event-detail {
+  height: 800px;
+}
+
+.btn-eventdetail {
+  margin: 30px;
+}
+}
+
+@media only screen and (min-width: 1024px) {
+  .event-info {
+    width: 400px;
+  }
+  .event-page {
+    display: flex;
+    justify-content: space-between;
+
+  }
+  .imgEventDetails {
+    width: 600px;
+    height: 500px;
+  }
+
+  .btn-eventdetail {
+    margin: 40px;
+  }
+}

@@ -19,7 +19,7 @@ export default class App extends React.Component {
     this.state = {
       view: {
 
-        name: 'login',
+        name: 'main',
         params: {}
       },
       profile: null,
@@ -192,7 +192,7 @@ export default class App extends React.Component {
           <Header setView={this.setView} />
           <EventDetails
             setView={this.setView}
-            params={this.state.view.params} />
+            params={this.state.view.params}/>
           <Footer setView={this.setView} />
         </>;
     } else if (this.state.view.name === 'host') {
