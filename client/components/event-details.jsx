@@ -39,7 +39,7 @@ export default class EventDetails extends React.Component {
         <div className="event-detail pt-3">
           <div className="container px-0">
             <h2 className="text-center"><i className="fas fa-tram"></i>{events.resortName}</h2>
-            <div className="text-center pb-3">HOST: {events.resortName}</div>
+            <div className="text-center pb-3">HOST: {events.profileName}</div>
             <div className="event-page">
               <div className=" m-0 d-flex justify-content-center">
                 <img src={events.resortImage} alt={events.resortName} className="imgEventDetails" />
