@@ -34,17 +34,20 @@ export default class RecommendedResortDetail extends React.Component {
     return (
 
       <div className="resort-detail">
-        <div className="d-flex flex-wrap justify-content-center">
-          <div className="mb-md-3 pt-2 col-lg-9">
+        <div className="container px-0">
+          <div className="text-center">
             <h4><i className="fas fa-chevron-left py-md-3"
               onClick={() => this.props.setView('resortList', {})}></i> {this.state.resort.name}</h4>
             <p className="mt-n1 col-lg-9">{this.state.resort.address}</p>
           </div>
-          <div className="resort-img">
-            <img src={this.state.resort.imgUrl} alt="" className="img-detail mt-n3" />
-          </div>
-          <div className="d-flex justify-content-center resort-description pt-2">
-            <p className="col-lg-9 mt-1">{this.state.resort.description}</p>
+          <div className="resort-main">
+            <div className="resort-img">
+              <img src={this.state.resort.imgUrl} alt="" className="img-detail mt-n3" />
+            </div>
+            <div className="d-flex justify-content-center resort-description pt-2">
+              <p className="col-lg-9 mt-1">{this.state.resort.description}</p>
+            </div>
+
           </div>
 
         </div>
@@ -52,6 +55,26 @@ export default class RecommendedResortDetail extends React.Component {
           <button className="btn-detail" onClick={this.handleClick}>Add to Event </button>
         </div>
       </div>
+
+    // <div className="resort-detail">
+    //   <div className="d-flex flex-wrap justify-content-center">
+    //     <div className="mb-md-3 pt-2 col-lg-9">
+    //       <h4><i className="fas fa-chevron-left py-md-3"
+    //         onClick={() => this.props.setView('resortList', {})}></i> {this.state.resort.name}</h4>
+    //       <p className="mt-n1 col-lg-9">{this.state.resort.address}</p>
+    //     </div>
+    //     <div className="resort-img">
+    //       <img src={this.state.resort.imgUrl} alt="" className="img-detail mt-n3" />
+    //     </div>
+    //     <div className="d-flex justify-content-center resort-description pt-2">
+    //       <p className="col-lg-9 mt-1">{this.state.resort.description}</p>
+    //     </div>
+
+    //   </div>
+    //   <div className="text-center pt-3">
+    //     <button className="btn-detail" onClick={this.handleClick}>Add to Event </button>
+    //   </div>
+    // </div>
 
     );
 

@@ -88,22 +88,31 @@ h2 {
   height: 700px;
 }
 
+/*Resort Detail */
+
 .resort-img {
   padding-top: 10px;
 }
-@media only screen and (min-width: 730px) {
-  .resort-detail {
-    display: flex;
-  }
-  .resort-img {
-   padding-top: 60px;
-    object-fit: contain;
+@media only screen and (min-width: 768px) {
+  .resort-img img{
+   width: 300px;
 
   }
+  .resort-main {
+  display: flex;
 
-  .resort-detail {
-    height: 800px;
+}
+}
+
+@media only screen and (min-width: 1024) {
+  .resort-img img{
+   width: 300px;
+
   }
+  /* .resort-main {
+  display: flex;
+
+} */
 }
 
 @media only screen and (max-width: 540px) {
@@ -112,12 +121,11 @@ h2 {
 
   }
 
+}
 .resort-description {
   background: white;
   box-shadow: 2px 2px 4px rgb(0 0 0 / 15%)
 }
-}
-
 
 
 
