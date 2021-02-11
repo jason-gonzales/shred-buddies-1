@@ -19,7 +19,7 @@ export default class App extends React.Component {
     this.state = {
       view: {
 
-        name: 'home',
+        name: 'resortList',
         params: {}
       },
       profile: null,
@@ -39,6 +39,9 @@ export default class App extends React.Component {
   addUser(userName) {
     this.setState({
       profile: userName
+    });
+    this.setState({
+      user: userName
     });
   }
 
@@ -86,14 +89,14 @@ export default class App extends React.Component {
       body: JSON.stringify(object)
     };
 
-    fetch(`/api/event/${this.state.profile.profileId}`, requestOption)
+    fetch(`/api/event/${this.state.user.profileId}`, requestOption)
       .then(result => result.json())
       .then(data => this.setState({
         view: { name: 'host', params: {} },
         event: data.eventId,
-        profile: data,
         resort: data.resortId,
-        host: data
+        host: data,
+        user: data
       }))
       .catch(err => console.error(err));
   }
