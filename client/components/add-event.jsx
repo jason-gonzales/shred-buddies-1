@@ -10,28 +10,31 @@ export default class AddEvent extends React.Component {
       startDate: '',
       endDate: '',
       profileId: '',
-      resort: null
+      resortName: ''
 
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    // this.updateSearch = this.updateSearch(this);
+
   }
+
+  // componentDidMount() {
+  //   fetch(`/api/resort/${this.props.params.resortId}`)
+  //     .then(res => res.json())
+  //     .then(resort =>
+  //       this.setState({
+  //         resort: resort
+  //       }))
+  //     .catch(err => console.error(err));
+
+  // }
 
   componentDidMount() {
-    fetch(`/api/resort/${this.props.params.resortId}`)
-      .then(res => res.json())
-      .then(resort =>
-        this.setState({
-          resort: resort
-        }))
-      .catch(err => console.error(err));
-
+    this.setState({
+      resortName: this.props.params.resortId.name,
+      resortId: this.props.params.resortId.resortId
+    });
   }
-
-  // updateSearch(event) {
-  //   this.setState({ resort: event.target.value });
-  // }
 
   handleChange(events) {
     const input = event.target.name;
@@ -54,8 +57,10 @@ export default class AddEvent extends React.Component {
   }
 
   render() {
-    // console.log(this.props.params.resortId);
-    if (!this.state.resort) {
+    // console.log(this.state);
+    // console.log(this.props.params.resortId.name);
+
+    if (!this.props.params.resortId) {
       return null;
     }
 
@@ -66,11 +71,13 @@ export default class AddEvent extends React.Component {
             <label htmlFor="exampleFormControlInput1">
               <h3 className="mt-2">Add Event</h3>
             </label>
-            {/* <input type="text"
-              value={this.state.resort.name}
-              onChange={this.handleChange} /> */}
+            <input type="text"
+              name="resortName"
+              value={this.props.params.resortId.name}
+              onChange={this.handleChange}
+              id={this.state.resortName}/>
             {/* <input onChange={this.handleChange} value={this.props.params.resortId}>{this.props.params.resortId}</input> */}
-            <select
+            {/* <select
               className="ml-4"
               onChange={this.handleChange}
               id={this.state.resortId}
@@ -79,7 +86,7 @@ export default class AddEvent extends React.Component {
               <option value="1">mammoth</option>
               <option value="2">bear mountain</option>
               <option value="3">mountain high</option>
-            </select>
+            </select> */}
           </div>
           <div className="d-flex col-md-9 mx-auto">
             <div className="form-group">

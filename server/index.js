@@ -128,8 +128,6 @@ app.get('/api/events', (req, res, next) => {
     join "resort" as "r" using ("resortId")
     join "profile" as "p" using ("profileId")
 
-
-
     `;
   db.query(sql)
     .then(result => res.status(200).json(result.rows))
@@ -138,7 +136,7 @@ app.get('/api/events', (req, res, next) => {
 });
 
 app.post('/api/event/:profile', (req, res, next) => {
-  if (!req.body.resortId && !req.body.startDate && !req.body.endDate && !req.body.profileId && !req.body.description) { throw new ClientError(' resortId , startDate, endDate, profileId, description must be filled out', 400); }
+  if (!req.body.resortId && !req.body.startDate && !req.body.endDate && !req.body.profileId && !req.body.description) throw new ClientError(' resortId , startDate, endDate, profileId, description must be fill out', 400);
   const insert = `
         insert into "event"("resortId", "startDate","endDate", "profileId", "description")
         values ($1,$2,$3,$4,$5)
@@ -171,41 +169,6 @@ app.post('/api/event/:profile', (req, res, next) => {
       next(err);
     });
 });
-// app.post('/api/event', (req, res, next) => {
-//   if (!req.body.resortId && !req.body.startDate && !req.body.endDate && !req.body.profileId && !req.body.description)
-//     throw new ClientError(' resortId , startDate, endDate, profileId, description must be filled out', 400);
-//   const insert = `
-//         insert into "event"("resortId", "startDate","endDate", "profileId", "description")
-//         values ($1,$2,$3,$4,$5)
-//         returning "eventId"
-//  `;
-//   const values = [req.body.resortId, req.body.startDate, req.body.endDate, req.body.profileId, req.body.description];
-//   db.query(insert, values)
-//     .then(result => result.rows[0])
-//     .then(result => {
-//       const select = `
-//         select "e"."eventId",
-//                 "e"."startDate",
-//                 "e"."endDate",
-//                 "e"."description",
-//                 "p"."profileId",
-//                 "r"."name" as "resortName",
-//                 "r"."imgUrl" as "resortImg"
-//                 from "event" as "e"
-//                 join "profile" as "p" using ("profileId")
-//                 join "resort" as "r" using("resortId")
-//                 where "e"."eventId" = $1
-//       `;
-//       db.query(select, [result.eventId])
-//         .then(result => {
-//           res.status(201).json(result.rows[0]);
-//         });
-//     })
-//     .catch(err => {
-//       console.error(err);
-//       next(err);
-//     });
-// });
 
 app.delete('/api/event/:eventId', (req, res) => {
   const eventId = parseInt(req.params.eventId, 10);

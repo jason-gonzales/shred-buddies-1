@@ -28,7 +28,7 @@ export default class HostPage extends React.Component {
   }
 
   render() {
-
+    // console.log(this.props.event);
     const { description, startDate, endDate, resortImg, resortName } = this.props.event;
     if (!this.props.event) {
       return null;
