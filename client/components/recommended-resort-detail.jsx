@@ -22,7 +22,7 @@ export default class RecommendedResortDetail extends React.Component {
 
   handleClick(event) {
 
-    this.props.setView('addEvent', { resortId: this.state.resort.resortId });
+    this.props.setView('addEvent', { resortId: this.state.resort });
 
   }
 
