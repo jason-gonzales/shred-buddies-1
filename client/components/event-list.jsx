@@ -45,7 +45,8 @@ export default class EventList extends React.Component {
           </li>
           <li className="nav-item">
             <a className="nav-link"
-              href="#">Upcoming Event</a>
+              href="#"
+              onClick={() => this.props.setView('login', {})}>Change User</a>
           </li>
           <li className="nav-item">
             <a className="nav-link"

@@ -19,7 +19,7 @@ export default class App extends React.Component {
     this.state = {
       view: {
 
-        name: 'resortList',
+        name: 'home',
         params: {}
       },
       profile: null,
@@ -38,11 +38,10 @@ export default class App extends React.Component {
 
   addUser(userName) {
     this.setState({
-      profile: userName
-    });
-    this.setState({
+      profile: userName,
       user: userName
     });
+
   }
 
   // setUser(user) {

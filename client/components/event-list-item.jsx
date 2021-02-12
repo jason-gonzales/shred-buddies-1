@@ -18,13 +18,13 @@ export default function EventListItem(props) {
         <img className="event-img" src={props.events.resortImage} alt="Card image" />
         <div className="card-img-overlay">
           <div className="d-flex">
-            <h5 className="card-title">{props.events.resortName}</h5>
+            <h3 className="card-title">{props.events.resortName}</h3>
             <img className="host-pic ml-auto" src={props.events.profileImage} alt="shredder-host"/>
           </div>
-          <p className=''>Hosted by {props.events.profileName}</p>
-          <p className="mt-n2">starts: {start.toDateString()}</p>
-          <p className="mt-n4">ends: {end.toDateString()}</p>
-          <p className="card-text my-2">{props.events.eventDescription}</p>
+          <p className=''>Hosted by <b>{props.events.profileName}</b></p>
+          <p className="mt-n2">{start.toDateString()} - {end.toDateString()}</p>
+          {/* <p className="mt-n4">ends: {end.toDateString()}</p> */}
+
           <div>attending:
             <img className="attending-pic pl-2" src="/images/chewbacca.png" alt="shredder-host" />
           </div>

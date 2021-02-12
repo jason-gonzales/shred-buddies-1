@@ -4,6 +4,7 @@ export default class AddEvent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      value: '',
       resortId: '',
       description: '',
       startDate: '',
@@ -14,6 +15,7 @@ export default class AddEvent extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    // this.updateSearch = this.updateSearch(this);
   }
 
   componentDidMount() {
@@ -26,6 +28,10 @@ export default class AddEvent extends React.Component {
       .catch(err => console.error(err));
 
   }
+
+  // updateSearch(event) {
+  //   this.setState({ resort: event.target.value });
+  // }
 
   handleChange(events) {
     const input = event.target.name;
@@ -41,7 +47,8 @@ export default class AddEvent extends React.Component {
     this.props.createEvent(this.state);
     if (this.props.event) {
 
-      this.props.setView('host', { eventId: this.props.event });
+      this.props.setView('host');
+      // this.props.setView('host', { eventId: this.props.event });
 
     }
   }
@@ -59,6 +66,9 @@ export default class AddEvent extends React.Component {
             <label htmlFor="exampleFormControlInput1">
               <h3 className="mt-2">Add Event</h3>
             </label>
+            {/* <input type="text"
+              value={this.state.resort.name}
+              onChange={this.handleChange} /> */}
             {/* <input onChange={this.handleChange} value={this.props.params.resortId}>{this.props.params.resortId}</input> */}
             <select
               className="ml-4"
