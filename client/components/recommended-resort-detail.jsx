@@ -35,17 +35,18 @@ export default class RecommendedResortDetail extends React.Component {
 
       <div className="resort-detail">
         <div className="container px-0">
-          <div className="text-center">
+          <div className="text-center p-2">
             <h4><i className="fas fa-chevron-left py-md-3"
               onClick={() => this.props.setView('resortList', {})}></i> {this.state.resort.name}</h4>
-            <p className="mt-n1 col-lg-9">{this.state.resort.address}</p>
+
           </div>
           <div className="resort-main">
             <div className="resort-img">
-              <img src={this.state.resort.imgUrl} alt="" className="img-detail mt-n3" />
+              <img src={this.state.resort.imgUrl} alt="" className="img-detail" />
             </div>
-            <div className="d-flex justify-content-center resort-description pt-2">
-              <p className="col-lg-9 mt-1">{this.state.resort.description}</p>
+            <div className="justify-content-center resort-description pt-2">
+              <p className=" mt-1">{this.state.resort.description}</p>
+              <p className="mt-n1 col-lg-9"><b>Address: </b>{this.state.resort.address}</p>
             </div>
 
           </div>

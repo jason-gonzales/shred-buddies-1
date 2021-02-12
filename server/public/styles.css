@@ -8,6 +8,7 @@
 body {
    background:#c9d6df;
    height: 100vh;
+   line-height: 1.6;
 
 }
 
@@ -90,9 +91,9 @@ h2 {
 
 /*Resort Detail */
 
-.resort-img {
+/* .resort-img {
   padding-top: 10px;
-}
+} */
 @media only screen and (min-width: 768px) {
   .resort-img img{
    width: 300px;
@@ -102,24 +103,36 @@ h2 {
   display: flex;
 
 }
+
+.resort-description p {
+  padding: 10px;
+}
 }
 
-@media only screen and (min-width: 1024) {
+@media only screen and (min-width: 1023px) {
   .resort-img img{
-   width: 300px;
+   width: 500px;
+   height: 400px;
 
   }
-  /* .resort-main {
-  display: flex;
+  .resort-description p {
+    padding: 30px;
 
-} */
+  }
+
 }
 
 @media only screen and (max-width: 540px) {
+  .resort-detail {
+    height: 700px;
+  }
   .resort-img img {
    width: 100%;
 
   }
+  .resort-description p {
+  padding: 10px;
+}
 
 }
 .resort-description {
@@ -332,16 +345,14 @@ box-shadow: 2px 2px 4px rgb(0 0 0 / 15%)
 
 .host-pic {
   width: 60px;
-  height: 60px;
   border-radius: 50%;
   object-fit: cover;
 
 }
 .attending-pic {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-
+width: 50px;
+border-radius: 50%;
+object-fit: cover;
 }
 
 .event {
@@ -354,12 +365,14 @@ box-shadow: 2px 2px 4px rgb(0 0 0 / 15%)
    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
 }
 
-@media only screen and (max-width:375px ){
+/*Event Detail */
+
+@media only screen and (max-width:450px ){
 .imgEventDetails {
   width: 100%;
 }
 .event-detail {
-  height: 800px;
+  height: 850px;
 }
 
 .btn-eventdetail {
