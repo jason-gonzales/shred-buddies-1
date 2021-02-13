@@ -47,7 +47,7 @@ export default class HostPage extends React.Component {
           <div className="text-center mt-2">
             <button onClick={this.handleClick} className="btn-detail ml-1">delete</button>
           </div>
-          <div className="mt-2 text-center mx-2">
+          <div className="mt-2 text-center mx-2 host-content">
             <img className="host-img" src={resortImg} />
             <div className="text-center mx-2">
               <h2>{resortName}</h2>
