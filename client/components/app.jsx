@@ -50,12 +50,6 @@ export default class App extends React.Component {
   //   });
   // }
 
-  // setUser2(user2) {
-  //   this.setState({
-  //     user2: user2
-  //   });
-  // }
-
   setView(name, params) {
     this.setState({
       view: {
