@@ -79,14 +79,14 @@ h2 {
 
 .create-form, .add-event,.host, .notification, .profile-page, .resort-detail {
   background:#c9d6df;
-  height: 100vh;
+  height: 700px;
   width: 100%;
    font-family: 'Roboto', sans-serif;
    /* position: fixed; */
 
 }
 .event-detail {
-  height: 700px;
+  height: 800px;
 }
 
 /*Resort Detail */
@@ -242,18 +242,6 @@ width:350px;
 
 }
 
-/* .header-icon{
-  -webkit-text-stroke: 1px #52616b;
-} */
-
-/* .btn-eventdetail{
-  background-color: #52616b;
-  color: #f0f5f9;
-  border-radius: 10px;
-  width: 150px;
-  height: 30px;
-   font-family: 'Roboto', sans-serif;
-} */
 
 
 .detail-title {
@@ -318,7 +306,7 @@ width:350px;
   }
 }
 .content-container {
-  height: 85vh;
+  height: 90vh;
  background-color: #f0f5f9;
   border-top-left-radius: 0.8rem;
   border-top-right-radius: 0.8rem;
@@ -401,4 +389,5 @@ object-fit: cover;
 
 .host-content {
   background: white;
+
 }
