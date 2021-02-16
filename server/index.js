@@ -75,7 +75,7 @@ app.get('/api/profile/:profileId', (req, res, next) => {
 });
 
 app.post('/api/profile', (req, res, next) => {
-  if (!req.body.name && !req.body.email && !req.body.skill && !req.body.imgUrl && !req.body.description) throw new ClientError(' Name , email, skill, imgUrl,description must be fill out', 400);
+  if (!req.body.name && !req.body.email && !req.body.skill && !req.body.imgUrl && !req.body.description) throw new ClientError(' Name , email, skill, imgUrl,description must be filled out', 400);
   const insert = `
         insert into "profile"("name", "email","skill", "imgUrl", "description")
         values ($1,$2,$3,$4,$5)
@@ -136,7 +136,7 @@ app.get('/api/events', (req, res, next) => {
 });
 
 app.post('/api/event/:profile', (req, res, next) => {
-  if (!req.body.resortId && !req.body.startDate && !req.body.endDate && !req.body.profileId && !req.body.description) throw new ClientError(' resortId , startDate, endDate, profileId, description must be fill out', 400);
+  if (!req.body.resortId && !req.body.startDate && !req.body.endDate && !req.body.profileId && !req.body.description) throw new ClientError(' resortId , startDate, endDate, profileId, description must be filled out', 400);
   const insert = `
         insert into "event"("resortId", "startDate","endDate", "profileId", "description")
         values ($1,$2,$3,$4,$5)
@@ -169,6 +169,48 @@ app.post('/api/event/:profile', (req, res, next) => {
       next(err);
     });
 });
+
+app.get('/api/attendees', (req, res, next) => {
+  const select = `
+          select *
+          from attendees
+  `;
+  db.query(select)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
+// app.post('/api/attendees/:profile', (req, res, next) => {
+//   if (!req.body.profileId && !req.body.eventId && !req.body.isCheckedIn) throw new ClientError('profileId, eventId, isCheckedIn must be filled out', 400);
+//   const insert = `
+//  insert into "attendees"("profileId", "eventId","isCheckedIn")
+//  values($1,$2,$3)
+//  returning *
+// `;
+
+//   const values = [req.params.profile, req.body.eventId, req.body.isCheckedIn];
+//   db.query(insert, values)
+//     .then(result => result.rows[0])
+//     .then(result => {
+//       const select = `
+//     select "a"."eventId",
+//             "a"."profileId",
+//             "a"."isCheckedIn"
+//             from "attendees" as "a"
+//             join "profile" as "p" using ("profileId")
+//             join "event" as "e" using("eventId")
+//             where "e"."eventId" = $1
+//             `;
+//       db.query(select, [result.eventId])
+//         .then(result => {
+//           res.status(201).json(result.rows[0]);
+//         });
+//     })
+//     .catch(err => {
+//       console.error(err);
+//       next(err);
+//     });
+// });
 
 app.delete('/api/event/:eventId', (req, res) => {
   const eventId = parseInt(req.params.eventId, 10);
