@@ -28,7 +28,7 @@ export default class HostPage extends React.Component {
   }
 
   render() {
-    // console.log(this.props.event);
+
     const { description, startDate, endDate, resortImg, resortName } = this.props.event;
     if (!this.props.event) {
       return null;
@@ -44,23 +44,32 @@ export default class HostPage extends React.Component {
     } else {
       return (
         <div className="host">
-          <div className="text-center mt-2">
-            <button onClick={this.handleClick} className="btn-detail ml-1">delete</button>
-          </div>
-          <div className="mt-2 text-center mx-2 host-content">
-            <img className="host-img" src={resortImg} />
-            <div className="text-center mx-2">
-              <h2>{resortName}</h2>
-              <div className="m-auto">
-                <h4> start : {start.toDateString()}</h4>
-                <h4>end : {end.toDateString()}</h4>
+          <div className="container px-0">
+            <div className="text-center m-2">
+              <button onClick={this.handleClick} className="btn-detail ml-1">delete</button>
+            </div>
+            <div className="mt-2 host-content m-auto">
+              <div className="d-flex">
+                <img className="host-img" src={resortImg} />
+              </div>
+
+              <div className="p-4">
+                <h2 className="text-center">{resortName}</h2>
+                <div className="">
+                  <p><i className="fas fa-calendar-day"></i>{start.toDateString()}</p>
+                  <p><i className="fas fa-calendar-day"></i>  {end.toDateString()}</p>
+
+                </div>
+
+                <div className="eventdetaildesc"><h5 className="bold">Details</h5>
+                  <p>{description}</p>
+                </div>
               </div>
             </div>
-            <div>
-              <h4>{description}</h4>
-            </div>
           </div>
+
         </div>
+
       );
     }
   }

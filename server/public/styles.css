@@ -77,7 +77,7 @@ h2 {
 }
 
 
-.create-form, .add-event,.host, .notification, .profile-page, .resort-detail {
+.create-form, .add-event, .notification, .profile-page, .resort-detail {
   background:#c9d6df;
   height: 700px;
   width: 100%;
@@ -85,9 +85,10 @@ h2 {
    /* position: fixed; */
 
 }
-.event-detail {
-  height: 800px;
-}
+
+
+
+
 
 /*Resort Detail */
 
@@ -236,11 +237,8 @@ font-size: 15px;
   width: 340px;
 
 }
-.host-img {
-height: 250px;
-width:350px;
 
-}
+
 
 
 
@@ -353,7 +351,13 @@ object-fit: cover;
    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
 }
 
+
+
 /*Event Detail */
+
+.event-detail {
+  height: 800px;
+}
 
 @media only screen and (max-width:450px ){
 .imgEventDetails {
@@ -387,7 +391,54 @@ object-fit: cover;
   }
 }
 
+/*Host Page*/
+
+.host {
+  background:#c9d6df;
+  height: 800px;
+  width: 100%;
+   font-family: 'Roboto', sans-serif;
+   /* position: fixed; */
+
+
+}
+.host-img {
+width: 100%;
+
+
+}
+
+
 .host-content {
   background: white;
 
+
 }
+
+/*ipad screen*/
+
+@media only screen and (device-width: 768px) {
+  .host-content {
+    width: 600px;
+
+  }
+  .host-img {
+    width: 600px;
+    height: 400px;
+  }
+}
+
+@media only screen and (min-width: 1023px) {
+  .host-content {
+    display: flex;
+  }
+}
+
+   /* @media only screen and (max-device-width: 480px) {
+      .host {
+        height: 1000px;
+      }
+      .host-img {
+        width: fit-content
+      }
+    } */
