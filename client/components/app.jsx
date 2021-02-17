@@ -27,13 +27,14 @@ export default class App extends React.Component {
       event: null,
       resort: null,
       host: null,
-      events: null
+      attend: null
     };
     this.setView = this.setView.bind(this);
     // this.setUser = this.setUser.bind(this);
     this.createProfile = this.createProfile.bind(this);
     this.createEvent = this.createEvent.bind(this);
     this.addUser = this.addUser.bind(this);
+    this.isAttending = this.isAttending.bind(this);
   }
 
   addUser(userName) {
@@ -94,6 +95,21 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  isAttending(object) {
+    const requestOption = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(object)
+    };
+
+    fetch(`/api/attendees/${this.state.user.profileId}`, requestOption)
+      .then(result => result.json())
+      .then(data => this.setState({
+        attend: data
+      }))
+      .catch(err => console.error(err));
+  }
+
   // createEvent(object) {
   //   const requestOption = {
   //     method: 'POST',
@@ -125,6 +141,9 @@ export default class App extends React.Component {
   }
 
   render() {
+    // if (!this.state.attend) {
+    //   console.log(this.state.attend);
+    // }
 
     let view = <>
 
@@ -188,7 +207,9 @@ export default class App extends React.Component {
       view =
         <>
           <Header setView={this.setView} />
-          <AddEvent setView={this.setView}
+          <AddEvent
+            isAttending={this.isAttending}
+            setView={this.setView}
             createEvent={this.createEvent}
             resort={this.state.resort}
             params={this.state.view.params} />
@@ -206,6 +227,7 @@ export default class App extends React.Component {
         <>
           <Header setView={this.setView} />
           <EventDetails
+            isAttending={this.isAttending}
             setView={this.setView}
             params={this.state.view.params}/>
           <Footer setView={this.setView} />
