@@ -171,6 +171,8 @@ app.post('/api/event/:profile', (req, res, next) => {
 });
 
 app.get('/api/attendees', (req, res, next) => {
+  // const profileId = parseInt(req.params.profileId, 10);
+
   const select = `
           select *
           from attendees
@@ -180,37 +182,65 @@ app.get('/api/attendees', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// app.post('/api/attendees/:profile', (req, res, next) => {
-//   if (!req.body.profileId && !req.body.eventId && !req.body.isCheckedIn) throw new ClientError('profileId, eventId, isCheckedIn must be filled out', 400);
-//   const insert = `
-//  insert into "attendees"("profileId", "eventId","isCheckedIn")
-//  values($1,$2,$3)
-//  returning *
-// `;
+// app.put('api/attendees/:profileId', (req, res, next) => {
+//   const profileId = parseInt(req.params.profileId, req.body);
 
-//   const values = [req.params.profile, req.body.eventId, req.body.isCheckedIn];
-//   db.query(insert, values)
-//     .then(result => result.rows[0])
+//   if (profileId < 0 || isNaN(profileId)) {
+//     throw (new ClientError(`Request Id ${req.params.profileId} is not valid`, 400));
+//   }
+
+//   const sql = `
+//   update "attendees"
+//   set "isCheckedIn" = true
+//   where "profileId" = $1
+//   returning *
+//   `;
+
+//   const values = [profileId];
+
+//   db.query(sql, values)
 //     .then(result => {
-//       const select = `
-//     select "a"."eventId",
-//             "a"."profileId",
-//             "a"."isCheckedIn"
-//             from "attendees" as "a"
-//             join "profile" as "p" using ("profileId")
-//             join "event" as "e" using("eventId")
-//             where "e"."eventId" = $1
-//             `;
-//       db.query(select, [result.eventId])
-//         .then(result => {
-//           res.status(201).json(result.rows[0]);
-//         });
+//       if (result.rows.length === 0) {
+//         next(new ClientError(`Request Id ${profileId} returned no requests`, 404));
+//       } else {
+//         return res.status(200).json(result.rows[0])
+//       }
 //     })
-//     .catch(err => {
-//       console.error(err);
-//       next(err);
-//     });
-// });
+//     .catch(err => next(err));
+// })
+
+app.post('/api/attendees/:profile', (req, res, next) => {
+
+  if (!req.body.profileId && !req.body.eventId && !req.body.isCheckedIn) throw new ClientError('profileId, eventId, isCheckedIn must be filled out', 400);
+  const insert = `
+ insert into "attendees"("profileId", "eventId","isCheckedIn")
+ values($1,$2,$3)
+ returning *
+`;
+
+  const values = [req.params.profile, req.body.eventId, req.body.isCheckedIn];
+  db.query(insert, values)
+    .then(result => result.rows[0])
+    .then(result => {
+      const select = `
+    select "e"."eventId",
+            "p"."profileId",
+            "a"."isCheckedIn"
+            from "attendees" as "a"
+            join "profile" as "p" using ("profileId")
+            join "event" as "e" using("eventId")
+            where "e"."eventId" = $1
+            `;
+      db.query(select, [result.eventId])
+        .then(result => {
+          res.status(201).json(result.rows[0]);
+        });
+    })
+    .catch(err => {
+      console.error('err');
+      next(err);
+    });
+});
 
 app.delete('/api/event/:eventId', (req, res) => {
   const eventId = parseInt(req.params.eventId, 10);
