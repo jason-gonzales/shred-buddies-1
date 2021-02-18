@@ -136,6 +136,11 @@ export default class App extends React.Component {
     fetch('/api/event/' + eventId, {
       method: 'DELETE'
     })
+    // .then(result => {
+    //   this.setState({ editDropdown: false });
+    //   this.props.getEntries();
+    //   this.props.createEntries();
+    // })
 
       .catch(err => console.error(err));
   }
@@ -179,6 +184,7 @@ export default class App extends React.Component {
         <>
           <Header setView={this.setView} />
           <EventList
+            deleteEvent={this.deleteEvent}
             setView={this.setView}
             event={this.state.user} />
           <Footer setView={this.setView} />
