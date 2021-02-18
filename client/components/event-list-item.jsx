@@ -8,25 +8,36 @@ export default function EventListItem(props) {
     // }
   }
 
+  function handleDelete() {
+    props.deleteEvent(props.events.eventId);
+  }
+
   const start = new Date(props.events.start);
   const end = new Date(props.events.end);
 
   return (
 
-    <div className="event-size col-md-4 m-auto" onClick={handleClick}>
+    <div className="event-size col-md-4 m-auto">
       <div className="card bg-dark text-white my-3">
         <img className="event-img" src={props.events.resortImage} alt="Card image" />
         <div className="card-img-overlay">
-          <div className="d-flex">
-            <h3 className="card-title">{props.events.resortName}</h3>
-            <img className="host-pic ml-auto" src={props.events.profileImage} alt="shredder-host"/>
-          </div>
-          <p className=''>Hosted by <b>{props.events.profileName}</b></p>
-          <p className="mt-n2">{start.toDateString()} - {end.toDateString()}</p>
-          {/* <p className="mt-n4">ends: {end.toDateString()}</p> */}
+          <div className="" onClick={handleClick}>
+            <div className="d-flex">
+              <h3 className="card-title">{props.events.resortName}</h3>
+              <img className="host-pic ml-auto" src={props.events.profileImage} alt="shredder-host" />
+            </div>
+            <p className=''>Hosted by <b>{props.events.profileName}</b></p>
+            <p className="mt-n2">{start.toDateString()} - {end.toDateString()}</p>
+            {/* <p className="mt-n4">ends: {end.toDateString()}</p> */}
 
-          <div>attending:
-            <img className="attending-pic pl-2" src="/images/chewbacca.png" alt="shredder-host" />
+            <div>attending:
+              <img className="attending-pic pl-2" src="/images/chewbacca.png" alt="shredder-host" />
+            </div>
+          </div>
+
+          <div className="m-2">
+            <button className="btn-event-card col-6">update</button>
+            <button onClick={handleDelete} className="btn-event-card col-6">delete</button>
           </div>
         </div>
       </div>
