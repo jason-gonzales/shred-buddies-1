@@ -21,9 +21,27 @@ export default class EventList extends React.Component {
       .catch(err => console.error(err));
   }
 
+  updateEvent(object) {
+    const requestOption = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(object)
+    };
+    fetch(`/api/event/${this.state.events.eventId}`, requestOption)
+      .then(() => {
+
+      });
+  }
+
   eventList() {
     const list = this.state.events.map(event =>
-      <EventListItem key={event.eventId} deleteEvent={this.props.deleteEvent} events={event} setView={this.props.setView} />);
+      <EventListItem
+        key={event.eventId}
+        getEvents={this.getEvents}
+        updateEvent={this.updateEvent}
+        deleteEvent = { this.props.deleteEvent }
+        events={event}
+        setView={this.props.setView} />);
 
     return list;
   }
@@ -33,6 +51,7 @@ export default class EventList extends React.Component {
   }
 
   render() {
+    // console.log(this.state.events.eventId);
 
     return (
 
