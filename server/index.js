@@ -138,9 +138,9 @@ app.get('/api/events', (req, res, next) => {
 app.post('/api/event/:profile', (req, res, next) => {
   if (!req.body.resortId && !req.body.startDate && !req.body.endDate && !req.body.profileId && !req.body.description) throw new ClientError(' resortId , startDate, endDate, profileId, description must be filled out', 400);
   const insert = `
-        insert into "event"("resortId", "startDate","endDate", "profileId", "description")
+        insert into "event"("resortId","startDate","endDate", "profileId", "description")
         values ($1,$2,$3,$4,$5)
-        returning "eventId"
+        returning *;
  `;
   const values = [req.body.resortId, req.body.startDate, req.body.endDate, req.params.profile, req.body.description];
   db.query(insert, values)
@@ -170,23 +170,24 @@ app.post('/api/event/:profile', (req, res, next) => {
     });
 });
 
-// app.put('/api/event/:profile', (req, res, next) => {
-//   const {profile} = req.params;
-//   const values = [req.body.resortId, req.body.startDate, req.body.endDate, req.body.description, req.params.profile];
-//   const sql =
-//   `update "event"
-//     set "resortId" =$1,
-//         "startDate" =$2,
-//         "endDate" =$3,
-//         "description"=$4
-//   where "profileId" = $5
-//   `;
-//   db.query(sql, values)
-//     .then(result => {
-//       res.status(200).json({});
-//     })
-//     .catch(err => next(err));
-// });
+app.put('/api/event/:eventId', (req, res, next) => {
+
+  const values = [req.body.resortId, req.body.startDate, req.body.endDate, req.body.profileId, req.body.description, req.params.eventId];
+  const sql =
+  `update "event"
+    set "resortId" =$1,
+        "startDate" =$2,
+        "endDate" =$3,
+        "profileId"=$4,
+        "description"=$5
+  where "eventId" = $6;
+  `;
+  db.query(sql, values)
+    .then(result => {
+      res.status(200).json({});
+    })
+    .catch(err => next(err));
+});
 
 app.get('/api/attendees', (req, res, next) => {
   // const profileId = parseInt(req.params.profileId, 10);
