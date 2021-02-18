@@ -170,6 +170,24 @@ app.post('/api/event/:profile', (req, res, next) => {
     });
 });
 
+// app.put('/api/event/:profile', (req, res, next) => {
+//   const {profile} = req.params;
+//   const values = [req.body.resortId, req.body.startDate, req.body.endDate, req.body.description, req.params.profile];
+//   const sql =
+//   `update "event"
+//     set "resortId" =$1,
+//         "startDate" =$2,
+//         "endDate" =$3,
+//         "description"=$4
+//   where "profileId" = $5
+//   `;
+//   db.query(sql, values)
+//     .then(result => {
+//       res.status(200).json({});
+//     })
+//     .catch(err => next(err));
+// });
+
 app.get('/api/attendees', (req, res, next) => {
   // const profileId = parseInt(req.params.profileId, 10);
 
