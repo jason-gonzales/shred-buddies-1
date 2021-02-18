@@ -12,6 +12,7 @@ import EventDetails from './event-details';
 import HostPage from './host-page';
 import Footer from './footer';
 import Login from './log-in';
+import UpdateEvent from './update-event';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -110,26 +111,6 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  // createEvent(object) {
-  //   const requestOption = {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(object)
-  //   };
-
-  //   fetch('/api/event', requestOption)
-  //     .then(result => result.json())
-  //     .then(data => this.setState({
-  //       view: { name: 'host', params: {} },
-  //       event: data.eventId,
-  //       profile: data.profileId,
-  //       resort: data.resortId,
-  //       user2: data
-  //     }))
-  //     .catch(err => console.error(err));
-
-  // }
-
   deleteEvent(object) {
 
     const eventId = object;
@@ -221,6 +202,18 @@ export default class App extends React.Component {
             params={this.state.view.params} />
           <Footer setView={this.setView} />
         </>;
+    } else if (this.state.view.name === 'updateEvent') {
+      view =
+      <>
+        <Header setView={this.setView} />
+        <UpdateEvent
+          isAttending={this.isAttending}
+          setView={this.setView}
+          createEvent={this.createEvent}
+          resort={this.state.resort}
+          params={this.state.view.params} />
+        <Footer setView={this.setView} />
+      </>;
     } else if (this.state.view.name === 'notification') {
       view =
         <>

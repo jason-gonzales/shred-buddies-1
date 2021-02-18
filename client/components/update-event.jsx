@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class AddEvent extends React.Component {
+export default class UpdateEvent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,8 +13,8 @@ export default class AddEvent extends React.Component {
       resortName: ''
 
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
 
   }
 
@@ -29,21 +29,21 @@ export default class AddEvent extends React.Component {
 
   // }
 
-  componentDidMount() {
-    this.setState({
-      resortName: this.props.params.resortId.name,
-      resortId: this.props.params.resortId.resortId
-    });
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     resortName: this.props.params.resortId.name,
+  //     resortId: this.props.params.resortId.resortId
+  //   });
+  // }
 
-  handleChange(events) {
-    const input = event.target.name;
-    const value = event.target.value;
-    const newState = {};
-    newState[input] = value;
-    this.setState(newState);
+  // handleChange(events) {
+  //   const input = event.target.name;
+  //   const value = event.target.value;
+  //   const newState = {};
+  //   newState[input] = value;
+  //   this.setState(newState);
 
-  }
+  // }
 
   handleClick(event) {
     // console.log(this.state);
@@ -62,22 +62,22 @@ export default class AddEvent extends React.Component {
     // console.log(this.state);
     // console.log(this.props.params.resortId.name);
 
-    if (!this.props.params.resortId) {
-      return null;
-    }
+    // if (!this.props.params.resortId) {
+    //   return null;
+    // }
 
     return (
       <div className="add-event">
         <form className="mx-3">
           <div className="form-group col-md-9 mx-auto">
             <label htmlFor="exampleFormControlInput1">
-              <h3 className="mt-2">Add Event</h3>
+              <h3 className="mt-2">Update Event</h3>
             </label>
             <input type="text"
               name="resortName"
-              value={this.props.params.resortId.name}
+              value=""
               onChange={this.handleChange}
-              id={this.state.resortName}/>
+              id="" />
             {/* <input onChange={this.handleChange} value={this.props.params.resortId}>{this.props.params.resortId}</input> */}
             {/* <select
               className="ml-4"
@@ -95,7 +95,7 @@ export default class AddEvent extends React.Component {
               <label>start date</label>
               <input
                 onChange={this.handleChange}
-                value={this.state.startDate}
+                value=""
                 name="startDate" type="date"
                 className="form-control start-input"
                 id="start-id" />
@@ -104,7 +104,7 @@ export default class AddEvent extends React.Component {
               <label>end date</label>
               <input
                 onChange={this.handleChange}
-                value={this.state.endDate}
+                value=""
                 name="endDate" type="date"
                 className="form-control end-input"
                 id="end-id" />
@@ -114,7 +114,7 @@ export default class AddEvent extends React.Component {
             <label htmlFor="exampleFormControlSelect1">how many shredders</label>
             <select
               onChange={this.handleChange}
-              value={this.state.profileId} name="profileId"
+              value="" name="profileId"
               className="form-control"
               id="exampleFormControlSelect1">
               <option>1</option>
@@ -133,7 +133,7 @@ export default class AddEvent extends React.Component {
             <label htmlFor="exampleFormControlTextarea1">event details</label>
             <textarea
               onChange={this.handleChange}
-              value={this.state.description}
+              value=""
               name="description"
               className="form-control"
               id="exampleFormControlTextarea1"
@@ -142,7 +142,7 @@ export default class AddEvent extends React.Component {
           <div className="text-center">
             <button
               onClick={this.handleClick}
-              className="btn-detail m-auto">add event</button>
+              className="btn-detail m-auto">update event</button>
           </div>
         </form>
       </div>
