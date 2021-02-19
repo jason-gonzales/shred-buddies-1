@@ -27,7 +27,7 @@ export default class App extends React.Component {
       user: null,
       event: null,
       resort: null,
-      host: null,
+      // host: null,
       attend: null
     };
     this.setView = this.setView.bind(this);
@@ -90,7 +90,7 @@ export default class App extends React.Component {
         view: { name: 'host', params: {} },
         event: data.eventId,
         resort: data.resortId,
-        host: data,
+        // host: data,
         user: data
       }))
       .catch(err => console.error(err));
@@ -167,7 +167,7 @@ export default class App extends React.Component {
           <EventList
             deleteEvent={this.deleteEvent}
             setView={this.setView}
-            event={this.state.user} />
+            user={this.state.user} />
           <Footer setView={this.setView} />
 
         </>;

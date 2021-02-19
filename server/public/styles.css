@@ -71,9 +71,10 @@ h2 {
 
 .profile-pic {
   height: 150px;
-  max-width: 150px;
+  width: 150px;
   border-radius: 50%;
-  background-size: cover;
+  object-fit: cover;
+
 }
 
 
@@ -339,6 +340,7 @@ box-shadow: 2px 2px 4px rgb(0 0 0 / 15%)
 }
 
 .host-pic {
+  height:60px;
   width: 60px;
   border-radius: 50%;
   object-fit: cover;

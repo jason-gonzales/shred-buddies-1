@@ -36,6 +36,7 @@ export default class EventList extends React.Component {
   eventList() {
     const list = this.state.events.map(event =>
       <EventListItem
+        user={this.props.user.profileId}
         key={event.eventId}
         getEvents={this.getEvents}
         updateEvent={this.updateEvent}
