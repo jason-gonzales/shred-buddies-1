@@ -21,17 +21,17 @@ export default class EventList extends React.Component {
       .catch(err => console.error(err));
   }
 
-  updateEvent(object) {
-    const requestOption = {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(object)
-    };
-    fetch(`/api/event/${this.state.events.eventId}`, requestOption)
-      .then(() => {
-
-      });
-  }
+  // updateEvent(object) {
+  //   const requestOption = {
+  //     method: 'PUT',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(object)
+  //   };
+  //   fetch(`/api/event/${this.state.events.eventId}`, requestOption)
+  //     .then(() => {
+  //       this.setView('updateEvent');
+  //     });
+  // }
 
   eventList() {
     const list = this.state.events.map(event =>
@@ -51,7 +51,9 @@ export default class EventList extends React.Component {
   }
 
   render() {
-    // console.log(this.state.events.eventId);
+    // if (this.state.events) {
+    //   console.log(this.state.events);
+    // }
 
     return (
 

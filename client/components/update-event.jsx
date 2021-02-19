@@ -13,9 +13,21 @@ export default class UpdateEvent extends React.Component {
       resortName: ''
 
     };
-    // this.handleChange = this.handleChange.bind(this);
+    this.updateEvent = this.updateEvent.bind(this);
     // this.handleClick = this.handleClick.bind(this);
 
+  }
+
+  updateEvent(object) {
+    const requestOption = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(this.props.params.event)
+    };
+    fetch(`/api/event/${this.props.params.event.eventId}`, requestOption)
+      .then(res => res.json())
+      .then(data => this.setState({}))
+      .catch(err => console.error(err));
   }
 
   // componentDidMount() {
@@ -59,6 +71,7 @@ export default class UpdateEvent extends React.Component {
   }
 
   render() {
+    // console.log(this.props.params.event.eventId);
     // console.log(this.state);
     // console.log(this.props.params.resortId.name);
 
