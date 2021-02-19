@@ -14,7 +14,7 @@ export default class UpdateEvent extends React.Component {
 
     };
     this.updateEvent = this.updateEvent.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
 
   }
 
@@ -48,14 +48,14 @@ export default class UpdateEvent extends React.Component {
   //   });
   // }
 
-  // handleChange(events) {
-  //   const input = event.target.name;
-  //   const value = event.target.value;
-  //   const newState = {};
-  //   newState[input] = value;
-  //   this.setState(newState);
+  handleChange(events) {
+    const input = event.target.name;
+    const value = event.target.value;
+    const newState = {};
+    newState[input] = value;
+    this.setState(newState);
 
-  // }
+  }
 
   handleClick(event) {
     // console.log(this.state);
