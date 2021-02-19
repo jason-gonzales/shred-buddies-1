@@ -13,12 +13,14 @@ export default class UpdateEvent extends React.Component {
       resortName: ''
 
     };
-    this.updateEvent = this.updateEvent.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    // this.updateEvent = this.updateEvent.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
   }
 
-  updateEvent(object) {
+  handleSubmit(object) {
+    event.preventDefault();
     const requestOption = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -57,18 +59,17 @@ export default class UpdateEvent extends React.Component {
 
   }
 
-  handleClick(event) {
-    // console.log(this.state);
-    event.preventDefault();
-    this.props.createEvent(this.state);
-    this.props.isAttending(this.state);
-    if (this.props.event) {
+  // handleClick(event) {
 
-      this.props.setView('host');
-      // this.props.setView('host', { eventId: this.props.event });
+  //   event.preventDefault();
+  //   this.props.createEvent(this.state);
+  //   this.props.isAttending(this.state);
+  //   if (this.props.event) {
 
-    }
-  }
+  //     this.props.setView('host');
+
+  //   }
+  // }
 
   render() {
     // console.log(this.props.params.event.eventId);
@@ -88,7 +89,7 @@ export default class UpdateEvent extends React.Component {
             </label>
             <input type="text"
               name="resortName"
-              value=""
+              value={this.state.resortName}
               onChange={this.handleChange}
               id="" />
             {/* <input onChange={this.handleChange} value={this.props.params.resortId}>{this.props.params.resortId}</input> */}
@@ -108,7 +109,7 @@ export default class UpdateEvent extends React.Component {
               <label>start date</label>
               <input
                 onChange={this.handleChange}
-                value=""
+                value={this.state.startDate}
                 name="startDate" type="date"
                 className="form-control start-input"
                 id="start-id" />
@@ -117,7 +118,7 @@ export default class UpdateEvent extends React.Component {
               <label>end date</label>
               <input
                 onChange={this.handleChange}
-                value=""
+                value={this.state.endDate}
                 name="endDate" type="date"
                 className="form-control end-input"
                 id="end-id" />
@@ -146,7 +147,7 @@ export default class UpdateEvent extends React.Component {
             <label htmlFor="exampleFormControlTextarea1">event details</label>
             <textarea
               onChange={this.handleChange}
-              value=""
+              value={this.state.description}
               name="description"
               className="form-control"
               id="exampleFormControlTextarea1"
@@ -154,7 +155,7 @@ export default class UpdateEvent extends React.Component {
           </div>
           <div className="text-center">
             <button
-              onClick={this.handleClick}
+              onClick={this.handleSubmit}
               className="btn-detail m-auto">update event</button>
           </div>
         </form>

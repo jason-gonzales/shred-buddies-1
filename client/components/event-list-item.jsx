@@ -113,6 +113,8 @@ export default class EventList extends React.Component {
   // }
 
   render() {
+    const profile = this.props.events.profileId;
+    const user = this.props.user;
 
     const { events } = this.props;
 
@@ -144,11 +146,15 @@ export default class EventList extends React.Component {
             </div>
 
             <div className="m-2">
-              <button
-                onClick={() => this.props.setView('updateEvent', { event: this.props.events })}
-                className="btn-event-card col-6">update</button>
-              <button onClick={this.handleDelete}
-                className="btn-event-card col-6">delete</button>
+              {profile === user ? <>
+                <button
+                  onClick={() => this.props.setView('updateEvent', { event: this.props.events })}
+                  className="btn-event-card col-6">update</button>
+                <button
+                  onClick={this.handleDelete}
+                  className="btn-event-card col-6">delete</button>
+              </> : null}
+
             </div>
           </div>
         </div>
