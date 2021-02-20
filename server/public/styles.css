@@ -315,14 +315,14 @@ font-size: 15px;
 }
 .content-container {
   height: 90vh;
- background-color: #f0f5f9;
+ background-color: #ffff;
   border-top-left-radius: 0.8rem;
   border-top-right-radius: 0.8rem;
   bottom:0;
 }
-.description, .level{
+/* .description, .level{
   color: grey;
-}
+} */
 
 .resort-list-img {
   height:280px;

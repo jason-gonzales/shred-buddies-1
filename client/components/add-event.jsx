@@ -59,7 +59,7 @@ export default class AddEvent extends React.Component {
   }
 
   render() {
-    // console.log(this.state);
+
     // console.log(this.props.params.resortId.name);
 
     if (!this.props.params.resortId) {

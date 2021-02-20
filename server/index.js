@@ -119,6 +119,7 @@ app.get('/api/events', (req, res, next) => {
   select "e"."eventId",
     "r"."imgUrl" as "resortImage",
     "r"."name" as "resortName",
+    "r"."resortId" as "resortId",
     "p"."profileId" as "profileId",
     "p"."name" as "profileName",
     "p"."imgUrl" as "profileImage",

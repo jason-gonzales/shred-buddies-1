@@ -95,7 +95,7 @@ export default class EventList extends React.Component {
 
   handleDelete() {
     this.props.deleteEvent(this.props.events.eventId);
-    this.props.getEvents(this.props.events);
+    // this.props.getEvents(this.props.events);
   }
 
   // updateEvent(object) {
