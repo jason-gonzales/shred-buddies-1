@@ -6,13 +6,13 @@ export default class UpdateEvent extends React.Component {
     this.state = {
       resortId: '',
       description: '',
-      // startDate: '',
-      // endDate: '',
-      profileId: this.props.params.event.profileId,
+      startDate: '',
+      endDate: '',
+      profileId: '',
       resortName: ''
 
     };
-    // this.updateEvent = this.updateEvent.bind(this);
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
@@ -26,27 +26,19 @@ export default class UpdateEvent extends React.Component {
       body: JSON.stringify(this.state)
     };
     fetch(`/api/event/${this.props.params.event.eventId}`, requestOption)
-      .then(res => (res.json()))
+      .then(() => {
+        this.props.setView('main');
+      })
       .catch(err => console.error(err));
   }
-
-  // componentDidMount() {
-  //   fetch(`/api/resort/${this.props.params.resortId}`)
-  //     .then(res => res.json())
-  //     .then(resort =>
-  //       this.setState({
-  //         resort: resort
-  //       }))
-  //     .catch(err => console.error(err));
-
-  // }
 
   componentDidMount() {
     this.setState({
       resortName: this.props.params.event.resortName,
       resortId: this.props.params.event.resortId,
-      startDate: this.props.params.event.start,
-      endDate: this.props.params.event.end,
+      startDate: this.props.params.event.start.split('').slice(0, 10).join(''),
+      endDate: this.props.params.event.end.split('').slice(0, 10).join(''),
+      profileId: this.props.params.event.profileId,
       description: this.props.params.event.eventDescription
     });
   }
@@ -55,8 +47,23 @@ export default class UpdateEvent extends React.Component {
     const input = event.target.name;
     const value = event.target.value;
     const newState = {};
+
     newState[input] = value;
     this.setState(newState);
+    // console.log(this.state.resortName);
+    // if (this.state.resortName = 'Mammoth Mountain') {
+    //   this.setState({
+    //     resortId: 1
+    //   });
+    // } else if (this.state.resortName = 'Bear Mountain') {
+    //   this.setState({
+    //     resortId: 2
+    //   });
+    // } else if (this.state.resortName = 'Mountain High') {
+    //   this.setState({
+    //     resortId: 3
+    //   });
+    // }
 
   }
 
@@ -73,18 +80,6 @@ export default class UpdateEvent extends React.Component {
   // }
 
   render() {
-    // console.log(this.state);
-    // const date = this.props.params.event.start;
-    // const startDate = new Date(date).toLocaleDateString();
-    // console.log(startDate);
-
-    // console.log(this.props.params.event);
-    // console.log(this.state);
-    // console.log(this.props.params.resortId.name);
-
-    // if (!this.props.params.resortId) {
-    //   return null;
-    // }
 
     return (
       <div className="add-event">

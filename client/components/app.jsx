@@ -27,7 +27,7 @@ export default class App extends React.Component {
       user: null,
       event: null,
       resort: null,
-      // host: null,
+      host: null,
       attend: null
     };
     this.setView = this.setView.bind(this);

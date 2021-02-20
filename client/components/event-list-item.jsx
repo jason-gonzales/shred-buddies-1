@@ -89,33 +89,14 @@ export default class EventList extends React.Component {
     // }
   }
 
-  // handleUpdate() {
-  //   this.props.setView('updateEvent', {});
-  // }
-
   handleDelete() {
     this.props.deleteEvent(this.props.events.eventId);
-    // this.props.getEvents(this.props.events);
-  }
 
-  // updateEvent(object) {
-  //   const requestOption = {
-  //     method: 'PUT',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(this.props.events)
-  //   };
-  //   fetch(`/api/event/${this.state.events.eventId}`, requestOption)
-  //     .then(res => res.json())
-  //     .then(result => this.setState({
-  //       event: result
-  //     }))
-  //     .catch(err => console.error(err));
-  // }
+  }
 
   render() {
     const profile = this.props.events.profileId;
     const user = this.props.user;
-
     const { events } = this.props;
 
     const start = new Date(events.start);
@@ -135,16 +116,16 @@ export default class EventList extends React.Component {
               </div>
               <p className=''>Hosted by <b>{this.props.events.profileName}</b></p>
               <p className="mt-n2">{start.toDateString()} - {end.toDateString()}</p>
-              {/* <p className="mt-n4">ends: {end.toDateString()}</p> */}
 
-              <div>attending:
+              <p>{events.eventDescription}</p>
+
+              {/* <div>attending:
                 <img
                   className="attending-pic pl-2"
                   src="/images/chewbacca.png"
                   alt="shredder-host" />
-              </div>
+              </div> */}
             </div>
-
             <div className="m-2">
               {profile === user ? <>
                 <button
