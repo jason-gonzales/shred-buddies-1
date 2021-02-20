@@ -4,12 +4,11 @@ export default class UpdateEvent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
       resortId: '',
       description: '',
-      startDate: '',
-      endDate: '',
-      profileId: '',
+      // startDate: '',
+      // endDate: '',
+      profileId: this.props.params.event.profileId,
       resortName: ''
 
     };
@@ -24,11 +23,10 @@ export default class UpdateEvent extends React.Component {
     const requestOption = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(this.props.params.event)
+      body: JSON.stringify(this.state)
     };
     fetch(`/api/event/${this.props.params.event.eventId}`, requestOption)
-      .then(res => res.json())
-      .then(data => this.setState({}))
+      .then(res => (res.json()))
       .catch(err => console.error(err));
   }
 
@@ -43,12 +41,15 @@ export default class UpdateEvent extends React.Component {
 
   // }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     resortName: this.props.params.resortId.name,
-  //     resortId: this.props.params.resortId.resortId
-  //   });
-  // }
+  componentDidMount() {
+    this.setState({
+      resortName: this.props.params.event.resortName,
+      resortId: this.props.params.event.resortId,
+      startDate: this.props.params.event.start,
+      endDate: this.props.params.event.end,
+      description: this.props.params.event.eventDescription
+    });
+  }
 
   handleChange(events) {
     const input = event.target.name;
@@ -72,7 +73,12 @@ export default class UpdateEvent extends React.Component {
   // }
 
   render() {
-    // console.log(this.props.params.event.eventId);
+    // console.log(this.state);
+    // const date = this.props.params.event.start;
+    // const startDate = new Date(date).toLocaleDateString();
+    // console.log(startDate);
+
+    // console.log(this.props.params.event);
     // console.log(this.state);
     // console.log(this.props.params.resortId.name);
 

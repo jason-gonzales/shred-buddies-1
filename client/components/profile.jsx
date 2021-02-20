@@ -40,10 +40,10 @@ class Profile extends React.Component {
                 <p className="email text-center">{email}</p>
               </div>
               <div className="extra-box pt-3 col-11 m-auto position-relative col-lg-7">
-                <h5 className="skill">Skill Level</h5>
+                <h5 className="skill"><b>Skill Level</b></h5>
                 <h5 className="level">{skill}</h5>
                 <div>
-                  <h5 className="pt-2 about">About</h5>
+                  <h5 className="pt-2 about"><b>About</b></h5>
                   <h5 className="description">{description}</h5>
                 </div>
               </div>

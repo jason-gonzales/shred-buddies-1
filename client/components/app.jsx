@@ -90,7 +90,7 @@ export default class App extends React.Component {
         view: { name: 'host', params: {} },
         event: data.eventId,
         resort: data.resortId,
-        // host: data,
+        host: data,
         user: data
       }))
       .catch(err => console.error(err));
@@ -117,11 +117,9 @@ export default class App extends React.Component {
     fetch('/api/event/' + eventId, {
       method: 'DELETE'
     })
-    // .then(result => {
-    //   this.setState({ editDropdown: false });
-    //   this.props.getEntries();
-    //   this.props.createEntries();
-    // })
+      .then(res => {
+        this.getEvents();
+      })
 
       .catch(err => console.error(err));
   }
