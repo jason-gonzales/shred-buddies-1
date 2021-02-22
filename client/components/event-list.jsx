@@ -6,13 +6,18 @@ export default class EventList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: [],
-      guests: null
+      events: []
+      // guests: []
+      // isLoading: false
     };
     this.getEvents = this.getEvents.bind(this);
     this.eventList = this.eventList.bind(this);
-    this.getGuests = this.getGuests.bind(this);
+    // this.getGuests = this.getGuests.bind(this);
   }
+
+  // componentDidMount() {
+  //   this.setState({ isLoading: true });
+  // }
 
   getEvents() {
     fetch('/api/events')
@@ -23,14 +28,15 @@ export default class EventList extends React.Component {
       .catch(err => console.error(err));
   }
 
-  getGuests() {
-    fetch('/api/profile')
-      .then(result => result.json())
-      .then(data => this.setState({
-        guests: data
-      }))
-      .catch(err => console.error(err));
-  }
+  // getGuests() {
+  //   fetch('/api/profile')
+  //     .then(result => result.json())
+  //     .then(data => this.setState({
+  //       guests: data
+  //       // isLoading: false
+  //     }))
+  //     .catch(err => console.error(err));
+  // }
   // updateEvent(object) {
   //   const requestOption = {
   //     method: 'PUT',
@@ -60,11 +66,10 @@ export default class EventList extends React.Component {
 
   componentDidMount() {
     this.getEvents();
-    this.getGuests();
+    // this.getGuests();
   }
 
   render() {
-    // console.log(this.state.guests);
     // if (this.state.events) {
     //   console.log(this.state.events);
     // }

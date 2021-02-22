@@ -76,12 +76,15 @@ export default class EventList extends React.Component {
     super(props);
     this.state = {
       events: [],
-      event: null
-      // guests: null
+      event: null,
+      guests: [],
+      attending: false
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    // this.getGuests = this.getGuests.bind(this);
+    this.getGuests = this.getGuests.bind(this);
+    this.guestList = this.guestList.bind(this);
+    this.attend = this.attend.bind(this);
   }
 
   handleClick() {
@@ -95,17 +98,42 @@ export default class EventList extends React.Component {
 
   }
 
-  // componentDidMount() {
-  //   fetch('/api/profile')
-  //     .then(result => result.json())
-  //     .then(data => this.setState({
-  //       guests: data
-  //     }))
-  //     .catch(err => console.error(err));
-  // }
+  getGuests() {
+    fetch('/api/profile')
+      .then(result => result.json())
+      .then(data => this.setState({
+        guests: data
+
+      }))
+      .catch(err => console.error(err));
+  }
+
+  attend() {
+    if (this.props.user) {
+      this.setState({ attending: true });
+    }
+  }
+
+  guestList() {
+    const list = this.state.guests.map(guest =>
+      <img
+        className="attending-pic pl-2 m-auto"
+        key={guest.profileId}
+        src={guest.imgUrl}
+        alt={guest.name}/>
+    );
+
+    if (this.state.attending === false) {
+      return null;
+    }
+    return list;
+  }
+
+  componentDidMount() {
+    this.getGuests();
+  }
 
   render() {
-    // console.log(this.props.guests);
 
     const profile = this.props.events.profileId;
     const user = this.props.user;
@@ -132,21 +160,24 @@ export default class EventList extends React.Component {
               <p>{events.eventDescription}</p>
 
               <div>attending:
-                {/* {
 
-                this.props.guests.map(guest =>
-                  <img
-                    className="attending-pic pl-2"
-                    src={guest.imgUrl}
-                    alt="shredder=guest"/>
-                )
-              } */}
-                <img
+                {this.guestList()}
+
+                {/* <img
                   className="attending-pic pl-2"
                   src="/images/chewbacca.png"
-                  alt="shredder-guest" />
+                  alt="shredder-guest" /> */}
               </div>
             </div>
+            <div> {
+              profile !== user ? <>
+                <button
+                  onClick={this.attend}
+                >attend</button> </> : null
+            }
+
+            </div>
+
             <div className="m-2">
               {profile === user ? <>
                 <button
