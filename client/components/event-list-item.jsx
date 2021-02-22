@@ -83,7 +83,7 @@ export default class EventList extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.getGuests = this.getGuests.bind(this);
-    this.guestList = this.guestList.bind(this);
+    // this.guestList = this.guestList.bind(this);
     this.attend = this.attend.bind(this);
   }
 
@@ -99,39 +99,56 @@ export default class EventList extends React.Component {
   }
 
   getGuests() {
-    fetch('/api/profile')
-      .then(result => result.json())
-      .then(data => this.setState({
-        guests: data
 
-      }))
+    fetch(`/api/profile/${this.props.user}`)
+      .then(result => result.json())
+      // .then(data => this.setState({
+      //   guests: data
+      // }))
+      .then(data => {
+        this.props.addGuest(data);
+      })
       .catch(err => console.error(err));
   }
 
+  // componentDidMount() {
+  //   this.getGuests();
+  // }
+  // getGuests() {
+
+  //   fetch(`/api/profile/${this.props.user}`)
+  //     .then(result => result.json())
+  //     .then(data => this.setState({
+  //       guests: data
+
+  //     }))
+  //     .catch(err => console.error(err));
+  // }
+
   attend() {
-    if (this.props.user) {
-      this.setState({ attending: true });
-    }
+    // if (this.props.user) {
+    this.setState({ attending: true });
+    // }
   }
 
-  guestList() {
-    const list = this.state.guests.map(guest =>
-      <img
-        className="attending-pic pl-2 m-auto"
-        key={guest.profileId}
-        src={guest.imgUrl}
-        alt={guest.name}/>
-    );
+  // guestList() {
+  //   const list = this.state.guests.map(guest =>
+  //     <img
+  //       className="attending-pic pl-2 m-auto"
+  //       key={guest.profileId}
+  //       src={guest.imgUrl}
+  //       alt={guest.name}/>
+  //   );
 
-    if (this.state.attending === false) {
-      return null;
-    }
-    return list;
-  }
+  //   if (this.state.attending === false) {
+  //     return null;
+  //   }
+  //   return list;
+  // }
 
-  componentDidMount() {
-    this.getGuests();
-  }
+  // componentDidMount() {
+  //   this.getGuests();
+  // }
 
   render() {
 
@@ -160,8 +177,17 @@ export default class EventList extends React.Component {
               <p>{events.eventDescription}</p>
 
               <div>attending:
-
-                {this.guestList()}
+                {this.props.user ? <>
+                  <img
+                    className="attending-pic pl-2"
+                    src={this.props.events.profileImage}
+                    alt={this.props.events.profileName}/></> : null}
+                {this.state.guests ? <>
+                  <img
+                    className="attending-pic pl-2"
+                    src={this.state.guests.imgUrl}
+                    alt={this.state.guests.name}/></> : null}
+                {/* {this.guestList()} */}
 
                 {/* <img
                   className="attending-pic pl-2"
@@ -172,7 +198,7 @@ export default class EventList extends React.Component {
             <div> {
               profile !== user ? <>
                 <button
-                  onClick={this.attend}
+                  onClick={this.getGuests}
                 >attend</button> </> : null
             }
 
