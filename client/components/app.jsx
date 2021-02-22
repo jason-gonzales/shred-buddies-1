@@ -28,7 +28,8 @@ export default class App extends React.Component {
       event: null,
       resort: null,
       host: null,
-      attend: null
+      attend: null,
+      guest: null
     };
     this.setView = this.setView.bind(this);
     // this.setUser = this.setUser.bind(this);
@@ -36,6 +37,7 @@ export default class App extends React.Component {
     this.createEvent = this.createEvent.bind(this);
     this.addUser = this.addUser.bind(this);
     this.isAttending = this.isAttending.bind(this);
+    this.addGuest = this.addGuest.bind(this);
   }
 
   addUser(userName) {
@@ -43,7 +45,15 @@ export default class App extends React.Component {
       profile: userName,
       user: userName
     });
+  }
 
+  addGuest(guestName) {
+    if (this.state.profile) {
+      this.setState({
+        guest: guestName
+
+      });
+    }
   }
 
   // setUser(user) {
@@ -163,9 +173,12 @@ export default class App extends React.Component {
         <>
           <Header setView={this.setView} />
           <EventList
+            addGuest={this.addGuest}
             deleteEvent={this.deleteEvent}
             setView={this.setView}
-            user={this.state.user} />
+            user={this.state.user}
+            guest={this.state.guest}
+          />
           <Footer setView={this.setView} />
 
         </>;

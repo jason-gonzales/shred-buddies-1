@@ -52,6 +52,7 @@ export default class EventList extends React.Component {
   eventList() {
     const list = this.state.events.map(event =>
       <EventListItem
+        addGuest={this.props.addGuest}
         user={this.props.user.profileId}
         key={event.eventId}
         getEvents={this.getEvents}
@@ -59,7 +60,7 @@ export default class EventList extends React.Component {
         deleteEvent = { this.props.deleteEvent }
         events={event}
         setView={this.props.setView}
-        guests={this.state.guests}/>);
+        guests={this.props.guest}/>);
 
     return list;
   }
