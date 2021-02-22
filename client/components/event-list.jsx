@@ -6,10 +6,12 @@ export default class EventList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: []
+      events: [],
+      guests: null
     };
     this.getEvents = this.getEvents.bind(this);
     this.eventList = this.eventList.bind(this);
+    this.getGuests = this.getGuests.bind(this);
   }
 
   getEvents() {
@@ -21,6 +23,14 @@ export default class EventList extends React.Component {
       .catch(err => console.error(err));
   }
 
+  getGuests() {
+    fetch('/api/profile')
+      .then(result => result.json())
+      .then(data => this.setState({
+        guests: data
+      }))
+      .catch(err => console.error(err));
+  }
   // updateEvent(object) {
   //   const requestOption = {
   //     method: 'PUT',
@@ -42,16 +52,19 @@ export default class EventList extends React.Component {
         updateEvent={this.updateEvent}
         deleteEvent = { this.props.deleteEvent }
         events={event}
-        setView={this.props.setView} />);
+        setView={this.props.setView}
+        guests={this.state.guests}/>);
 
     return list;
   }
 
   componentDidMount() {
     this.getEvents();
+    this.getGuests();
   }
 
   render() {
+    // console.log(this.state.guests);
     // if (this.state.events) {
     //   console.log(this.state.events);
     // }
