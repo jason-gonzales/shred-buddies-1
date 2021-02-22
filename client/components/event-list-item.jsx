@@ -77,10 +77,11 @@ export default class EventList extends React.Component {
     this.state = {
       events: [],
       event: null
+      // guests: null
     };
     this.handleClick = this.handleClick.bind(this);
-    // this.updateEvent = this.updateEvent.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    // this.getGuests = this.getGuests.bind(this);
   }
 
   handleClick() {
@@ -94,7 +95,18 @@ export default class EventList extends React.Component {
 
   }
 
+  // componentDidMount() {
+  //   fetch('/api/profile')
+  //     .then(result => result.json())
+  //     .then(data => this.setState({
+  //       guests: data
+  //     }))
+  //     .catch(err => console.error(err));
+  // }
+
   render() {
+    // console.log(this.props.guests);
+
     const profile = this.props.events.profileId;
     const user = this.props.user;
     const { events } = this.props;
@@ -119,12 +131,21 @@ export default class EventList extends React.Component {
 
               <p>{events.eventDescription}</p>
 
-              {/* <div>attending:
+              <div>attending:
+                {/* {
+
+                this.props.guests.map(guest =>
+                  <img
+                    className="attending-pic pl-2"
+                    src={guest.imgUrl}
+                    alt="shredder=guest"/>
+                )
+              } */}
                 <img
                   className="attending-pic pl-2"
                   src="/images/chewbacca.png"
-                  alt="shredder-host" />
-              </div> */}
+                  alt="shredder-guest" />
+              </div>
             </div>
             <div className="m-2">
               {profile === user ? <>
