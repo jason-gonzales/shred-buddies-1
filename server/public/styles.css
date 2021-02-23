@@ -69,6 +69,8 @@ h2 {
   font-family: 'Roboto', sans-serif;
 }
 
+/* Profile Page */
+
 .profile-pic {
   height: 150px;
   width: 150px;
@@ -171,21 +173,26 @@ h2 {
 
 .btn-detail, .btn-eventdetail{
   background-color: #52616b;
-  color: #f0f5f9;
-  border-radius: 16px;
+  color: #fff;
+  border-radius: 2em;
   width: 250px;
   height: 40px;
-   font-family: 'Roboto', sans-serif;
+ font-family: 'Roboto', sans-serif;
+ display:inline-block;
+ text-decoration: none;
+/*  padding:0.3em 1.2em;
+ margin:0 0.3em 0.3em 0; */
+
 
 }
 
-.btn-event-card {
+.btn-event-card, .join-button {
   background-color: #52616b;
-  color: #f0f5f9;
-  border-radius: 16px;
+  color: #fff;
+  border-radius:2em;
   width: 250px;
+  font-family: 'Roboto', sans-serif;
 
-   font-family: 'Roboto', sans-serif;
 
 }
 .img-detail{
@@ -349,7 +356,7 @@ box-shadow: 2px 2px 4px rgb(0 0 0 / 15%)
 
 }
 .attending-pic {
-/* width: 50px; */
+width: 40px;
 height:40px;
 border-radius: 50%;
 object-fit: cover;
@@ -375,12 +382,16 @@ object-fit: cover;
 }
 
 @media only screen and (max-width:450px ){
+
+  .profile-info {
+    padding: 10px;
+  }
 .imgEventDetails {
   width: 100%;
 }
-.event-detail {
+/* .event-detail {
   height: 850px;
-}
+} */
 
 .btn-eventdetail {
   margin: 30px;
@@ -433,6 +444,11 @@ width: 100%;
 /*ipad screen*/
 
 @media only screen and (device-width: 768px) {
+
+  .event-img {
+    height: 400px;
+    width: 350px;
+  }
   .host-content {
     width: 600px;
 
@@ -440,12 +456,21 @@ width: 100%;
   .host-img {
     width: 600px;
     height: 400px;
+
   }
 }
 
 @media only screen and (min-width: 1023px) {
   .host-content {
     display: flex;
+  }
+
+  .event-img {
+    height: 400px;
+  }
+
+  .profile-info {
+    padding-top: 30px;
   }
 }
 

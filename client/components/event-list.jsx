@@ -13,6 +13,7 @@ export default class EventList extends React.Component {
     this.getEvents = this.getEvents.bind(this);
     this.eventList = this.eventList.bind(this);
     // this.getGuests = this.getGuests.bind(this);
+
   }
 
   // componentDidMount() {
