@@ -1,76 +1,5 @@
 import React from 'react';
 
-// export default function EventListItem(props) {
-
-//   function handleClick() {
-
-//     props.setView('eventDetails', { events: props.events });
-
-//   }
-
-//   function handleUpdate() {
-//     props.setView('updateEvent', {});
-//   }
-
-//   function handleDelete() {
-//     props.deleteEvent(props.events.eventId);
-//     props.getEvents(props.events);
-//   }
-
-//   const start = new Date(props.events.start);
-//   const end = new Date(props.events.end);
-
-//   function updateEvent(object) {
-//     const requestOption = {
-//       method: 'PUT',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify(object)
-//     };
-//     fetch(`/api/event/${props.events.eventId}`, requestOption)
-//       .then(() => {
-
-//       });
-//   }
-
-//   console.log(props.events);
-//   return (
-
-//     <div className="event-size col-md-4 m-auto">
-//       <div className="card bg-dark text-white my-3">
-//         <img className="event-img" src={props.events.resortImage} alt="Card image" />
-//         <div className="card-img-overlay">
-//           <div className="" onClick={handleClick}>
-//             <div className="d-flex">
-//               <h3 className="card-title">{props.events.resortName}</h3>
-//               <img className="host-pic ml-auto"
-//                 src={props.events.profileImage}
-//                 alt="shredder-host" />
-//             </div>
-//             <p className=''>Hosted by <b>{props.events.profileName}</b></p>
-//             <p className="mt-n2">{start.toDateString()} - {end.toDateString()}</p>
-//             {/* <p className="mt-n4">ends: {end.toDateString()}</p> */}
-
-//             <div>attending:
-//               <img
-//                 className="attending-pic pl-2"
-//                 src="/images/chewbacca.png"
-//                 alt="shredder-host" />
-//             </div>
-//           </div>
-
-//           <div className="m-2">
-//             <button
-//               onClick={handleUpdate}
-//               className="btn-event-card col-6">update</button>
-//             <button onClick={handleDelete}
-//               className="btn-event-card col-6">delete</button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
 export default class EventList extends React.Component {
   constructor(props) {
     super(props);
@@ -89,7 +18,7 @@ export default class EventList extends React.Component {
 
   handleClick() {
     // if (this.state.events) {
-    this.props.setView('eventDetails', { events: this.props.events });
+    this.props.setView('eventDetails', { events: this.props.events, guest: this.props.guest });
     // }
   }
 
@@ -107,9 +36,9 @@ export default class EventList extends React.Component {
       // }))
       .then(data => {
         this.props.addGuest(data);
-        this.setState({
-          attending: true
-        });
+        // this.setState({
+        //   attending: true
+        // });
 
       })
 
@@ -185,15 +114,15 @@ export default class EventList extends React.Component {
 
               <p>{events.eventDescription}</p>
 
-              <div>attending:
+              <div>attending: <span className="pl-2">
                 {this.props.user ? <>
                   <img
-                    className="attending-pic pl-2"
+                    className="attending-pic"
                     src={this.props.events.profileImage}
                     alt={this.props.events.profileName}/></> : null}
-                {this.props.guest && this.state.attending ? <>
+                {this.props.guest ? <>
                   <img
-                    className="attending-pic pl-2"
+                    className="attending-pic"
                     src={this.props.guest.imgUrl}
                     alt={this.props.guest.name}/></> : null}
                 {/* {this.guestList()} */}
@@ -202,13 +131,16 @@ export default class EventList extends React.Component {
                   className="attending-pic pl-2"
                   src="/images/chewbacca.png"
                   alt="shredder-guest" /> */}
+              </span>
               </div>
             </div>
-            <div> {
+            <div className="pt-2"> {
               profile !== user ? <>
-                <button
-                  onClick={this.getGuests}
-                >attend</button> </> : null
+                <div className="text-center">
+                  <button
+                    onClick={this.getGuests}
+                    className="join-button"
+                  >join</button></div></> : null
             }
 
             </div>

@@ -45,9 +45,7 @@ export default class HostPage extends React.Component {
       return (
         <div className="host">
           <div className="container px-0">
-            <div className="text-center m-2">
-              <button onClick={this.handleClick} className="btn-detail ml-1">delete</button>
-            </div>
+
             <div className="mt-2 host-content m-auto">
               <div className="d-flex">
                 <img className="host-img" src={resortImg} />
@@ -64,7 +62,11 @@ export default class HostPage extends React.Component {
                 <div className="eventdetaildesc"><h5 className="bold">Details</h5>
                   <p>{description}</p>
                 </div>
+
               </div>
+            </div>
+            <div className="text-center pt-3">
+              <button className="btn-detail" onClick={() => this.props.setView('main', {})}>close</button>
             </div>
           </div>
 
