@@ -84,7 +84,7 @@ export default class EventList extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.getGuests = this.getGuests.bind(this);
     // this.guestList = this.guestList.bind(this);
-    this.attend = this.attend.bind(this);
+    // this.attend = this.attend.bind(this);
   }
 
   handleClick() {
@@ -107,7 +107,15 @@ export default class EventList extends React.Component {
       // }))
       .then(data => {
         this.props.addGuest(data);
+        this.setState({
+          attending: true
+        });
+
       })
+
+      // .then(this.setState({
+      //   attending: true
+      // }))
       .catch(err => console.error(err));
   }
 
@@ -125,11 +133,11 @@ export default class EventList extends React.Component {
   //     .catch(err => console.error(err));
   // }
 
-  attend() {
-    // if (this.props.user) {
-    this.setState({ attending: true });
-    // }
-  }
+  // attend() {
+  //   // if (this.props.user) {
+  //   this.setState({ attending: true });
+  //   // }
+  // }
 
   // guestList() {
   //   const list = this.state.guests.map(guest =>
@@ -151,6 +159,7 @@ export default class EventList extends React.Component {
   // }
 
   render() {
+    // console.log(this.props.guest);
 
     const profile = this.props.events.profileId;
     const user = this.props.user;
@@ -182,11 +191,11 @@ export default class EventList extends React.Component {
                     className="attending-pic pl-2"
                     src={this.props.events.profileImage}
                     alt={this.props.events.profileName}/></> : null}
-                {this.state.guests ? <>
+                {this.props.guest && this.state.attending ? <>
                   <img
                     className="attending-pic pl-2"
-                    src={this.state.guests.imgUrl}
-                    alt={this.state.guests.name}/></> : null}
+                    src={this.props.guest.imgUrl}
+                    alt={this.props.guest.name}/></> : null}
                 {/* {this.guestList()} */}
 
                 {/* <img

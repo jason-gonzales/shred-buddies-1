@@ -13,6 +13,7 @@ import HostPage from './host-page';
 import Footer from './footer';
 import Login from './log-in';
 import UpdateEvent from './update-event';
+// import EventListItem from './event-list-item';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -135,6 +136,7 @@ export default class App extends React.Component {
   }
 
   render() {
+
     // if (!this.state.attend) {
     //   console.log(this.state.attend);
     // }
@@ -182,6 +184,7 @@ export default class App extends React.Component {
           <Footer setView={this.setView} />
 
         </>;
+
     } else if (this.state.view.name === 'resortList') {
       view =
         <>
