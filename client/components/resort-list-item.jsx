@@ -9,7 +9,7 @@ export default function ResortListItem(props) {
 
     <div className="card resort-card mb-3 mx-lg-2 mb-xl-5"
       onClick={handleClick} >
-      <img className="card-img-top resort-list-img rounded-top" src={props.resorts.imgUrl} alt="Card image cap" />
+      <img className="card-img-top resort-list-img" src={props.resorts.imgUrl} alt="Card image cap" />
       <div className="card-body py-2">
         <h5 className="card-title"> {props.resorts.name}</h5>
         <p className="card-text">{props.resorts.address}</p>

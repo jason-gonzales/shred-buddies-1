@@ -187,13 +187,11 @@ h2 {
 }
 
 .btn-event-card, .join-button {
-  background-color: #52616b;
-  color: #fff;
-  border-radius:2em;
-  width: 250px;
-  font-family: 'Roboto', sans-serif;
-
-
+    background-color: #f0f5f9;
+    color: #35434b;
+    border-radius: 30px;
+    width: 250px;
+    font-family: 'Roboto', sans-serif;
 }
 .img-detail{
   height: 250px;
@@ -214,13 +212,17 @@ font-size: 15px;
 
 /*Event Cards*/
 
-
+.card {
+  border-radius: 30px;
+}
 .event-img {
   filter: brightness(50%);
-  box-shadow: 5px 10px;
+  /* box-shadow: 5px 10px; */
+  box-shadow: 2px 2px 4px rgb(0 0 0 / 15%);
   object-fit: cover;
-  width: 100%;
+  width: 350px;
   height: 300px;
+  border-radius: 30px;
 }
 
 .add-event {
@@ -277,6 +279,10 @@ font-size: 15px;
   width: 100%;
 
 }
+
+.footer-border {
+  border-radius: 30px 30px 0 0;
+}
 .nav {
   font-family: 'Roboto', sans-serif;
   background: #52616b;
@@ -291,7 +297,8 @@ font-size: 15px;
     position: fixed;
     z-index:12;
     width: 100%;
-    background-color: #3d474e
+    background-color: #3d474e;
+    border-radius: 0 0 30px 30px;
 
 }
 
@@ -318,9 +325,9 @@ font-size: 15px;
   .about, .skill, .description {
     font-size: 20px;
   }
-  .event-img{
+  /* .event-img{
     height: 220px;
-  }
+  } */
 }
 .content-container {
   height: 90vh;
@@ -335,6 +342,8 @@ font-size: 15px;
 
 .resort-list-img {
   height:280px;
+  border-radius: 30px 30px 0 0;
+
 }
 
 .resort-card {
@@ -395,6 +404,10 @@ object-fit: cover;
 
 .btn-eventdetail {
   margin: 30px;
+}
+
+.event-img {
+  width: 350px;
 }
 }
 
@@ -465,9 +478,6 @@ width: 100%;
     display: flex;
   }
 
-  .event-img {
-    height: 400px;
-  }
 
   .profile-info {
     padding-top: 30px;
