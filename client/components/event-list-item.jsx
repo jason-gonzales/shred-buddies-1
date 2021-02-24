@@ -6,7 +6,7 @@ export default class EventList extends React.Component {
     this.state = {
       events: [],
       event: null,
-      guests: [],
+      guests: [this.props.guests],
       attending: false
     };
     this.handleClick = this.handleClick.bind(this);
@@ -31,16 +31,16 @@ export default class EventList extends React.Component {
 
     fetch(`/api/profile/${this.props.user}`)
       .then(result => result.json())
-      .then(data => this.setState({
-        guests: [...this.state.guests, data]
-      }))
-      // .then(data => {
-      //   this.props.addGuest(data);
-    // this.setState({
-    //   attending: true
-    // });
+      // .then(data => this.setState({
+      //   guests: [...this.state.guests, data]
+      // }))
+      .then(data => {
+        this.props.addGuest(data);
+        // this.setState({
+        //   attending: true
+        // });
 
-    // })
+      })
 
       // .then(this.setState({
       //   attending: true
@@ -48,6 +48,11 @@ export default class EventList extends React.Component {
       .catch(err => console.error(err));
   }
 
+  // componentDidUpdate(newProps, newState) {
+  //   if (newState.guests === this.state.guests) {
+  //     this.setState({ guests: newState.guests });
+  //   }
+  // }
   // componentDidMount() {
   //   this.getGuests();
   // }
@@ -102,7 +107,7 @@ export default class EventList extends React.Component {
         <div className="card bg-dark text-white my-3">
           <img className="event-img" src={this.props.events.resortImage} alt="Card image" />
           <div className="card-img-overlay">
-            <div className="col-lg-12" onClick={this.handleClick}>
+            <div className="" onClick={this.handleClick}>
               <div className="d-flex">
                 <h3 className="card-title">{this.props.events.resortName}</h3>
                 <img className="host-pic ml-auto"
@@ -120,11 +125,18 @@ export default class EventList extends React.Component {
                     className="attending-pic"
                     src={this.props.events.profileImage}
                     alt={this.props.events.profileName}/></> : null}
-                {this.props.guest ? <>
+                {this.state.guests ? <>
+
+                  <img
+                    className="attending-pic"
+                    src={this.state.guests.imgUrl}
+                    alt={this.state.guests.name}/></> : null }
+
+                {/* {this.props.guest ? <>
                   <img
                     className="attending-pic"
                     src={this.props.guest.imgUrl}
-                    alt={this.props.guest.name}/></> : null}
+                    alt={this.props.guest.name}/></> : null} */}
                 {/* {this.guestList()} */}
 
                 {/* <img
@@ -134,7 +146,7 @@ export default class EventList extends React.Component {
               </span>
               </div>
             </div>
-            <div className="pt-2"> {
+            <div className="mt-2 pt-2"> {
               profile !== user ? <>
                 <div className="text-center">
                   <button
@@ -152,7 +164,7 @@ export default class EventList extends React.Component {
                   className="btn-event-card col-6">update</button>
                 <button
                   onClick={this.handleDelete}
-                  className="btn-event-card col-6">delete</button>
+                  className="btn-event-card col-6 delete-btn">delete</button>
               </> : null}
 
             </div>
