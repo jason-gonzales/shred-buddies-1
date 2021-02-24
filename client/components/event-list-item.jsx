@@ -31,16 +31,16 @@ export default class EventList extends React.Component {
 
     fetch(`/api/profile/${this.props.user}`)
       .then(result => result.json())
-      // .then(data => this.setState({
-      //   guests: data
-      // }))
-      .then(data => {
-        this.props.addGuest(data);
-        // this.setState({
-        //   attending: true
-        // });
+      .then(data => this.setState({
+        guests: [...this.state.guests, data]
+      }))
+      // .then(data => {
+      //   this.props.addGuest(data);
+    // this.setState({
+    //   attending: true
+    // });
 
-      })
+    // })
 
       // .then(this.setState({
       //   attending: true
@@ -98,11 +98,11 @@ export default class EventList extends React.Component {
     const end = new Date(events.end);
 
     return (
-      <div className="event-size col-md-4 m-auto">
+      <div className="event-size m-auto">
         <div className="card bg-dark text-white my-3">
           <img className="event-img" src={this.props.events.resortImage} alt="Card image" />
           <div className="card-img-overlay">
-            <div className="" onClick={this.handleClick}>
+            <div className="col-lg-12" onClick={this.handleClick}>
               <div className="d-flex">
                 <h3 className="card-title">{this.props.events.resortName}</h3>
                 <img className="host-pic ml-auto"
