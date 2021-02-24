@@ -49,12 +49,12 @@ export default class App extends React.Component {
   }
 
   addGuest(guestName) {
-    if (this.state.profile) {
-      this.setState({
-        guest: guestName
 
-      });
-    }
+    this.setState({
+      guest: guestName
+
+    });
+
   }
 
   // setUser(user) {

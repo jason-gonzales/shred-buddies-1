@@ -174,7 +174,8 @@ h2 {
 .btn-detail, .btn-eventdetail{
   background-color: #52616b;
   color: #fff;
-  border-radius: 2em;
+  border-radius: 30px;
+  border-style: none;
   width: 250px;
   height: 40px;
  font-family: 'Roboto', sans-serif;
@@ -190,9 +191,12 @@ h2 {
     background-color: #f0f5f9;
     color: #35434b;
     border-radius: 30px;
-    width: 250px;
+    width: 240px;
     font-family: 'Roboto', sans-serif;
+    border-style:none;
 }
+
+
 .img-detail{
   height: 250px;
   width: 250px;
@@ -221,7 +225,7 @@ font-size: 15px;
   box-shadow: 2px 2px 4px rgb(0 0 0 / 15%);
   object-fit: cover;
   width: 350px;
-  height: 300px;
+  height: 320px;
   border-radius: 30px;
 }
 
@@ -369,6 +373,7 @@ width: 40px;
 height:40px;
 border-radius: 50%;
 object-fit: cover;
+
 }
 
 
