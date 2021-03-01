@@ -1,6 +1,7 @@
 
 import React from 'react';
 import EventListItem from './event-list-item';
+// import Attending from './attending';
 
 export default class EventList extends React.Component {
   constructor(props) {
@@ -61,7 +62,7 @@ export default class EventList extends React.Component {
         deleteEvent = { this.props.deleteEvent }
         events={event}
         setView={this.props.setView}
-        guest={this.props.guest}
+        // guest={this.props.guest}
       />);
 
     return list;
@@ -102,6 +103,7 @@ export default class EventList extends React.Component {
         </ul>
         <div className="row justify-content-center my-5 px-2">
           {this.eventList()}
+          {/* <Attending guest={this.props.guest} /> */}
         </div>
 
       </div>

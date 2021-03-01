@@ -1,12 +1,14 @@
 import React from 'react';
 
+// import MyContext from './my-context';
+
 export default class EventList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       events: [],
       event: null,
-      guests: [this.props.guests],
+      guests: [],
       attending: false
     };
     this.handleClick = this.handleClick.bind(this);
@@ -31,16 +33,18 @@ export default class EventList extends React.Component {
 
     fetch(`/api/profile/${this.props.user}`)
       .then(result => result.json())
-      // .then(data => this.setState({
-      //   guests: [...this.state.guests, data]
-      // }))
-      .then(data => {
-        this.props.addGuest(data);
-        // this.setState({
-        //   attending: true
-        // });
+      .then(data => this.setState({
+        guests: [...this.state.guests, data]
 
-      })
+      }))
+      .then(data => localStorage.setItem('mydata', JSON.stringify(data)))
+    // .then(data => {
+    //   this.props.addGuest(data);
+    // this.setState({
+    //   attending: true
+    // });
+
+    // })
 
       // .then(this.setState({
       //   attending: true
@@ -103,6 +107,7 @@ export default class EventList extends React.Component {
     const end = new Date(events.end);
 
     return (
+
       <div className="event-size m-auto">
         <div className="card bg-dark text-white my-3">
           <img className="event-img" src={this.props.events.resortImage} alt="Card image" />
@@ -124,13 +129,25 @@ export default class EventList extends React.Component {
                   <img
                     className="attending-pic"
                     src={this.props.events.profileImage}
-                    alt={this.props.events.profileName}/></> : null}
+                    alt={this.props.events.profileName} /></> : null}
+                {/* <MyContext.Consumer>
+                  {
+                    guest =>
+                      <React.Fragment><div guest={guest}>{
+                        guest && this.props.user
+                          ? <img className="attending-pic"
+                            src={guest.imgUrl} /> : null
+                      }
+
+                      </div>
+                      </React.Fragment>}
+                </MyContext.Consumer> */}
                 {this.state.guests ? <>
 
                   <img
                     className="attending-pic"
                     src={this.state.guests.imgUrl}
-                    alt={this.state.guests.name}/></> : null }
+                    alt={this.state.guests.name} /></> : null}
 
                 {/* {this.props.guest ? <>
                   <img
@@ -157,15 +174,23 @@ export default class EventList extends React.Component {
 
             </div>
 
-            <div className="m-2">
-              {profile === user ? <>
-                <button
-                  onClick={() => this.props.setView('updateEvent', { event: this.props.events })}
-                  className="btn-event-card col-6">update</button>
-                <button
-                  onClick={this.handleDelete}
-                  className="btn-event-card col-6 delete-btn">delete</button>
-              </> : null}
+            <div className="text-center">
+              {profile === user
+                ? <>
+                  {/* <div> */}
+                  <button
+                    onClick={() => this.props.setView('updateEvent', { event: this.props.events })}
+                    className="btn-event-card update-btn">update</button>
+
+                  {/* </div> */}
+
+                  {/* <div> */}
+                  <button
+                    onClick={this.handleDelete}
+                    className="btn-event-card delete-btn ml-2">delete</button>
+                  {/* </div> */}
+
+                </> : null}
 
             </div>
           </div>

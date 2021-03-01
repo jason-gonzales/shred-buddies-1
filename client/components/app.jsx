@@ -14,6 +14,7 @@ import Footer from './footer';
 import Login from './log-in';
 import UpdateEvent from './update-event';
 // import EventListItem from './event-list-item';
+// import MyContext from './my-context';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -167,7 +168,7 @@ export default class App extends React.Component {
             profile={this.state.profile}
             addUser={this.addUser}
             // setUser={this.setUser}
-            getUserProfile={this.getUserProfile}/>
+            getUserProfile={this.getUserProfile} />
           <Footer setView={this.setView} />
         </>;
     } else if (this.state.view.name === 'main') {
@@ -218,16 +219,16 @@ export default class App extends React.Component {
         </>;
     } else if (this.state.view.name === 'updateEvent') {
       view =
-      <>
-        <Header setView={this.setView} />
-        <UpdateEvent
-          isAttending={this.isAttending}
-          setView={this.setView}
-          createEvent={this.createEvent}
-          resort={this.state.resort}
-          params={this.state.view.params} />
-        <Footer setView={this.setView} />
-      </>;
+        <>
+          <Header setView={this.setView} />
+          <UpdateEvent
+            isAttending={this.isAttending}
+            setView={this.setView}
+            createEvent={this.createEvent}
+            resort={this.state.resort}
+            params={this.state.view.params} />
+          <Footer setView={this.setView} />
+        </>;
     } else if (this.state.view.name === 'notification') {
       view =
         <>
@@ -242,7 +243,7 @@ export default class App extends React.Component {
           <EventDetails
             isAttending={this.isAttending}
             setView={this.setView}
-            params={this.state.view.params}/>
+            params={this.state.view.params} />
           <Footer setView={this.setView} />
         </>;
     } else if (this.state.view.name === 'host') {
@@ -268,8 +269,9 @@ export default class App extends React.Component {
 
     return (
       <>
+        {/* <MyContext.Provider value={this.state.guest}> */}
         {view}
-
+        {/* </MyContext.Provider> */}
       </>
     );
   }
