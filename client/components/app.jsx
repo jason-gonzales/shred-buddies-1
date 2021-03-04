@@ -137,7 +137,8 @@ export default class App extends React.Component {
   }
 
   render() {
-
+    // console.log(this.state.user);
+    // console.log(this.state.attend);
     // if (!this.state.attend) {
     //   console.log(this.state.attend);
     // }
@@ -181,6 +182,7 @@ export default class App extends React.Component {
             setView={this.setView}
             user={this.state.user}
             guest={this.state.guest}
+            isAttending={this.isAttending}
           />
           <Footer setView={this.setView} />
 

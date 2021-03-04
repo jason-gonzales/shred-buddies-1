@@ -62,7 +62,8 @@ export default class EventList extends React.Component {
         deleteEvent = { this.props.deleteEvent }
         events={event}
         setView={this.props.setView}
-        // guest={this.props.guest}
+        guest={this.props.guest}
+        isAttending={this.props.isAttending}
       />);
 
     return list;

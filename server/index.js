@@ -126,6 +126,7 @@ app.get('/api/events', (req, res, next) => {
     "e"."description" as "eventDescription",
     "e"."startDate" as "start",
     "e"."endDate" as "end"
+
     from "event" as "e"
     join "resort" as "r" using ("resortId")
     join "profile" as "p" using ("profileId")
@@ -203,38 +204,11 @@ app.get('/api/attendees', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// app.put('api/attendees/:profileId', (req, res, next) => {
-//   const profileId = parseInt(req.params.profileId, req.body);
-
-//   if (profileId < 0 || isNaN(profileId)) {
-//     throw (new ClientError(`Request Id ${req.params.profileId} is not valid`, 400));
-//   }
-
-//   const sql = `
-//   update "attendees"
-//   set "isCheckedIn" = true
-//   where "profileId" = $1
-//   returning *
-//   `;
-
-//   const values = [profileId];
-
-//   db.query(sql, values)
-//     .then(result => {
-//       if (result.rows.length === 0) {
-//         next(new ClientError(`Request Id ${profileId} returned no requests`, 404));
-//       } else {
-//         return res.status(200).json(result.rows[0])
-//       }
-//     })
-//     .catch(err => next(err));
-// })
-
 app.post('/api/attendees/:profile', (req, res, next) => {
 
   if (!req.body.profileId && !req.body.eventId && !req.body.isCheckedIn) throw new ClientError('profileId, eventId, isCheckedIn must be filled out', 400);
   const insert = `
- insert into "attendees"("profileId", "eventId","isCheckedIn")
+ insert into "attendees"("profileId","eventId","isCheckedIn")
  values($1,$2,$3)
  returning *
 `;
@@ -244,14 +218,17 @@ app.post('/api/attendees/:profile', (req, res, next) => {
     .then(result => result.rows[0])
     .then(result => {
       const select = `
-    select "e"."eventId",
-            "p"."profileId",
-            "a"."isCheckedIn"
-            from "attendees" as "a"
-            join "profile" as "p" using ("profileId")
-            join "event" as "e" using("eventId")
-            where "e"."eventId" = $1
-            `;
+      select "profile"."profileId" as "profileId",
+            "profile"."name" as "profileName",
+            "profile"."imgUrl" as "imgUrl"
+            "event"."eventId" as "eventId",
+            "attendees"."isCheckedIn" as "isCheckedIn"
+      from "attendees"
+      join "profile" using ("profileId")
+      join "event" using ("eventId")
+      where "profileId" = $1
+
+  `;
       db.query(select, [result.eventId])
         .then(result => {
           res.status(201).json(result.rows[0]);
@@ -261,6 +238,33 @@ app.post('/api/attendees/:profile', (req, res, next) => {
       console.error('err');
       next(err);
     });
+});
+
+app.put('api/attendees/:profileId', (req, res, next) => {
+  const profileId = parseInt(req.params.profileId, req.body);
+
+  if (profileId < 0 || isNaN(profileId)) {
+    throw (new ClientError(`Request Id ${req.params.profileId} is not valid`, 400));
+  }
+
+  const sql = `
+  update "attendees"
+  set "isCheckedIn" = true
+  where "profileId" = $1
+  returning *
+  `;
+
+  const values = [profileId];
+
+  db.query(sql, values)
+    .then(result => {
+      if (result.rows.length === 0) {
+        next(new ClientError(`Request Id ${profileId} returned no requests`, 404));
+      } else {
+        return res.status(200).json(result.rows[0]);
+      }
+    })
+    .catch(err => next(err));
 });
 
 app.delete('/api/event/:eventId', (req, res) => {
@@ -317,3 +321,20 @@ app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log('Listening on port', process.env.PORT);
 });
+
+// select "e"."eventId",
+//   "p"."profileId",
+//     "a"."isCheckedIn"
+// from "attendees" as "a"
+// join "profile" as "p" using("profileId")
+// join "event" as "e" using("eventId")
+// where "a"."profileId" = $1
+//   `;
+
+// SELECT profileId, eventId, isCheckedIn
+// FROM profile p
+// INNER JOIN attendees a
+// ON p.profileId = a.profileId
+// INNER JOIN event e
+// ON e.eventId = a.eventId
+// WHERE p profileId = $1

@@ -49,7 +49,7 @@ export default class AddEvent extends React.Component {
     // console.log(this.state);
     event.preventDefault();
     this.props.createEvent(this.state);
-    this.props.isAttending(this.state);
+    // this.props.isAttending(this.state);
     if (this.props.event) {
 
       this.props.setView('host');
