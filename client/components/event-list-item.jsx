@@ -30,27 +30,31 @@ export default class EventList extends React.Component {
   }
 
   getGuests() {
-
-    fetch(`/api/profile/${this.props.user}`)
-      .then(result => result.json())
-      .then(data => this.setState({
-        guests: [...this.state.guests, data]
-
-      }))
-      .then(data => localStorage.setItem('mydata', JSON.stringify(data)))
-    // .then(data => {
-    //   this.props.addGuest(data);
-    // this.setState({
-    //   attending: true
-    // });
-
-    // })
-
-      // .then(this.setState({
-      //   attending: true
-      // }))
-      .catch(err => console.error(err));
+    this.props.isAttending(this.state);
   }
+
+  // getGuests() {
+
+  // fetch(`/api/profile/${this.props.user}`)
+  //   .then(result => result.json())
+  // .then(data => this.setState({
+  //   guests: [...this.state.guests, data]
+
+  // }))
+  // )
+  // .then(data => {
+  //   this.props.addGuest(data);
+  // this.setState({
+  //   attending: true
+  // });
+
+  // })
+
+  // .then(this.setState({
+  //   attending: true
+  // }))
+  //     .catch(err => console.error(err));
+  // }
 
   // componentDidUpdate(newProps, newState) {
   //   if (newState.guests === this.state.guests) {
