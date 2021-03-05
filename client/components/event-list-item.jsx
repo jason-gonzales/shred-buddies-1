@@ -13,7 +13,8 @@ export default class EventList extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.getGuests = this.getGuests.bind(this);
+    // this.getAttendees = this.getAttendees.bind(this);
+    // this.getGuests = this.getGuests.bind(this);
     // this.guestList = this.guestList.bind(this);
     // this.attend = this.attend.bind(this);
   }
@@ -29,9 +30,15 @@ export default class EventList extends React.Component {
 
   }
 
-  getGuests() {
-    this.props.isAttending(this.state);
-  }
+  // getAttendees() {
+  //   fetch('/api/attendees')
+  //     .then(res => res.json())
+  //     .then(data => console.log(data))
+  //     .catch(err => console.error(err));
+  // }
+  // getGuests() {
+  //   this.props.isAttending(this.state);
+  // }
 
   // getGuests() {
 
@@ -112,7 +119,7 @@ export default class EventList extends React.Component {
 
     return (
 
-      <div className="event-size m-auto">
+      <div className="event-size mx-lg-2">
         <div className="card bg-dark text-white my-3">
           <img className="event-img" src={this.props.events.resortImage} alt="Card image" />
           <div className="card-img-overlay">
@@ -171,7 +178,7 @@ export default class EventList extends React.Component {
               profile !== user ? <>
                 <div className="text-center">
                   <button
-                    onClick={this.getGuests}
+                    onClick={this.getAttendees}
                     className="join-button"
                   >join</button></div></> : null
             }

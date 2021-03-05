@@ -30,7 +30,7 @@ class Profile extends React.Component {
         <div className="profile-page">
           <h2 className="ml-2 my-3 text-center">Profile</h2>
           <div className="mx-2 profile-info row d-flex align-items-end justify-content-center">
-            <div className="col-lg-11 content-container mb-3 mt-5 position-relative">
+            <div className="col-md-11 content-container mb-3 mt-5 position-relative">
               <div className="pic-box row mx-auto justify-content-center position-relative mb-2">
                 <img className="profile-pic m-auto"
                   src={imgUrl} alt={name} />
@@ -40,10 +40,10 @@ class Profile extends React.Component {
                 <p className="email text-center">{email}</p>
               </div>
               <div className="extra-box pt-3 col-11 m-auto position-relative col-lg-7">
-                <h5 className="skill">Skill Level</h5>
+                <h5 className="skill"><b>Skill Level</b></h5>
                 <p className="level">{skill}</p>
                 <div>
-                  <h5 className="pt-2 about">About</h5>
+                  <h5 className="pt-2 about"><b>About</b></h5>
                   <p className="description">{description}</p>
                 </div>
               </div>
