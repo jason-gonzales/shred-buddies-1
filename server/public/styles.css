@@ -94,11 +94,16 @@ h2 {
 @media only screen and (min-width: 768px) {
   .resort-img img{
    width: 300px;
+   border-radius: 30px 0 0 30px;
 
   }
   .resort-main {
   display: flex;
 
+}
+
+.resort-description {
+  border-radius: 0 30px 30px 0;
 }
 
 .resort-description p {
@@ -119,13 +124,19 @@ h2 {
 
 }
 
+
 @media only screen and (max-width: 540px) {
   .resort-detail {
     height: 700px;
   }
   .resort-img img {
    width: 100%;
+   border-radius: 30px 30px 0 0;
 
+  }
+
+  .resort-description {
+      border-radius: 0 0 30px 30px;
   }
   .resort-description p {
   padding: 10px;
@@ -135,6 +146,7 @@ h2 {
 .resort-description {
   background: white;
   box-shadow: 2px 2px 4px rgb(0 0 0 / 15%)
+
 }
 
 
@@ -281,6 +293,10 @@ font-size: 15px;
 .account-btn {
   margin-left: 5px;
 }
+
+.imgEventDetails, .event-info {
+  border-radius: 30px;
+}
 }
 
 .container{
@@ -290,6 +306,7 @@ font-size: 15px;
 .imgEventDetails{
   height: 300px;
   width: 340px;
+
 
 }
 
@@ -356,7 +373,7 @@ font-size: 15px;
   bottom: 7%;
 
 }
-  .about, .skill, .description {
+  .about, .level, .description {
     font-size: 20px;
   }
   /* .event-img{
@@ -444,6 +461,13 @@ object-fit: cover;
 .event-img {
   width: 350px;
 }
+.imgEventDetails {
+  border-radius: 30px 30px 0 0;
+}
+
+.event-info {
+  border-radius: 0 0 30px 30px;
+}
 }
 
 @media only screen and (min-width: 1024px) {
@@ -456,7 +480,7 @@ object-fit: cover;
 
   }
   .imgEventDetails {
-    width: 600px;
+    width: 550px;
     height: 500px;
   }
 
@@ -505,6 +529,16 @@ width: 100%;
     width: 600px;
     height: 400px;
 
+  }
+
+  .imgEventDetails {
+    width: 540px;
+    height: 420px;
+    border-radius: 30px 30px 0 0;
+
+  }
+  .event-info {
+    border-radius: 0 0 30px 30px;
   }
 }
 

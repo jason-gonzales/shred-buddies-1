@@ -46,7 +46,7 @@ export default class EventDetails extends React.Component {
                 <img src={this.props.params.events.resortImage} alt={this.props.params.events.resortName} className="imgEventDetails" />
               </div>
               <div>
-                <div className="card-body event-info">
+                <div className="card-body m-auto event-info col-md-9">
                   <p><i className="fas fa-calendar-day"></i> Start : {start.toDateString()}</p>
                   <p><i className="fas fa-calendar-day"></i> End : {end.toDateString()}</p>
                   <p><i className="fas fa-snowboarding boarder"></i> Attending :

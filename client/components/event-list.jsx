@@ -77,6 +77,7 @@ export default class EventList extends React.Component {
   }
 
   render() {
+    // console.log(this.state.events);
     // console.log(this.props.guest);
     // if (this.state.events) {
     //   console.log(this.state.events);
@@ -102,7 +103,7 @@ export default class EventList extends React.Component {
               onClick={() => this.props.setView('host', {})}>Your Event</a>
           </li>
         </ul>
-        <div className="row justify-content-center my-5 px-2">
+        <div className="row justify-content-center my-5">
           {this.eventList()}
           {/* <Attending guest={this.props.guest} /> */}
         </div>

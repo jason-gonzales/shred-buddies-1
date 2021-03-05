@@ -87,32 +87,32 @@ app.post('/api/profile', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/event', (req, res, next) => {
-  const select = `
-          select *
-          from event
-  `;
-  db.query(select)
-    .then(result => res.status(200).json(result.rows))
-    .catch(err => next(err));
-});
+// app.get('/api/event', (req, res, next) => {
+//   const select = `
+//           select *
+//           from event
+//   `;
+//   db.query(select)
+//     .then(result => res.status(200).json(result.rows))
+//     .catch(err => next(err));
+// });
 
-app.get('/api/event/:eventId', (req, res, next) => {
-  const eventId = parseInt(req.params.eventId, 10);
-  const select = `
-        select *
-        from "event"
-        where "eventId" = $1
-  `;
-  db.query(select, [eventId])
-    .then(result => {
-      if (!result.rows[0]) {
-        next(new ClientError(`cannot find eventId of ${eventId}`, 404));
-      } else {
-        res.status(200).json(result.rows[0]);
-      }
-    });
-});
+// app.get('/api/event/:eventId', (req, res, next) => {
+//   const eventId = parseInt(req.params.eventId, 10);
+//   const select = `
+//         select *
+//         from "event"
+//         where "eventId" = $1
+//   `;
+//   db.query(select, [eventId])
+//     .then(result => {
+//       if (!result.rows[0]) {
+//         next(new ClientError(`cannot find eventId of ${eventId}`, 404));
+//       } else {
+//         res.status(200).json(result.rows[0]);
+//       }
+//     });
+// });
 
 app.get('/api/events', (req, res, next) => {
   const sql = `
@@ -195,12 +195,14 @@ app.put('/api/event/:eventId', (req, res, next) => {
 app.get('/api/attendees', (req, res, next) => {
   // const profileId = parseInt(req.params.profileId, 10);
 
-  const select = `
-          select *
-          from attendees
+  const sql = `
+  SELECT profileId, name, imgUrl
+  FROM attendees
+  INNER JOIN profile
+  ON attendees.profileId = profile.profileId
   `;
-  db.query(select)
-    .then(result => res.status(200).json(result.rows))
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows[0]))
     .catch(err => next(err));
 });
 
@@ -210,7 +212,7 @@ app.post('/api/attendees/:profile', (req, res, next) => {
   const insert = `
  insert into "attendees"("profileId","eventId","isCheckedIn")
  values($1,$2,$3)
- returning *
+ returning *;
 `;
 
   const values = [req.params.profile, req.body.eventId, req.body.isCheckedIn];
@@ -338,3 +340,11 @@ app.listen(process.env.PORT, () => {
 // INNER JOIN event e
 // ON e.eventId = a.eventId
 // WHERE p profileId = $1
+
+// select "e"."eventId",
+//   "p"."profileId" as "profileId",
+//     "p"."name" as "profileName",
+//       "p"."imgUrl" as "profileImage",
+//         from "attendees" as "a"
+// join "profile" as "p" using("profileId")
+// join "event" as "e" using("eventId");
