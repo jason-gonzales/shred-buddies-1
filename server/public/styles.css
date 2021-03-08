@@ -48,7 +48,6 @@ header {
 }
 
 .fa-snowboarding,.fa-newspaper, .fa-bell {
-  /* color: #f0f5f9; */
   font-size: 40px;
   color: black;
 }
@@ -61,6 +60,20 @@ header {
 h2 {
   font-family: 'Roboto', sans-serif;
 }
+.add-event {
+   background:#c9d6df;
+  width: 100%;
+   font-family: 'Roboto', sans-serif;
+}
+
+.create-form, .notification, .profile-page, .resort-detail {
+  height: 700px;
+  width: 100%;
+   font-family: 'Roboto', sans-serif;
+   /* position: fixed; */
+
+}
+
 
 /* Profile Page */
 
@@ -71,17 +84,6 @@ h2 {
   object-fit: cover;
 
 }
-
-
-.create-form, .add-event, .notification, .profile-page, .resort-detail {
-  background:#c9d6df;
-  height: 700px;
-  width: 100%;
-   font-family: 'Roboto', sans-serif;
-   /* position: fixed; */
-
-}
-
 
 
 
@@ -226,7 +228,6 @@ font-size: 15px;
 }
 .event-img {
   filter: brightness(50%);
-  /* box-shadow: 5px 10px; */
   box-shadow: 2px 2px 4px rgb(0 0 0 / 15%);
   object-fit: cover;
   width: 350px;
@@ -309,9 +310,6 @@ font-size: 15px;
 
 
 }
-
-
-
 
 
 .detail-title {
@@ -553,21 +551,6 @@ width: 100%;
   }
 }
 
-   /* @media only screen and (max-device-width: 480px) {
-      .host {
-        height: 1000px;
-      }
-      .host-img {
-        width: fit-content
-      }
-    } */
-
-
-    /* .two-buttons {
-
-      display: inline-block;
-
-    } */
 
     .delete-btn ,.update-btn{
       width: 130px;
