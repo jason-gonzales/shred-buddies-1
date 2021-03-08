@@ -43,8 +43,10 @@ app.get('/api/resort/:resortId', (req, res, next) => {
         next(new ClientError(`cannot find eventId of ${resortId}`, 404));
       } else {
         res.status(200).json(result.rows[0]);
+
       }
-    });
+    })
+    .catch(err => next(err));
 });
 
 app.get('/api/profile', (req, res, next) => {
