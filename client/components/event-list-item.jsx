@@ -153,12 +153,12 @@ export default class EventList extends React.Component {
                       </div>
                       </React.Fragment>}
                 </MyContext.Consumer> */}
-                {this.state.guests ? <>
+                {/* {this.state.guests ? <>
 
                   <img
                     className="attending-pic"
                     src={this.state.guests.imgUrl}
-                    alt={this.state.guests.name} /></> : null}
+                    alt={this.state.guests.name} /></> : null} */}
 
                 {/* {this.props.guest ? <>
                   <img
