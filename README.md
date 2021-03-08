@@ -23,7 +23,7 @@ Try the live application at
 * User can create an event - Front End.
 * User can view list of events - Front End.
 # Preview
-![Watch the Video](https://github.com/jason-gonzales/shred-buddies/raw/main/doc-images/shred-vid.gif)
+![Watch the Video](https://github.com/jason-gonzales/shred-buddies/raw/main/doc-images/shred.vid.gif)
 
 #### Getting Started
 
