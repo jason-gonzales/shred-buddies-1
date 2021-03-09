@@ -22,6 +22,10 @@ Try the live application at
 * User can create an event - Back End.
 * User can create an event - Front End.
 * User can view list of events - Front End.
+* User can update an event - Back End.
+* User can delete an event - Back End.
+* User can update an event - Front End.
+* User can delet an event - Front End.
 # Preview
 ![Watch the Video](https://github.com/jason-gonzales/shred-buddies-1/raw/main/doc-images/shred.vid.gif)
 
