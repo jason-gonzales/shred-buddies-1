@@ -25,7 +25,7 @@ DROP SEQUENCE IF EXISTS public."profile_profileId_seq";
 DROP TABLE IF EXISTS public.profile;
 DROP SEQUENCE IF EXISTS public."event_eventId_seq";
 DROP TABLE IF EXISTS public.event;
-DROP TABLE IF EXISTS public.atendees;
+DROP TABLE IF EXISTS public.attendees;
 DROP EXTENSION IF EXISTS plpgsql;
 DROP SCHEMA IF EXISTS public;
 --
@@ -61,14 +61,13 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: atendees; Type: TABLE; Schema: public; Owner: -
+-- Name: attendees; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.atendees (
+CREATE TABLE public.attendees (
     "profileId" integer NOT NULL,
     "eventId" integer NOT NULL,
-    "isConfirmed" boolean DEFAULT false NOT NULL,
-    "isCheckedIn" boolean DEFAULT false NOT NULL
+    "isCheckedIn" boolean NOT NULL
 );
 
 
@@ -82,7 +81,8 @@ CREATE TABLE public.event (
     "resortId" integer NOT NULL,
     "profileId" integer NOT NULL,
     "startDate" date NOT NULL,
-    "endDate" date NOT NULL
+    "endDate" date NOT NULL,
+    attendees jsonb
 );
 
 
@@ -195,10 +195,11 @@ ALTER TABLE ONLY public.resort ALTER COLUMN "resortId" SET DEFAULT nextval('publ
 
 
 --
--- Data for Name: atendees; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: attendees; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.atendees ("profileId", "eventId", "isConfirmed", "isCheckedIn") FROM stdin;
+COPY public.attendees ("profileId", "eventId", "isCheckedIn") FROM stdin;
+157	328	t
 \.
 
 
@@ -206,16 +207,17 @@ COPY public.atendees ("profileId", "eventId", "isConfirmed", "isCheckedIn") FROM
 -- Data for Name: event; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.event ("eventId", description, "resortId", "profileId", "startDate", "endDate") FROM stdin;
-163	we are excited!	3	9	2020-12-29	2020-12-31
-164	next year will be a better year	3	6	2021-01-06	2021-01-07
-165	I miss shredding	1	9	2020-12-29	2021-01-01
-166	2020 has been a crazy year!	1	5	2020-12-29	2021-01-01
-167	lol	2	3	2020-12-14	2020-12-18
-168	what is going on	3	10	2021-01-04	2021-01-07
-169	lets go boarding asap pleaaaaase	1	5	2021-01-22	2021-01-23
-170	lets go boarding asap pleaaaaase	1	5	2021-01-22	2021-01-23
-171	lets go boarding asap pleaaaaase	1	5	2021-01-22	2021-01-23
+COPY public.event ("eventId", description, "resortId", "profileId", "startDate", "endDate", attendees) FROM stdin;
+163	we are excited!	3	9	2020-12-29	2020-12-31	\N
+164	next year will be a better year	3	6	2021-01-06	2021-01-07	\N
+165	I miss shredding	1	9	2020-12-29	2021-01-01	\N
+166	2020 has been a crazy year!	1	5	2020-12-29	2021-01-01	\N
+167	lol	2	3	2020-12-14	2020-12-18	\N
+168	what is going on	3	10	2021-01-04	2021-01-07	\N
+169	lets go boarding asap pleaaaaase	1	5	2021-01-22	2021-01-23	\N
+170	lets go boarding asap pleaaaaase	1	5	2021-01-22	2021-01-23	\N
+171	lets go boarding asap pleaaaaase	1	5	2021-01-22	2021-01-23	[{"profileId": 145}, {"profileId": 146}]
+172	test1231234	2	144	2021-03-29	2021-03-26	[{"profileId": 145}, {"profileId": 146}]
 \.
 
 
@@ -249,7 +251,7 @@ COPY public.resort ("resortId", name, address, description, "imgUrl") FROM stdin
 -- Name: event_eventId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."event_eventId_seq"', 171, true);
+SELECT pg_catalog.setval('public."event_eventId_seq"', 177, true);
 
 
 --
