@@ -127,7 +127,7 @@ app.get('/api/events', (req, res, next) => {
     "p"."imgUrl" as "profileImage",
     "e"."description" as "eventDescription",
     "e"."startDate" as "start",
-    "e"."endDate" as "end"
+    "e"."endDate" as "end",
     "e"."attendees" as "attendees"
     from "event" as "e"
     join "resort" as "r" using ("resortId")
