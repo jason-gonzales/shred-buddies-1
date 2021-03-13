@@ -185,6 +185,7 @@ app.put('/api/event/:eventId', (req, res, next) => {
         "endDate" =$3,
         "profileId"=$4,
         "description"=$5
+
   where "eventId" = $6;
   `;
   db.query(sql, values)
@@ -194,22 +195,22 @@ app.put('/api/event/:eventId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.put('/api/event/:eventId', (req, res, next) => {
+// app.put('/api/event/:eventId', (req, res, next) => {
 
-  const values = [req.params.eventId, req.body.attendees];
+//   const values = [req.params.eventId, req.body.attendees];
 
-  const sql =
-    `update "event"
-    set "attendees" = array_append(attendees, 24)
-    where "eventId" = $1;
+//   const sql =
+//     `update "event"
+//     set "attendees" = $1
+//     where "eventId" = $2;
 
-  `;
-  db.query(sql, values)
-    .then(result => {
-      res.status(200).json({});
-    })
-    .catch(err => next(err));
-});
+//   `;
+//   db.query(sql, values)
+//     .then(result => {
+//       res.status(200).json({});
+//     })
+//     .catch(err => next(err));
+// });
 
 // app.get('/api/attendees', (req, res, next) => {
 //   // const profileId = parseInt(req.params.profileId, 10);

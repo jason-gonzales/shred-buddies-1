@@ -9,7 +9,7 @@ export default class EventList extends React.Component {
       events: [],
       event: null,
       guests: [],
-      attending: false
+      attendees: []
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -35,7 +35,7 @@ export default class EventList extends React.Component {
     const requestOption = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(this.props.events.attendees)
+      body: JSON.stringify(this.state.attendees)
     };
     fetch(`/api/event/${this.props.events.eventId}`, requestOption)
       .then(() => {
@@ -44,6 +44,11 @@ export default class EventList extends React.Component {
       .catch(err => console.error(err));
   }
 
+  componentDidMount() {
+    this.setState({
+      attendees: this.props.events.attendees
+    });
+  }
   // getAttendees() {
   //   fetch('/api/attendees')
   //     .then(res => res.json())
@@ -122,6 +127,7 @@ export default class EventList extends React.Component {
   // }
 
   render() {
+
     const profiles = this.props.events.attendees;
 
     const joined = [];
@@ -203,7 +209,7 @@ export default class EventList extends React.Component {
                 profile !== user ? <>
                   <div className="text-center">
                     <button
-                      onClick={this.getAttendees}
+                      onClick={this.addGuest}
                       className="join-button"
                     >join</button></div></> : null
               }
