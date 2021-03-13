@@ -50,20 +50,6 @@ export default class UpdateEvent extends React.Component {
 
     newState[input] = value;
     this.setState(newState);
-    // console.log(this.state.resortName);
-    // if (this.state.resortName = 'Mammoth Mountain') {
-    //   this.setState({
-    //     resortId: 1
-    //   });
-    // } else if (this.state.resortName = 'Bear Mountain') {
-    //   this.setState({
-    //     resortId: 2
-    //   });
-    // } else if (this.state.resortName = 'Mountain High') {
-    //   this.setState({
-    //     resortId: 3
-    //   });
-    // }
 
   }
 
