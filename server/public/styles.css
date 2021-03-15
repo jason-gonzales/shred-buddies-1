@@ -238,6 +238,9 @@ font-size: 15px;
 .add-event {
   font-family: 'Roboto', sans-serif;
 }
+.join-event {
+  font-family: 'Roboto', sans-serif;
+}
 
 .start-input, .end-input {
   width:155px;

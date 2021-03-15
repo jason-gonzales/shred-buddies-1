@@ -13,7 +13,7 @@ import HostPage from './host-page';
 import Footer from './footer';
 import Login from './log-in';
 import UpdateEvent from './update-event';
-// import EventListItem from './event-list-item';
+import JoinEvent from './join-event';
 // import MyContext from './my-context';
 
 export default class App extends React.Component {
@@ -230,6 +230,13 @@ export default class App extends React.Component {
             resort={this.state.resort}
             params={this.state.view.params} />
           <Footer setView={this.setView} />
+        </>;
+    } else if (this.state.view.name === 'joinEvent') {
+      view =
+        <>
+          <JoinEvent
+            setView={this.setView}
+            params={this.state.view.params} />
         </>;
     } else if (this.state.view.name === 'notification') {
       view =
