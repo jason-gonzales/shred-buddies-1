@@ -217,7 +217,7 @@ COPY public.event ("eventId", description, "resortId", "profileId", "startDate",
 169	lets go boarding asap pleaaaaase	1	5	2021-01-22	2021-01-23	\N
 170	lets go boarding asap pleaaaaase	1	5	2021-01-22	2021-01-23	\N
 171	lets go boarding asap pleaaaaase	1	5	2021-01-22	2021-01-23	[{"profileId": 145}, {"profileId": 146}]
-172	test1231234	2	144	2021-03-29	2021-03-26	[{"imgUrl": "https://ca.slack-edge.com/T1EHQUJ8J-U016NP1639T-9d2bb904061b-512", "profileId": 145}, {"imgUrl": "https://ca.slack-edge.com/T1EHQUJ8J-UT82B4U7J-93eff2729bff-512", "profileId": 146}]
+172	hellofffffdfadfsadfeeff	2	144	2021-03-31	2021-03-31	[{"name": "Mark", "imgUrl": "https://ca.slack-edge.com/T1EHQUJ8J-U016NP1639T-9d2bb904061b-512", "profileId": 145}, {"name": "Kobe", "imgUrl": "https://ca.slack-edge.com/T1EHQUJ8J-UT82B4U7J-93eff2729bff-512", "profileId": 146}]
 \.
 
 
