@@ -8,31 +8,31 @@ export default class JoinEvent extends React.Component {
       name: ''
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
   }
 
-  handleSubmit(object) {
-    event.preventDefault();
-    const requestOption = {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(this.state)
-    };
-    fetch(`/api/event/${this.props.params.event.eventId}`, requestOption)
-      .then(() => {
-        this.props.setView('main');
-      })
-      .catch(err => console.error(err));
-  }
+  // handleSubmit(object) {
+  //   event.preventDefault();
+  //   const requestOption = {
+  //     method: 'PUT',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(this.state)
+  //   };
+  //   fetch(`/api/event/${this.props.params.event.eventId}`, requestOption)
+  //     .then(() => {
+  //       this.props.setView('main');
+  //     })
+  //     .catch(err => console.error(err));
+  // }
 
-  componentDidMount() {
-    this.setState({
-      attendees: this.props.params.attendees[0].imgUrl,
-      name: this.props.params.attendees[0].name
-    });
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     attendees: this.props.params.attendees[0].imgUrl,
+  //     name: this.props.params.attendees[0].name
+  //   });
+  // }
 
   handleChange(events) {
     const input = event.target.name;

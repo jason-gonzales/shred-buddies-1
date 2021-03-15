@@ -9,15 +9,17 @@ export default class EventList extends React.Component {
       events: [],
       event: null,
       guests: [],
+      attend: null,
       attendees: []
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.isAttending = this.isAttending.bind(this);
     // this.getAttendees = this.getAttendees.bind(this);
     // this.getGuests = this.getGuests.bind(this);
     // this.guestList = this.guestList.bind(this);
     // this.attend = this.attend.bind(this);
-    this.addGuest = this.addGuest.bind(this);
+    // this.addGuest = this.addGuest.bind(this);
   }
 
   handleClick() {
@@ -31,18 +33,34 @@ export default class EventList extends React.Component {
 
   }
 
-  addGuest() {
+  isAttending(object) {
     const requestOption = {
-      method: 'PUT',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(this.state.attendees)
+      body: JSON.stringify(object)
     };
-    fetch(`/api/event/${this.props.events.eventId}`, requestOption)
-      .then(() => {
-        this.props.setView('main');
-      })
+
+    fetch(`/api/attendees/${this.props.events.eventId}`, requestOption)
+      .then(result => result.json())
+      .then(data => this.setState({
+        view: { name: 'joinEvent', params: {} },
+        attend: data
+      }))
       .catch(err => console.error(err));
   }
+
+  // addGuest() {
+  //   const requestOption = {
+  //     method: 'PUT',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(this.state.attendees)
+  //   };
+  //   fetch(`/api/event/${this.props.events.eventId}`, requestOption)
+  //     .then(() => {
+  //       this.props.setView('main');
+  //     })
+  //     .catch(err => console.error(err));
+  // }
 
   componentDidMount() {
     this.setState({
@@ -127,15 +145,16 @@ export default class EventList extends React.Component {
   // }
 
   render() {
+    // console.log(this.state.attend);
 
-    const profiles = this.props.events.attendees;
+    // const profiles = this.props.events.attendees;
 
-    const joined = [];
+    // const joined = [];
 
-    for (let i = 0; i < profiles.length; i++) {
-      joined.push(profiles[i].imgUrl);
+    // for (let i = 0; i < profiles.length; i++) {
+    //   joined.push(profiles[i].imgUrl);
 
-    }
+    // }
 
     const profile = this.props.events.profileId;
     const user = this.props.user;
@@ -169,9 +188,9 @@ export default class EventList extends React.Component {
                       className="attending-pic"
                       src={this.props.events.profileImage}
                       alt={this.props.events.profileName} /></> : null}
-                  { joined.map((join, index) =>
+                  {/* { joined.map((join, index) =>
                     <img src={join} key={index} className="attending-pic" />)
-                  }
+                  } */}
                   {/* <MyContext.Consumer>
                   {
                     guest =>
@@ -209,7 +228,7 @@ export default class EventList extends React.Component {
                 profile !== user ? <>
                   <div className="text-center">
                     <button
-                      onClick={() => this.props.setView('joinEvent', { event: this.props.events, attendees: profiles })}
+                      onClick={() => this.props.setView('joinEvent', { event: this.props.events, attendees: this.state.attend })}
                       className="join-button"
                     >join</button></div></> : null
               }
