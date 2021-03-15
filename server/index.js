@@ -127,8 +127,7 @@ app.get('/api/events', (req, res, next) => {
     "p"."imgUrl" as "profileImage",
     "e"."description" as "eventDescription",
     "e"."startDate" as "start",
-    "e"."endDate" as "end",
-    "e"."attendees" as "attendees"
+    "e"."endDate" as "end"
     from "event" as "e"
     join "resort" as "r" using ("resortId")
     join "profile" as "p" using ("profileId")
@@ -178,16 +177,16 @@ app.post('/api/event/:profile', (req, res, next) => {
 app.put('/api/event/:eventId', (req, res, next) => {
 
   const values = [req.body.resortId, req.body.startDate, req.body.endDate, req.body.profileId,
-    req.body.description, req.body.attendees, req.params.eventId];
+    req.body.description, req.params.eventId];
   const sql =
-  `update "event"
+    `update "event"
     set "resortId" =$1,
         "startDate" =$2,
         "endDate" =$3,
         "profileId"=$4,
-        "description"=$5,
-        "attendees"=$6
-  where "eventId" = $7;
+        "description"=$5
+
+  where "eventId" = $6;
   `;
   db.query(sql, values)
     .then(result => {
@@ -217,51 +216,50 @@ app.put('/api/event/:eventId', (req, res, next) => {
 //   // const profileId = parseInt(req.params.profileId, 10);
 
 //   const sql = `
-//   SELECT profileId, name, imgUrl
-//   FROM attendees
-//   INNER JOIN profile
-//   ON attendees.profileId = profile.profileId
+// select *
+// from attendees
 //   `;
 //   db.query(sql)
 //     .then(result => res.status(200).json(result.rows[0]))
 //     .catch(err => next(err));
 // });
 
-// app.post('/api/attendees/:profile', (req, res, next) => {
+app.post('/api/attendees/:event', (req, res, next) => {
 
-//   if (!req.body.profileId && !req.body.eventId && !req.body.isCheckedIn) throw new ClientError('profileId, eventId, isCheckedIn must be filled out', 400);
-//   const insert = `
-//  insert into "attendees"("profileId","eventId","isCheckedIn")
-//  values($1,$2,$3)
-//  returning *;
-// `;
+  if (!req.body.profileId && !req.body.eventId && !req.body.isCheckedIn) throw new ClientError('profileId, eventId, isCheckedIn must be filled out', 400);
+  const insert = `
+ insert into "attendees"("profileId","eventId","isCheckedIn")
+ values($1,$2,$3)
+ returning *;
+`;
 
-//   const values = [req.params.profile, req.body.eventId, req.body.isCheckedIn];
-//   db.query(insert, values)
-//     .then(result => result.rows[0])
-//     .then(result => {
-//       const select = `
-//       select "profile"."profileId" as "profileId",
-//             "profile"."name" as "profileName",
-//             "profile"."imgUrl" as "imgUrl"
-//             "event"."eventId" as "eventId",
-//             "attendees"."isCheckedIn" as "isCheckedIn"
-//       from "attendees"
-//       join "profile" using ("profileId")
-//       join "event" using ("eventId")
-//       where "profileId" = $1
+  const values = [req.body.profileId, req.params.event, req.body.isCheckedIn];
+  db.query(insert, values)
+    .then(result => result.rows[0])
+    .then(result => {
+      const select = `
+      select "profile"."profileId" as "profileId",
+            "profile"."name" as "profileName",
+            "profile"."imgUrl" as "imgUrl"
+            "event"."eventId" as "eventId",
+            "attendees"."isCheckedIn" as "isCheckedIn"
+      from "attendees"
+      join "profile" using ("profileId")
+      join "event" using ("eventId")
+      where "profile"."profileId" = $1
 
-//   `;
-//       db.query(select, [result.eventId])
-//         .then(result => {
-//           res.status(201).json(result.rows[0]);
-//         });
-//     })
-//     .catch(err => {
-//       console.error('err');
-//       next(err);
-//     });
-// });
+  `;
+      db.query(select, [result.profileId])
+        .then(result => {
+          res.status(201).json(result.rows[0]);
+        });
+    })
+    .catch(err => {
+      console.error('err');
+
+      next(err);
+    });
+});
 
 // app.put('api/attendees/:profileId', (req, res, next) => {
 //   const profileId = parseInt(req.params.profileId, req.body);

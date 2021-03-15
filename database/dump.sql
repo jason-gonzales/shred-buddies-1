@@ -81,8 +81,7 @@ CREATE TABLE public.event (
     "resortId" integer NOT NULL,
     "profileId" integer NOT NULL,
     "startDate" date NOT NULL,
-    "endDate" date NOT NULL,
-    attendees jsonb
+    "endDate" date NOT NULL
 );
 
 
@@ -200,6 +199,7 @@ ALTER TABLE ONLY public.resort ALTER COLUMN "resortId" SET DEFAULT nextval('publ
 
 COPY public.attendees ("profileId", "eventId", "isCheckedIn") FROM stdin;
 157	328	t
+41	331	f
 \.
 
 
@@ -207,17 +207,19 @@ COPY public.attendees ("profileId", "eventId", "isCheckedIn") FROM stdin;
 -- Data for Name: event; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.event ("eventId", description, "resortId", "profileId", "startDate", "endDate", attendees) FROM stdin;
-163	we are excited!	3	9	2020-12-29	2020-12-31	\N
-164	next year will be a better year	3	6	2021-01-06	2021-01-07	\N
-165	I miss shredding	1	9	2020-12-29	2021-01-01	\N
-166	2020 has been a crazy year!	1	5	2020-12-29	2021-01-01	\N
-167	lol	2	3	2020-12-14	2020-12-18	\N
-168	what is going on	3	10	2021-01-04	2021-01-07	\N
-169	lets go boarding asap pleaaaaase	1	5	2021-01-22	2021-01-23	\N
-170	lets go boarding asap pleaaaaase	1	5	2021-01-22	2021-01-23	\N
-171	lets go boarding asap pleaaaaase	1	5	2021-01-22	2021-01-23	[{"profileId": 145}, {"profileId": 146}]
-172	hellofffffdfadfsadfeeff	2	144	2021-03-31	2021-03-31	[{"name": "Mark", "imgUrl": "https://ca.slack-edge.com/T1EHQUJ8J-U016NP1639T-9d2bb904061b-512", "profileId": 145}, {"name": "Kobe", "imgUrl": "https://ca.slack-edge.com/T1EHQUJ8J-UT82B4U7J-93eff2729bff-512", "profileId": 146}]
+COPY public.event ("eventId", description, "resortId", "profileId", "startDate", "endDate") FROM stdin;
+163	we are excited!	3	9	2020-12-29	2020-12-31
+164	next year will be a better year	3	6	2021-01-06	2021-01-07
+165	I miss shredding	1	9	2020-12-29	2021-01-01
+166	2020 has been a crazy year!	1	5	2020-12-29	2021-01-01
+167	lol	2	3	2020-12-14	2020-12-18
+168	what is going on	3	10	2021-01-04	2021-01-07
+169	lets go boarding asap pleaaaaase	1	5	2021-01-22	2021-01-23
+170	lets go boarding asap pleaaaaase	1	5	2021-01-22	2021-01-23
+171	lets go boarding asap pleaaaaase	1	5	2021-01-22	2021-01-23
+172	hellofffffdfadfsadfeeff	2	144	2021-03-31	2021-03-31
+179	yo	2	69	2020-12-29	2020-12-29
+180	fff	2	144	2021-03-22	2021-03-18
 \.
 
 
@@ -251,7 +253,7 @@ COPY public.resort ("resortId", name, address, description, "imgUrl") FROM stdin
 -- Name: event_eventId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."event_eventId_seq"', 178, true);
+SELECT pg_catalog.setval('public."event_eventId_seq"', 180, true);
 
 
 --

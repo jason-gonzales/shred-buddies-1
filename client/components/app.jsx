@@ -38,7 +38,7 @@ export default class App extends React.Component {
     this.createProfile = this.createProfile.bind(this);
     this.createEvent = this.createEvent.bind(this);
     this.addUser = this.addUser.bind(this);
-    this.isAttending = this.isAttending.bind(this);
+    // this.isAttending = this.isAttending.bind(this);
     this.addGuest = this.addGuest.bind(this);
   }
 
@@ -108,20 +108,20 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  isAttending(object) {
-    const requestOption = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(object)
-    };
+  // isAttending(object) {
+  //   const requestOption = {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(object)
+  //   };
 
-    fetch(`/api/attendees/${this.state.user.profileId}`, requestOption)
-      .then(result => result.json())
-      .then(data => this.setState({
-        attend: data
-      }))
-      .catch(err => console.error(err));
-  }
+  //   fetch(`/api/attendees/${this.state.user.profileId}`, requestOption)
+  //     .then(result => result.json())
+  //     .then(data => this.setState({
+  //       attend: data
+  //     }))
+  //     .catch(err => console.error(err));
+  // }
 
   deleteEvent(object) {
 
@@ -137,7 +137,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    // console.log(this.state.user);
+
     // console.log(this.state.attend);
     // if (!this.state.attend) {
     //   console.log(this.state.attend);
