@@ -66,7 +66,6 @@ export default class UpdateEvent extends React.Component {
   // }
 
   render() {
-
     return (
       <div className="add-event">
         <form className="mx-3">

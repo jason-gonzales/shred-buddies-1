@@ -177,16 +177,17 @@ app.post('/api/event/:profile', (req, res, next) => {
 
 app.put('/api/event/:eventId', (req, res, next) => {
 
-  const values = [req.body.resortId, req.body.startDate, req.body.endDate, req.body.profileId, req.body.description, req.params.eventId];
+  const values = [req.body.resortId, req.body.startDate, req.body.endDate, req.body.profileId,
+    req.body.description, req.body.attendees, req.params.eventId];
   const sql =
   `update "event"
     set "resortId" =$1,
         "startDate" =$2,
         "endDate" =$3,
         "profileId"=$4,
-        "description"=$5
-
-  where "eventId" = $6;
+        "description"=$5,
+        "attendees"=$6
+  where "eventId" = $7;
   `;
   db.query(sql, values)
     .then(result => {

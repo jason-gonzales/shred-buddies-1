@@ -209,7 +209,7 @@ export default class EventList extends React.Component {
                 profile !== user ? <>
                   <div className="text-center">
                     <button
-                      onClick={this.addGuest}
+                      onClick={() => this.props.setView('joinEvent', { event: this.props.events, attendees: profiles })}
                       className="join-button"
                     >join</button></div></> : null
               }
