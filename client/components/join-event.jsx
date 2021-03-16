@@ -45,26 +45,33 @@ export default class JoinEvent extends React.Component {
   }
 
   render() {
-    // console.log(this.state);
+
     // console.log(this.props.params.attendees[0].name);
     // console.log(this.props.params.attendees[0].imgUrl);
     return (
       <div className="join-event">
         <form className="mx-3">
           <div className="form-group col-md-9 mx-auto">
-            <label>
+            <label htmlFor="exampleFormControlInput1">
               <h3 className="mt-2">Join Event</h3>
             </label>
-            <input
-              onChange={this.handleChange}
-              type ="text"
-              name="name"
-              value={this.state.name}/>
-            <input
-              onChange={this.handleChange}
-              type="text"
-              name="attendees"
-              value={this.state.attendees} />
+            <div className="form-group">
+              <label>name</label>
+              <input
+                onChange={this.handleChange}
+                type="text"
+                name="profileName"
+                value={this.state.profileName} />
+            </div>
+            <div className="form-group">
+              <label>image</label>
+              <input
+                onChange={this.handleChange}
+                type="text"
+                name="profileImage"
+                value={this.state.profileImage} />
+            </div>
+
           </div>
           <div className="text-center">
             <button
