@@ -212,44 +212,52 @@ app.put('/api/event/:eventId', (req, res, next) => {
 //     .catch(err => next(err));
 // });
 
-// app.get('/api/attendees', (req, res, next) => {
-//   // const profileId = parseInt(req.params.profileId, 10);
+app.get('/api/attendees', (req, res, next) => {
+  // const profileId = parseInt(req.params.profileId, 10);
 
-//   const sql = `
-// select *
-// from attendees
-//   `;
-//   db.query(sql)
-//     .then(result => res.status(200).json(result.rows[0]))
-//     .catch(err => next(err));
-// });
+  const sql = `
+select "e"."eventId",
+    "a"."userId" as "userId",
+    "p"."name" as "profileName",
+    "p"."imgUrl" as "profileImage",
+    "a"."isCheckedIn" as "isCheckedIn",
+    "a","userName" as "userName",
+    "a","userImage" as "userImage"
+from "attendees" as "a"
+join "event" as "e" using ("eventId")
+
+
+  `;
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => console.error(err));
+});
 
 app.post('/api/attendees/:event', (req, res, next) => {
 
-  if (!req.body.profileId && !req.body.eventId && !req.body.isCheckedIn) throw new ClientError('profileId, eventId, isCheckedIn must be filled out', 400);
+  if (!req.body.userId && !req.body.eventId && !req.body.isCheckedIn && !req.body.userName && !req.body.userImage) throw new ClientError('userId, eventId, isCheckedIn must be filled out', 400);
   const insert = `
- insert into "attendees"("profileId","eventId","isCheckedIn")
- values($1,$2,$3)
+ insert into "attendees"("userId","eventId","isCheckedIn","userName","userImage")
+ values($1,$2,$3,$4,$5)
  returning *;
 `;
 
-  const values = [req.body.profileId, req.params.event, req.body.isCheckedIn];
+  const values = [req.body.userId, req.params.event, req.body.isCheckedIn, req.body.userName, req.body.userImage];
   db.query(insert, values)
     .then(result => result.rows[0])
     .then(result => {
       const select = `
-      select "profile"."profileId" as "profileId",
-            "profile"."name" as "profileName",
-            "profile"."imgUrl" as "imgUrl"
-            "event"."eventId" as "eventId",
-            "attendees"."isCheckedIn" as "isCheckedIn"
+      select "event"."eventId" as "eventId",
+            "attendees"."userId" as "userId",
+            "attendees"."isCheckedIn" as "isCheckedIn",
+            "attendees"."userName" as "userName",
+            "attendees"."userImage" as "userImage"
       from "attendees"
-      join "profile" using ("profileId")
       join "event" using ("eventId")
-      where "profile"."profileId" = $1
+      where "a"."eventId" = $1
 
   `;
-      db.query(select, [result.profileId])
+      db.query(select, [result.userId])
         .then(result => {
           res.status(201).json(result.rows[0]);
         });
