@@ -66,8 +66,7 @@ SET default_with_oids = false;
 
 CREATE TABLE public.attendees (
     "profileId" integer NOT NULL,
-    "eventId" integer NOT NULL,
-    "isCheckedIn" boolean NOT NULL
+    "eventId" integer NOT NULL
 );
 
 
@@ -197,11 +196,13 @@ ALTER TABLE ONLY public.resort ALTER COLUMN "resortId" SET DEFAULT nextval('publ
 -- Data for Name: attendees; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.attendees ("profileId", "eventId", "isCheckedIn") FROM stdin;
-153	186	f
-152	185	f
-154	186	f
-151	187	f
+COPY public.attendees ("profileId", "eventId") FROM stdin;
+153	186
+152	185
+154	186
+151	187
+155	185
+152	187
 \.
 
 
@@ -213,6 +214,8 @@ COPY public.event ("eventId", description, "resortId", "profileId", "startDate",
 185	going to bear on the 24th because that was Kobe's number.	2	151	2021-03-24	2021-03-24
 186	mammoth trip at the end of the month. Who's with me?	1	152	2021-03-31	2021-03-31
 187	Taking a break from teaching code. Who wants to go to local Mount High with?	3	153	2021-04-01	2021-04-02
+188	Going to Mammoth first of April	1	151	2021-04-01	2021-04-02
+189	going to Mount High tomorrow.	3	154	2021-03-18	2021-03-18
 \.
 
 
@@ -225,6 +228,7 @@ COPY public.profile ("profileId", name, email, skill, "imgUrl", description) FRO
 152	Dot Keenan	dot@kennan.com	expert	https://ca.slack-edge.com/T1EHQUJ8J-UT82B4U7J-93eff2729bff-512	I am an expert in web development and I also shred occasionally. 
 153	Tim D	awesome@gmail.com		https://ca.slack-edge.com/T1EHQUJ8J-UH2DX47S8-500962933591-512	I an expert in web development. Specifically backend.
 154	Leo DiCaprio	titanic@gmail.com	intermediate	https://hairstyles.thehairstyler.com/hairstyle_views/front_view_images/11610/original/Leonardo-DiCaprio.jpg	I actually prefer skiing but I don't mind shredding every now and then.
+155	Stephen A. Smith	asenine@gmail.com	expert	https://www.golfdigest.com/content/dam/images/golfdigest/fullset/2020/08/StephenASmith_ConjugalVisit_Square.png	I have not shredded in awhile because ESPN has me working overtime all the time. I need a vacation
 \.
 
 
@@ -243,14 +247,14 @@ COPY public.resort ("resortId", name, address, description, "imgUrl") FROM stdin
 -- Name: event_eventId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."event_eventId_seq"', 187, true);
+SELECT pg_catalog.setval('public."event_eventId_seq"', 189, true);
 
 
 --
 -- Name: profile_profileId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."profile_profileId_seq"', 154, true);
+SELECT pg_catalog.setval('public."profile_profileId_seq"', 155, true);
 
 
 --
