@@ -216,18 +216,12 @@ app.get('/api/attendees', (req, res, next) => {
   // const profileId = parseInt(req.params.profileId, 10);
 
   const sql = `
-select event.eventId, attendees.userImage from
-event join attendees on
-event.eventId = attendees.userId;
-
-select "e"."eventId",
-    "a"."userId" as "userId",
-    "a"."isCheckedIn" as "isCheckedIn",
-    "a","userName" as "userName",
-    "a","userImage" as "userImage"
-from "attendees" as "a"
-join "event" as "e" using ("eventId")
-
+select *
+from "attendees"
+inner join "profile"
+on "attendees"."profileId" = "profile"."profileId"
+inner join "event"
+on "attendees"."eventId" = "event"."eventId"
 
   `;
   db.query(sql)
@@ -254,20 +248,20 @@ join "event" as "e" using ("eventId")
 
 app.post('/api/attendees/:event', (req, res, next) => {
 
-  if (!req.body.userId && !req.body.eventId && !req.body.isCheckedIn && !req.body.userName && !req.body.userImage) throw new ClientError('userId, eventId, isCheckedIn must be filled out', 400);
+  if (!req.body.profileId && !req.body.eventId && !req.body.isCheckedIn) throw new ClientError('profileId, eventId, isCheckedIn must be filled out', 400);
   const insert = `
- insert into "attendees"("userId","eventId","isCheckedIn","userName","userImage")
- values($1,$2,$3,$4,$5)
+ insert into "attendees"("profileId","eventId","isCheckedIn")
+ values($1,$2,$3)
  returning *;
 `;
 
-  const values = [req.body.userId, req.params.event, req.body.isCheckedIn, req.body.userName, req.body.userImage];
+  const values = [req.body.profileId, req.params.event, req.body.isCheckedIn];
   db.query(insert, values)
     .then(result => result.rows[0])
     .then(result => {
       const select = `
       select "event"."eventId" as "eventId",
-            "attendees"."userId" as "userId",
+            "attendees"."profileId" as "profileId",
             "attendees"."isCheckedIn" as "isCheckedIn",
             "attendees"."userName" as "userName",
             "attendees"."userImage" as "userImage"
@@ -276,7 +270,7 @@ app.post('/api/attendees/:event', (req, res, next) => {
       where "a"."eventId" = $1
 
   `;
-      db.query(select, [result.userId])
+      db.query(select, [result.profileId])
         .then(result => {
           res.status(201).json(result.rows[0]);
         });
