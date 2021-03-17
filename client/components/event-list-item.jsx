@@ -14,8 +14,8 @@ export default class EventList extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.isAttending = this.isAttending.bind(this);
-    // this.getAttendees = this.getAttendees.bind(this);
+    // this.isAttending = this.isAttending.bind(this);
+    this.getAttendees = this.getAttendees.bind(this);
     // this.getGuests = this.getGuests.bind(this);
     // this.guestList = this.guestList.bind(this);
     // this.attend = this.attend.bind(this);
@@ -33,21 +33,31 @@ export default class EventList extends React.Component {
 
   }
 
-  isAttending(object) {
-    const requestOption = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(object)
-    };
-
-    fetch(`/api/attendees/${this.props.events.eventId}`, requestOption)
-      .then(result => result.json())
-      .then(data => this.setState({
-        view: { name: 'joinEvent', params: {} },
-        attend: data
-      }))
-      .catch(err => console.error(err));
+  getAttendees() {
+    fetch('/api/attendees')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          attend: data
+        });
+      });
   }
+
+  // isAttending(object) {
+  //   const requestOption = {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(object)
+  //   };
+
+  //   fetch(`/api/attendees/${this.props.events.eventId}`, requestOption)
+  //     .then(result => result.json())
+  //     .then(data => this.setState({
+  //       view: { name: 'joinEvent', params: {} },
+  //       attend: data
+  //     }))
+  //     .catch(err => console.error(err));
+  // }
 
   // addGuest() {
   //   const requestOption = {
@@ -63,9 +73,11 @@ export default class EventList extends React.Component {
   // }
 
   componentDidMount() {
-    this.setState({
-      attendees: this.props.events.attendees
-    });
+    // this.setState({
+    //   attendees: this.props.events.attendees
+    // });
+    this.getAttendees();
+
   }
   // getAttendees() {
   //   fetch('/api/attendees')
@@ -145,8 +157,13 @@ export default class EventList extends React.Component {
   // }
 
   render() {
-    // console.log(this.state.attend);
-
+    // let image;
+    // if (this.state.attend === null) {
+    //   return null;
+    // } else if (this.state.attend) {
+    //   image = this.state.attend[0].userImage;
+    // }
+    // console.log(image);
     // const profiles = this.props.events.attendees;
 
     // const joined = [];
@@ -188,6 +205,9 @@ export default class EventList extends React.Component {
                       className="attending-pic"
                       src={this.props.events.profileImage}
                       alt={this.props.events.profileName} /></> : null}
+                  {/* { image.map((im, index) =>
+                    <img className="attending-pic" src={im} key={index}/>)
+                  } */}
                   {/* { joined.map((join, index) =>
                     <img src={join} key={index} className="attending-pic" />)
                   } */}
