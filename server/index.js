@@ -216,10 +216,12 @@ app.get('/api/attendees', (req, res, next) => {
   // const profileId = parseInt(req.params.profileId, 10);
 
   const sql = `
+select event.eventId, attendees.userImage from
+event join attendees on
+event.eventId = attendees.userId;
+
 select "e"."eventId",
     "a"."userId" as "userId",
-    "p"."name" as "profileName",
-    "p"."imgUrl" as "profileImage",
     "a"."isCheckedIn" as "isCheckedIn",
     "a","userName" as "userName",
     "a","userImage" as "userImage"
@@ -232,6 +234,23 @@ join "event" as "e" using ("eventId")
     .then(result => res.status(200).json(result.rows))
     .catch(err => console.error(err));
 });
+// app.get('/api/attendees', (req, res, next) => {
+//   // const profileId = parseInt(req.params.profileId, 10);
+
+//   const sql = `
+// select "e"."eventId",
+//     "a"."userId" as "userId",
+//     "a"."isCheckedIn" as "isCheckedIn",
+//     "a","userName" as "userName",
+//     "a","userImage" as "userImage"
+// from "attendees" as "a"
+// join "event" as "e" using ("eventId")
+
+//   `;
+//   db.query(sql)
+//     .then(result => res.status(200).json(result.rows))
+//     .catch(err => console.error(err));
+// });
 
 app.post('/api/attendees/:event', (req, res, next) => {
 
