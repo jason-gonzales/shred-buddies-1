@@ -8,7 +8,7 @@ export default class EventList extends React.Component {
     this.state = {
       events: [],
       event: null,
-      guests: [],
+      guests: null,
       attend: null,
       attendees: []
     };
@@ -36,11 +36,7 @@ export default class EventList extends React.Component {
   getAttendees() {
     fetch('/api/attendees')
       .then(res => res.json())
-      .then(data => {
-        this.setState({
-          attend: data
-        });
-      });
+      .then(data => this.setState({ guests: data }));
   }
 
   // isAttending(object) {
@@ -157,13 +153,41 @@ export default class EventList extends React.Component {
   // }
 
   render() {
-    // let image;
-    // if (this.state.attend === null) {
-    //   return null;
-    // } else if (this.state.attend) {
-    //   image = this.state.attend[0].userImage;
-    // }
-    // console.log(image);
+    const eventCard = this.props.events.eventId;
+    let joined;
+    const guestPic = [];
+    const a = [];
+    if (this.state.guests === null) {
+      return null;
+    } else if (this.state.guests) {
+      joined = this.state.guests;
+      joined.forEach(function (obj) {
+        a.push(obj);
+
+      });
+      // console.log(a);
+      // console.log(eventCard);
+      for (let i = 0; i < a.length; i++) {
+        if (eventCard === a[i].eventId) {
+          guestPic.push(a[i].imgUrl);
+        }
+      }
+      // for (let i = 0; i < a.length; i++) {
+      //   if (a[i] === eventCard) {
+      //     guestPic.push(obj.imgUrl);
+      //   }
+      // }
+
+      // for (let i = 0; i < this.state.guests.length; i++) {
+      //   joined.push(this.state.guests[i]);
+
+      // }
+      // guestPic = joined.imgUrl;
+      // guest = joined.name;
+      // console.log(joined);
+    }
+    // console.log(guestPic);
+    // console.log(guest);
     // const profiles = this.props.events.attendees;
 
     // const joined = [];
@@ -205,12 +229,12 @@ export default class EventList extends React.Component {
                       className="attending-pic"
                       src={this.props.events.profileImage}
                       alt={this.props.events.profileName} /></> : null}
-                  {/* { image.map((im, index) =>
-                    <img className="attending-pic" src={im} key={index}/>)
-                  } */}
-                  {/* { joined.map((join, index) =>
+                  {
+                    <img className="attending-pic" src={guestPic} />
+                  }
+                  {guestPic.map((join, index) =>
                     <img src={join} key={index} className="attending-pic" />)
-                  } */}
+                  }
                   {/* <MyContext.Consumer>
                   {
                     guest =>
