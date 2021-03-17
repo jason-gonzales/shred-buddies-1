@@ -14,7 +14,7 @@ export default class EventList extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    // this.isAttending = this.isAttending.bind(this);
+    this.isAttending = this.isAttending.bind(this);
     this.getAttendees = this.getAttendees.bind(this);
     // this.getGuests = this.getGuests.bind(this);
     // this.guestList = this.guestList.bind(this);
@@ -36,24 +36,25 @@ export default class EventList extends React.Component {
   getAttendees() {
     fetch('/api/attendees')
       .then(res => res.json())
-      .then(data => this.setState({ guests: data }));
+      .then(data => this.setState({ guests: data }))
+      .catch(err => console.error(err));
   }
 
-  // isAttending(object) {
-  //   const requestOption = {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(object)
-  //   };
+  isAttending(object) {
+    const requestOption = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(object)
+    };
 
-  //   fetch(`/api/attendees/${this.props.events.eventId}`, requestOption)
-  //     .then(result => result.json())
-  //     .then(data => this.setState({
-  //       view: { name: 'joinEvent', params: {} },
-  //       attend: data
-  //     }))
-  //     .catch(err => console.error(err));
-  // }
+    fetch(`/api/attendees/${this.props.events.eventId}`, requestOption)
+      .then(result => result.json())
+      .then(data => this.setState({
+        // view: { name: 'joinEvent', params: {} },
+        attend: data
+      }))
+      .catch(err => console.error(err));
+  }
 
   // addGuest() {
   //   const requestOption = {
@@ -166,37 +167,14 @@ export default class EventList extends React.Component {
 
       });
       // console.log(a);
-      // console.log(eventCard);
+
       for (let i = 0; i < a.length; i++) {
         if (eventCard === a[i].eventId) {
           guestPic.push(a[i].imgUrl);
+
         }
       }
-      // for (let i = 0; i < a.length; i++) {
-      //   if (a[i] === eventCard) {
-      //     guestPic.push(obj.imgUrl);
-      //   }
-      // }
-
-      // for (let i = 0; i < this.state.guests.length; i++) {
-      //   joined.push(this.state.guests[i]);
-
-      // }
-      // guestPic = joined.imgUrl;
-      // guest = joined.name;
-      // console.log(joined);
     }
-    // console.log(guestPic);
-    // console.log(guest);
-    // const profiles = this.props.events.attendees;
-
-    // const joined = [];
-
-    // for (let i = 0; i < profiles.length; i++) {
-    //   joined.push(profiles[i].imgUrl);
-
-    // }
-
     const profile = this.props.events.profileId;
     const user = this.props.user;
     const { events } = this.props;
@@ -229,11 +207,9 @@ export default class EventList extends React.Component {
                       className="attending-pic"
                       src={this.props.events.profileImage}
                       alt={this.props.events.profileName} /></> : null}
-                  {
-                    <img className="attending-pic" src={guestPic} />
-                  }
-                  {guestPic.map((join, index) =>
-                    <img src={join} key={index} className="attending-pic" />)
+
+                  {guestPic.map(join =>
+                    <img src={join} key={join} className="attending-pic" />)
                   }
                   {/* <MyContext.Consumer>
                   {
@@ -272,7 +248,7 @@ export default class EventList extends React.Component {
                 profile !== user ? <>
                   <div className="text-center">
                     <button
-                      onClick={() => this.props.setView('joinEvent', { event: this.props.events, attendees: this.state.attend })}
+                      onClick={() => this.props.setView('joinEvent', { event: this.props.events.eventId, attendees: this.props.user })}
                       className="join-button"
                     >join</button></div></> : null
               }

@@ -137,8 +137,6 @@ export default class App extends React.Component {
   }
 
   render() {
-
-    // console.log(this.state.attend);
     // if (!this.state.attend) {
     //   console.log(this.state.attend);
     // }

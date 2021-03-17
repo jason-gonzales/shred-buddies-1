@@ -61,15 +61,15 @@ export default class JoinEvent extends React.Component {
                 onChange={this.handleChange}
                 type="text"
                 name="profileName"
-                value={this.state.profileName} />
+                value={this.props.params.attendees} />
             </div>
             <div className="form-group">
-              <label>image</label>
+              <label>event</label>
               <input
                 onChange={this.handleChange}
                 type="text"
                 name="profileImage"
-                value={this.state.profileImage} />
+                value={this.props.params.event} />
             </div>
 
           </div>

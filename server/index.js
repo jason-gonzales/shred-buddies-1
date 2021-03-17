@@ -228,53 +228,33 @@ on "attendees"."eventId" = "event"."eventId"
     .then(result => res.status(200).json(result.rows))
     .catch(err => console.error(err));
 });
-// app.get('/api/attendees', (req, res, next) => {
-//   // const profileId = parseInt(req.params.profileId, 10);
-
-//   const sql = `
-// select "e"."eventId",
-//     "a"."userId" as "userId",
-//     "a"."isCheckedIn" as "isCheckedIn",
-//     "a","userName" as "userName",
-//     "a","userImage" as "userImage"
-// from "attendees" as "a"
-// join "event" as "e" using ("eventId")
-
-//   `;
-//   db.query(sql)
-//     .then(result => res.status(200).json(result.rows))
-//     .catch(err => console.error(err));
-// });
 
 app.post('/api/attendees/:event', (req, res, next) => {
 
-  if (!req.body.profileId && !req.body.eventId && !req.body.isCheckedIn) throw new ClientError('profileId, eventId, isCheckedIn must be filled out', 400);
+  if (!req.body.profileId && !req.body.eventId) throw new ClientError('profileId, eventId, isCheckedIn must be filled out', 400);
   const insert = `
- insert into "attendees"("profileId","eventId","isCheckedIn")
- values($1,$2,$3)
+ insert into "attendees"("profileId","eventId")
+ values($1,$2)
  returning *;
 `;
 
-  const values = [req.body.profileId, req.params.event, req.body.isCheckedIn];
+  const values = [req.body.profileId, req.params.event];
   db.query(insert, values)
     .then(result => result.rows[0])
-    .then(result => {
-      const select = `
-      select "event"."eventId" as "eventId",
-            "attendees"."profileId" as "profileId",
-            "attendees"."isCheckedIn" as "isCheckedIn",
-            "attendees"."userName" as "userName",
-            "attendees"."userImage" as "userImage"
-      from "attendees"
-      join "event" using ("eventId")
-      where "a"."eventId" = $1
+  //   .then(result => {
+  //     const select = `
+  //     select "event"."eventId" as "eventId",
+  //           "attendees"."profileId" as "profileId",
+  //     from "attendees"
+  //     join "event" using ("eventId")
+  //     where "a"."eventId" = $1
 
-  `;
-      db.query(select, [result.profileId])
-        .then(result => {
-          res.status(201).json(result.rows[0]);
-        });
-    })
+  // `;
+  //     db.query(select, [result.profileId])
+  //       .then(result => {
+  //         res.status(201).json(result.rows[0]);
+  //       });
+  //   })
     .catch(err => {
       console.error('err');
 
