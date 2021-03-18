@@ -232,7 +232,9 @@ export default class App extends React.Component {
     } else if (this.state.view.name === 'joinEvent') {
       view =
         <>
+          <Header setView = {this.setView} />
           <JoinEvent
+            isAttending={this.isAttending}
             setView={this.setView}
             params={this.state.view.params} />
         </>;

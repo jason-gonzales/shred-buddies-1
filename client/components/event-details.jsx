@@ -53,7 +53,7 @@ export default class EventDetails extends React.Component {
                     {this.props.params.guest ? <>
                       <img className="attending-pic"
                         src={this.props.params.guest.imgUrl}
-                        alt={this.props.params.guest.name}/></> : null }
+                        alt={this.props.params.guest.name} /></> : null}
                   </p>
 
                   <div className="eventdetaildesc mt-1"><h5 className="bold">Details</h5>
@@ -64,9 +64,6 @@ export default class EventDetails extends React.Component {
             </div><div className="text-center m-2">
               <button className="btn-detail" onClick={() => this.props.setView('main', {})}>close</button>
             </div>
-            {/* <div className="text-center">
-              <button onClick={this.handleClick} className="btn-eventdetail">request to join</button>
-            </div> */}
 
           </div>
 
