@@ -4,6 +4,7 @@ export default class JoinEvent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      events: null,
       profileId: '',
       eventId: ''
     };
@@ -23,7 +24,6 @@ export default class JoinEvent extends React.Component {
 
     fetch(`/api/attendees/${this.state.eventId}`, requestOption)
       .then(result => result.json())
-      // .then(() => this.props.setView('main'))
       .catch(err => console.error(err));
   }
 
@@ -33,19 +33,6 @@ export default class JoinEvent extends React.Component {
     this.props.setView('main');
 
   }
-  // handleSubmit(object) {
-  //   event.preventDefault();
-  //   const requestOption = {
-  //     method: 'PUT',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(this.state)
-  //   };
-  //   fetch(`/api/event/${this.props.params.event.eventId}`, requestOption)
-  //     .then(() => {
-  //       this.props.setView('main');
-  //     })
-  //     .catch(err => console.error(err));
-  // }
 
   componentDidMount() {
     this.setState({
@@ -54,59 +41,95 @@ export default class JoinEvent extends React.Component {
     });
   }
 
-  // handleChange(events) {
-  //   const input = event.target.name;
-  //   const value = event.target.value;
-  //   const newState = {};
-
-  //   newState[input] = value;
-  //   this.setState(newState);
-
-  // }
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
-    // const { profileId, eventId } = this.state;
+    const start = new Date(this.props.params.events.start);
+    const end = new Date(this.props.params.events.end);
 
-    // console.log(this.props.params.attendees[0].name);
-    // console.log(this.props.params.attendees[0].imgUrl);
-    return (
-      <div className="join-event">
-        <form className="mx-3">
-          <div className="form-group col-md-9 mx-auto">
-            <label htmlFor="exampleFormControlInput1">
-              <h3 className="mt-2">Join Event</h3>
-            </label>
-            <div className="form-group">
-              <label>name</label>
-              <input
-                onChange={this.handleChange}
-                type="text"
-                name="profileId"
-                value={this.props.params.attendees}
-                id={this.state.profileId} />
-            </div>
-            <div className="form-group">
-              <label>event</label>
-              <input
-                onChange={this.handleChange}
-                type="text"
-                name="eventId"
-                value={this.props.params.event}
-                id={this.state.eventId} />
+    if (!this.props.params.events) {
+      return (
+        <div>No Entry</div>
+      );
+    } else {
+      return (
+        <>
+          <div className="event-detail pt-3">
+            <div className="container px-0">
+              <h2 className="text-center"><i className="fas fa-tram"></i>{this.props.params.events.resortName}</h2>
+              <div className="text-center pb-3">Hosted by <b>{this.props.params.events.profileName}</b></div>
+              <div className="event-page">
+                <div className=" m-0 d-flex justify-content-center">
+                  <img src={this.props.params.events.resortImage} alt={this.props.params.events.resortName} className="imgEventDetails" />
+                </div>
+                <div>
+                  <div className="card-body m-auto event-info col-md-9">
+                    <p><i className="fas fa-calendar-day"></i> Start : {start.toDateString()}</p>
+                    <p><i className="fas fa-calendar-day"></i> End : {end.toDateString()}</p>
+                    <p><i className="fas fa-snowboarding boarder"></i> Attending :
+                      {this.props.params.events ? <>
+                        <img className="attending-pic"
+                          src={this.props.params.events.profileImage}
+                          alt={this.props.params.events.profileName} /></> : null}
+                      {(this.props.params.guestImage || this.props.params.guestName)
+                        ? <img className="attending-pic"
+                          src={this.props.params.guestImage}
+                          alt={this.props.params.guestName} /> : null
+                      }
+                    </p>
+
+                    <div className="eventdetaildesc mt-1"><h5 className="bold">Details</h5>
+                      <p>{this.props.params.events.eventDescription}</p>
+                    </div>
+                  </div>
+                </div>
+              </div><div className="text-center m-2">
+                <button className="btn-detail">join</button>
+                <button className="btn-detail" onClick={() => this.props.setView('main', {})}>back</button>
+              </div>
+
             </div>
 
           </div>
-          <div className="text-center">
-            <button
-              type="submit"
-              onClick={this.handleSubmit}
-              className="btn-detail m-auto">join</button>
+          <div className="join-event">
+            <form className="mx-3">
+              <div className="form-group col-md-9 mx-auto">
+                <label htmlFor="exampleFormControlInput1">
+                  <h3 className="mt-2">Join Event</h3>
+                </label>
+                <div className="form-group">
+                  <label>name</label>
+                  <input
+                    onChange={this.handleChange}
+                    type="text"
+                    name="profileId"
+                    value={this.props.params.userName}
+                    id={this.state.profileId} />
+                </div>
+                <div className="form-group">
+                  <label>event</label>
+                  <input
+                    onChange={this.handleChange}
+                    type="text"
+                    name="eventId"
+                    value={this.props.params.eventName}
+                    id={this.state.eventId} />
+                </div>
+
+              </div>
+              <div className="text-center">
+                <button
+                  type="submit"
+                  onClick={this.handleSubmit}
+                  className="btn-detail m-auto">join</button>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-    );
+        </>
+      );
+    }
+
   }
 }

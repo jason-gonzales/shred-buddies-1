@@ -242,7 +242,7 @@ app.post('/api/attendees/:event', (req, res, next) => {
   db.query(insert, values)
     .then(result => result.rows[0])
   //   .then(result => {
-  //     const select = `
+  //     const select = `s
   //     select "event"."eventId" as "eventId",
   //           "attendees"."profileId" as "profileId",
   //     from "attendees"

@@ -12,7 +12,7 @@ export default class EventList extends React.Component {
       attend: null,
       attendees: []
     };
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     // this.isAttending = this.isAttending.bind(this);
     this.getAttendees = this.getAttendees.bind(this);
@@ -22,11 +22,11 @@ export default class EventList extends React.Component {
     // this.addGuest = this.addGuest.bind(this);
   }
 
-  handleClick() {
-    // if (this.state.events) {
-    this.props.setView('eventDetails', { events: this.props.events, guest: this.props.guest });
-    // }
-  }
+  // handleClick() {
+  //   // if (this.state.events) {
+  //   this.props.setView('eventDetails', { events: this.props.events, guest: this.props.guest });
+  //   // }
+  // }
 
   handleDelete() {
     this.props.deleteEvent(this.props.events.eventId);
@@ -41,14 +41,13 @@ export default class EventList extends React.Component {
   }
 
   componentDidMount() {
-    // this.setState({
-    //   attendees: this.props.events.attendees
-    // });
+
     this.getAttendees();
 
   }
 
   render() {
+
     const eventCard = this.props.events.eventId;
     let joined;
     const guestPic = [];
@@ -56,12 +55,12 @@ export default class EventList extends React.Component {
     if (this.state.guests === null) {
       return null;
     } else if (this.state.guests) {
+
       joined = this.state.guests;
       joined.forEach(function (obj) {
         a.push(obj);
 
       });
-      // console.log(a);
 
       for (let i = 0; i < a.length; i++) {
         if (eventCard === a[i].eventId) {
@@ -69,7 +68,12 @@ export default class EventList extends React.Component {
 
         }
       }
+
     }
+
+    const guestPicture = guestPic.map((join, index) =>
+      <img src={join} key={index} className="attending-pic" />);
+
     const profile = this.props.events.profileId;
     const user = this.props.user;
     const { events } = this.props;
@@ -84,7 +88,7 @@ export default class EventList extends React.Component {
           <div className="card bg-dark text-white my-3">
             <img className="event-img" src={this.props.events.resortImage} alt="Card image" />
             <div className="card-img-overlay">
-              <div className="" onClick={this.handleClick}>
+              <div className=""> {/* onClick={this.handleClick}> */}
                 <div className="d-flex">
                   <h3 className="card-title">{this.props.events.resortName}</h3>
                   <img className="host-pic ml-auto"
@@ -94,8 +98,6 @@ export default class EventList extends React.Component {
                 <p className=''>Hosted by <b>{this.props.events.profileName}</b></p>
                 <p className="mt-n2">{start.toDateString()} - {end.toDateString()}</p>
 
-                <p>{events.eventDescription}</p>
-
                 <div>attending: <span className="pl-2">
                   {this.props.user ? <>
                     <img
@@ -103,9 +105,7 @@ export default class EventList extends React.Component {
                       src={this.props.events.profileImage}
                       alt={this.props.events.profileName} /></> : null}
 
-                  {guestPic.map(join =>
-                    <img src={join} key={join} className="attending-pic" />)
-                  }
+                  {guestPicture}
                   {/* <MyContext.Consumer>
                   {
                     guest =>
@@ -118,24 +118,7 @@ export default class EventList extends React.Component {
                       </div>
                       </React.Fragment>}
                 </MyContext.Consumer> */}
-                  {/* {this.state.guests ? <>
 
-                  <img
-                    className="attending-pic"
-                    src={this.state.guests.imgUrl}
-                    alt={this.state.guests.name} /></> : null} */}
-
-                  {/* {this.props.guest ? <>
-                  <img
-                    className="attending-pic"
-                    src={this.props.guest.imgUrl}
-                    alt={this.props.guest.name}/></> : null} */}
-                  {/* {this.guestList()} */}
-
-                  {/* <img
-                  className="attending-pic pl-2"
-                  src="/images/chewbacca.png"
-                  alt="shredder-guest" /> */}
                 </span>
                 </div>
               </div>
@@ -143,9 +126,19 @@ export default class EventList extends React.Component {
                 profile !== user ? <>
                   <div className="text-center">
                     <button
-                      onClick={() => this.props.setView('joinEvent', { event: this.props.events.eventId, attendees: this.props.user })}
+                      onClick={() => this.props.setView('joinEvent',
+                        {
+                          userName: this.props.userName,
+                          eventName: this.props.events.resortName,
+                          event: this.props.events.eventId,
+                          attendees: this.props.user,
+                          events: this.props.events,
+                          guest: this.props.guest,
+                          guestPicture: [...guestPicture]
+
+                        })}
                       className="join-button"
-                    >join</button></div></> : null
+                    >details</button></div></> : null
               }
 
               </div>
