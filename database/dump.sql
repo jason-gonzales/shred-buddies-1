@@ -197,12 +197,10 @@ ALTER TABLE ONLY public.resort ALTER COLUMN "resortId" SET DEFAULT nextval('publ
 --
 
 COPY public.attendees ("profileId", "eventId") FROM stdin;
-153	186
-152	185
-154	186
-151	187
-155	185
 152	187
+154	186
+153	186
+154	187
 \.
 
 
@@ -211,11 +209,11 @@ COPY public.attendees ("profileId", "eventId") FROM stdin;
 --
 
 COPY public.event ("eventId", description, "resortId", "profileId", "startDate", "endDate") FROM stdin;
-185	going to bear on the 24th because that was Kobe's number.	2	151	2021-03-24	2021-03-24
 186	mammoth trip at the end of the month. Who's with me?	1	152	2021-03-31	2021-03-31
 187	Taking a break from teaching code. Who wants to go to local Mount High with?	3	153	2021-04-01	2021-04-02
 188	Going to Mammoth first of April	1	151	2021-04-01	2021-04-02
 189	going to Mount High tomorrow.	3	154	2021-03-18	2021-03-18
+185	going to bear on the 24th because that was Kobe's number. u	2	151	2021-03-24	2021-03-24
 \.
 
 
@@ -247,7 +245,7 @@ COPY public.resort ("resortId", name, address, description, "imgUrl") FROM stdin
 -- Name: event_eventId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."event_eventId_seq"', 189, true);
+SELECT pg_catalog.setval('public."event_eventId_seq"', 191, true);
 
 
 --

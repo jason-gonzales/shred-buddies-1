@@ -14,7 +14,7 @@ export default class EventList extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.isAttending = this.isAttending.bind(this);
+    // this.isAttending = this.isAttending.bind(this);
     this.getAttendees = this.getAttendees.bind(this);
     // this.getGuests = this.getGuests.bind(this);
     // this.guestList = this.guestList.bind(this);
@@ -40,35 +40,6 @@ export default class EventList extends React.Component {
       .catch(err => console.error(err));
   }
 
-  isAttending(object) {
-    const requestOption = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(object)
-    };
-
-    fetch(`/api/attendees/${this.props.events.eventId}`, requestOption)
-      .then(result => result.json())
-      .then(data => this.setState({
-        // view: { name: 'joinEvent', params: {} },
-        attend: data
-      }))
-      .catch(err => console.error(err));
-  }
-
-  // addGuest() {
-  //   const requestOption = {
-  //     method: 'PUT',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(this.state.attendees)
-  //   };
-  //   fetch(`/api/event/${this.props.events.eventId}`, requestOption)
-  //     .then(() => {
-  //       this.props.setView('main');
-  //     })
-  //     .catch(err => console.error(err));
-  // }
-
   componentDidMount() {
     // this.setState({
     //   attendees: this.props.events.attendees
@@ -76,82 +47,6 @@ export default class EventList extends React.Component {
     this.getAttendees();
 
   }
-  // getAttendees() {
-  //   fetch('/api/attendees')
-  //     .then(res => res.json())
-  //     .then(data => console.log(data))
-  //     .catch(err => console.error(err));
-  // }
-  // getGuests() {
-  //   this.props.isAttending(this.state);
-  // }
-
-  // getGuests() {
-
-  // fetch(`/api/profile/${this.props.user}`)
-  //   .then(result => result.json())
-  // .then(data => this.setState({
-  //   guests: [...this.state.guests, data]
-
-  // }))
-  // )
-  // .then(data => {
-  //   this.props.addGuest(data);
-  // this.setState({
-  //   attending: true
-  // });
-
-  // })
-
-  // .then(this.setState({
-  //   attending: true
-  // }))
-  //     .catch(err => console.error(err));
-  // }
-
-  // componentDidUpdate(newProps, newState) {
-  //   if (newState.guests === this.state.guests) {
-  //     this.setState({ guests: newState.guests });
-  //   }
-  // }
-  // componentDidMount() {
-  //   this.getGuests();
-  // }
-  // getGuests() {
-
-  //   fetch(`/api/profile/${this.props.user}`)
-  //     .then(result => result.json())
-  //     .then(data => this.setState({
-  //       guests: data
-
-  //     }))
-  //     .catch(err => console.error(err));
-  // }
-
-  // attend() {
-  //   // if (this.props.user) {
-  //   this.setState({ attending: true });
-  //   // }
-  // }
-
-  // guestList() {
-  //   const list = this.state.guests.map(guest =>
-  //     <img
-  //       className="attending-pic pl-2 m-auto"
-  //       key={guest.profileId}
-  //       src={guest.imgUrl}
-  //       alt={guest.name}/>
-  //   );
-
-  //   if (this.state.attending === false) {
-  //     return null;
-  //   }
-  //   return list;
-  // }
-
-  // componentDidMount() {
-  //   this.getGuests();
-  // }
 
   render() {
     const eventCard = this.props.events.eventId;
