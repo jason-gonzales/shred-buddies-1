@@ -22,6 +22,8 @@ Try the live application at
 * User can create an event - Back End.
 * User can create an event - Front End.
 * User can view list of events - Front End.
+* User can join an event = Back End.
+* User can join an event - Front End.
 * User can update an event - Back End.
 * User can delete an event - Back End.
 * User can update an event - Front End.
