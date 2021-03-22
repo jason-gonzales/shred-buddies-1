@@ -88,7 +88,11 @@ export default class JoinEvent extends React.Component {
                   </div>
                 </div>
               </div><div className="text-center m-2 d-flex">
-                <JoinModal name={this.props.params.userName} event={this.props.params.eventName}/>
+                <JoinModal
+                  name={this.props.params.userName}
+                  event={this.props.params.eventName}
+                  profileId={this.props.params.attendees}
+                  eventId={this.props.params.event} />
                 <button className="btn-detail" onClick={() => this.props.setView('main', {})}>back</button>
               </div>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
@@ -7,11 +7,36 @@ function JoinModal(props) {
   const [profileId, setProfileId] = useState('');
   const [eventId, setEventId] = useState('');
 
+  useEffect(() => {
+    setProfileId(props.profileId);
+    setEventId(props.eventId);
+  });
+
+  function addAttendee(object) {
+    const requestOption = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(object)
+    };
+
+    fetch(`/api/attendees/${eventId}`, requestOption)
+      .then(result => result.json())
+      .catch(err => console.error(err));
+  }
+
+  function handleSubmit(e) {
+    addAttendee(useEffect);
+    setModalIsOpen(false);
+
+  }
+
   function handleChange(e) {
     setProfileId(e.target.value);
     setEventId(e.target.value);
   }
+
   return (
+
     <div className="join-modal">
       <button className="btn-detail" onClick={() => setModalIsOpen(true)}>join</button>
       <Modal isOpen={modalIsOpen}>
@@ -36,7 +61,7 @@ function JoinModal(props) {
               value={props.event}></input>
           </div>
         </form>
-        <button className="btn-detail" onClick={() => setModalIsOpen(false)}>confirm</button>
+        <button className="btn-detail" onClick={() => handleSubmit()}>confirm</button>
       </Modal>
     </div>
 
