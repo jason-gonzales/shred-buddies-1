@@ -1,4 +1,5 @@
 import React from 'react';
+import JoinModal from './join-modal';
 
 export default class JoinEvent extends React.Component {
   constructor(props) {
@@ -56,6 +57,7 @@ export default class JoinEvent extends React.Component {
     } else {
       return (
         <>
+
           <div className="event-detail pt-3">
             <div className="container px-0">
               <h2 className="text-center"><i className="fas fa-tram"></i>{this.props.params.events.resortName}</h2>
@@ -85,8 +87,8 @@ export default class JoinEvent extends React.Component {
                     </div>
                   </div>
                 </div>
-              </div><div className="text-center m-2">
-                <button className="btn-detail">join</button>
+              </div><div className="text-center m-2 d-flex">
+                <JoinModal name={this.props.params.userName} event={this.props.params.eventName}/>
                 <button className="btn-detail" onClick={() => this.props.setView('main', {})}>back</button>
               </div>
 
