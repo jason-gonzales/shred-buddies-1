@@ -234,7 +234,7 @@ export default class App extends React.Component {
         <>
           <Header setView = {this.setView} />
           <JoinEvent
-            isAttending={this.isAttending}
+
             setView={this.setView}
             params={this.state.view.params} />
         </>;

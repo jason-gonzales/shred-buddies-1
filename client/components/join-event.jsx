@@ -5,7 +5,6 @@ export default class JoinEvent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: null,
       profileId: '',
       eventId: ''
     };
@@ -29,6 +28,7 @@ export default class JoinEvent extends React.Component {
   }
 
   handleSubmit(event) {
+
     event.preventDefault();
     this.addAttendee(this.state);
     this.props.setView('main');
@@ -44,9 +44,11 @@ export default class JoinEvent extends React.Component {
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+
   }
 
   render() {
+
     const start = new Date(this.props.params.events.start);
     const end = new Date(this.props.params.events.end);
 
