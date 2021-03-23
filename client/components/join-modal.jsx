@@ -1,16 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
 function JoinModal(props) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [profileId, setProfileId] = useState('');
-  const [eventId, setEventId] = useState('');
+  const [name, setName] = useState({ profileId: '', eventId: '' });
+  // const [eventId, setEventId] = useState('');
 
-  useEffect(() => {
-    setProfileId(props.profileId);
-    setEventId(props.eventId);
-  });
+  const inputs = {
+    profiledId: Number(name.profileId),
+    eventId: Number(name.eventId)
+  };
+
+  // useEffect(() => {
+  //   setName({});
+  //   // setEventId(props.eventId);
+  // });
 
   function addAttendee(object) {
     const requestOption = {
@@ -19,22 +24,27 @@ function JoinModal(props) {
       body: JSON.stringify(object)
     };
 
-    fetch(`/api/attendees/${eventId}`, requestOption)
+    fetch(`/api/attendees/${name.eventId}`, requestOption)
       .then(result => result.json())
       .catch(err => console.error(err));
+
   }
 
-  function handleSubmit(e) {
-    addAttendee(useEffect);
+  function handleSubmit(event) {
+    event.preventDefault();
+    addAttendee(inputs);
     setModalIsOpen(false);
 
   }
 
-  function handleChange(e) {
-    setProfileId(e.target.value);
-    setEventId(e.target.value);
-  }
+  // function handleChange(e) {
+  //   setProfileId(e.target.value);
+  //   setEventId(e.target.value);
+  // }
 
+  // console.log(name.profileId);
+
+  // console.log(inputs);
   return (
 
     <div className="join-modal">
@@ -47,21 +57,22 @@ function JoinModal(props) {
             <input
               type="text"
               name="profileId"
-              id={profileId}
-              onChange={handleChange}
-              value={props.name}></input>
+              id={Number(name.profileId)}
+              onChange={e => setName({ ...name, profileId: e.target.value })}
+              value={name.profileId}></input>
           </div>
           <div>
             <label>event</label>
             <input
               type="text"
               name="eventId"
-              id={eventId}
-              onChange={handleChange}
-              value={props.event}></input>
+              id={name.eventId}
+              onChange={e => setName({ ...name, eventId: e.target.value })}
+              value={name.eventId}></input>
           </div>
+          <button className="btn-detail" onClick={handleSubmit}>confirm</button>
         </form>
-        <button className="btn-detail" onClick={() => handleSubmit()}>confirm</button>
+
       </Modal>
     </div>
 
