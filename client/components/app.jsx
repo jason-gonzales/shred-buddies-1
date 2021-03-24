@@ -237,6 +237,7 @@ export default class App extends React.Component {
 
             setView={this.setView}
             params={this.state.view.params} />
+          <Footer setView={this.setView} />
         </>;
     } else if (this.state.view.name === 'notification') {
       view =

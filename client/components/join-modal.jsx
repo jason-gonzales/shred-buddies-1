@@ -41,10 +41,24 @@ function JoinModal(props) {
 
   return (
 
-    <div className="join-modal">
+    <div className="join-modal p-2">
       <button className="btn-detail" onClick={() => setModalIsOpen(true)}>join</button>
-      <Modal isOpen={modalIsOpen}>
-        <h2>Join Event</h2>
+      <Modal isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        style={
+          {
+
+            content: {
+
+              margin: 'auto',
+              width: '300px',
+              height: '300px',
+              padding: '40px'
+
+            }
+          }
+        }>
+        <h2 className="m-auto text-center">Join Event</h2>
         <form>
           <div className="form-group">
             <label>name</label>
@@ -57,7 +71,7 @@ function JoinModal(props) {
               // onChange={e => setName({ ...name, profileId: e.target.value })}
               value={props.name}></input>
           </div>
-          <div>
+          <div className="form-group">
             <label>event</label>
             <input
               type="text"
@@ -67,7 +81,9 @@ function JoinModal(props) {
               // onChange={e => setName({ ...name, eventId: e.target.value })}
               value={props.event}></input>
           </div>
-          <button className="btn-detail" onClick={handleSubmit}>confirm</button>
+          <div className="text-center pt-2">
+            <button className="btn-modal p-2" onClick={handleSubmit}>confirm</button>
+          </div>
         </form>
 
       </Modal>
@@ -77,25 +93,3 @@ function JoinModal(props) {
 }
 
 export default JoinModal;
-
-// useEffect(() => {
-//   setName({});
-//   // setEventId(props.eventId);
-// });
-
-// function addAttendee(object) {
-
-// useEffect(() => {
-
-//   const requestOption = {
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify(inputs)
-//   };
-
-//   fetch(`/api/attendees/${data.eventId}`, requestOption)
-//     .then(result => result.json())
-//     .then(data => console.log(data))
-//     .catch(err => console.error(err));
-// }, []);
-// }
