@@ -1,71 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
 function JoinModal(props) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [data, setData] = useState({ profileId: '', eventId: '' });
-  // const [eventId, setEventId] = useState('');
 
-  const inputs = {
-    profiledId: Number(data.profileId),
-    eventId: Number(data.eventId)
-  };
+  useEffect(() => {
+    setData({ profileId: props.profileId, eventId: props.eventId });
 
-  // useEffect(() => {
-  //   setName({});
-  //   // setEventId(props.eventId);
-  // });
+  }, []);
 
-  // function addAttendee(object) {
-
-  // useEffect(() => {
-
-  //   const requestOption = {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(inputs)
-  //   };
-
-  //   fetch(`/api/attendees/${data.eventId}`, requestOption)
-  //     .then(result => result.json())
-  //     .then(data => console.log(data))
-  //     .catch(err => console.error(err));
-  // }, []);
-  // }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
+  // setEventId(props.eventId);
+  function addAttendees(object) {
     const requestOption = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(inputs)
+      body: JSON.stringify(object)
     };
 
     fetch(`/api/attendees/${data.eventId}`, requestOption)
       .then(result => result.json())
-
       .catch(err => console.error(err));
-
-    setModalIsOpen(false);
-
   }
 
-  // function handleChange(e) {
-  //   setProfileId(e.target.value);
-  //   setEventId(e.target.value);
-  // }
+  function handleSubmit(event) {
+    event.preventDefault();
+    addAttendees(data);
+
+    setModalIsOpen(false);
+  }
+
   function handle(e) {
     const newdata = { ...data };
     newdata[e.target.id] = e.target.value;
     setData(newdata);
     // console.log(newdata);
+
   }
 
-  // console.log(data.eventId);
-
-  // console.log(inputs);
   return (
 
     <div className="join-modal">
@@ -78,21 +51,21 @@ function JoinModal(props) {
             <input
               type="text"
               name="profileId"
-              id="profileId"
+              id={data.profileId}
               // id={Number(name.profileId)}
               onChange = {e => handle(e) }
               // onChange={e => setName({ ...name, profileId: e.target.value })}
-              value={data.profileId}></input>
+              value={props.name}></input>
           </div>
           <div>
             <label>event</label>
             <input
               type="text"
               name="eventId"
-              id="eventId"
+              id={data.eventId}
               onChange={e => handle(e)}
               // onChange={e => setName({ ...name, eventId: e.target.value })}
-              value={data.eventId}></input>
+              value={props.event}></input>
           </div>
           <button className="btn-detail" onClick={handleSubmit}>confirm</button>
         </form>
@@ -104,3 +77,25 @@ function JoinModal(props) {
 }
 
 export default JoinModal;
+
+// useEffect(() => {
+//   setName({});
+//   // setEventId(props.eventId);
+// });
+
+// function addAttendee(object) {
+
+// useEffect(() => {
+
+//   const requestOption = {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify(inputs)
+//   };
+
+//   fetch(`/api/attendees/${data.eventId}`, requestOption)
+//     .then(result => result.json())
+//     .then(data => console.log(data))
+//     .catch(err => console.error(err));
+// }, []);
+// }
