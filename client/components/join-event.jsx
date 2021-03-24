@@ -101,7 +101,7 @@ export default class JoinEvent extends React.Component {
             </div>
 
           </div>
-          <div className="join-event">
+          {/* <div className="join-event">
             <form className="mx-3">
               <div className="form-group col-md-9 mx-auto">
                 <label htmlFor="exampleFormControlInput1">
@@ -134,7 +134,7 @@ export default class JoinEvent extends React.Component {
                   className="btn-detail m-auto">join</button>
               </div>
             </form>
-          </div>
+          </div> */}
         </>
       );
     }
