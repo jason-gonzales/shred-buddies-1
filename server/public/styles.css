@@ -188,11 +188,10 @@ h2 {
  font-family: 'Roboto', sans-serif;
  display:inline-block;
  text-decoration: none;
-/*  padding:0.3em 1.2em;
- margin:0 0.3em 0.3em 0; */
-
 
 }
+
+
 
 .btn-event-card, .join-button {
     background-color: #f0f5f9;
@@ -230,7 +229,7 @@ font-size: 15px;
   filter: brightness(50%);
   box-shadow: 2px 2px 4px rgb(0 0 0 / 15%);
   object-fit: cover;
-  width: 350px;
+  /* width: 350px; */
   height: 320px;
   border-radius: 30px;
 }
@@ -558,3 +557,21 @@ width: 100%;
     .delete-btn ,.update-btn{
       width: 130px;
     }
+
+
+    label {
+      font-family: 'Roboto', 'sans-serif';
+    }
+
+    .btn-modal {
+    background-color: #52616b;
+    color: #fff;
+    border-radius: 30px;
+    border-style: none;
+    font-family: 'Roboto', sans-serif;
+    width: 200px;
+}
+
+input, label {
+  display: block;
+}

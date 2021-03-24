@@ -16,10 +16,7 @@ export default class EventList extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
     // this.isAttending = this.isAttending.bind(this);
     this.getAttendees = this.getAttendees.bind(this);
-    // this.getGuests = this.getGuests.bind(this);
-    // this.guestList = this.guestList.bind(this);
-    // this.attend = this.attend.bind(this);
-    // this.addGuest = this.addGuest.bind(this);
+
   }
 
   // handleClick() {
@@ -84,10 +81,10 @@ export default class EventList extends React.Component {
     return (
       <>
 
-        <div className="event-size mx-lg-2">
+        <div className="d-flex flex-column event-size mx-lg-2">
           <div className="card bg-dark text-white my-3">
             <img className="event-img" src={this.props.events.resortImage} alt="Card image" />
-            <div className="card-img-overlay">
+            <div className="d-flex flex-column card-img-overlay">
               <div className=""> {/* onClick={this.handleClick}> */}
                 <div className="d-flex">
                   <h3 className="card-title">{this.props.events.resortName}</h3>
@@ -122,7 +119,7 @@ export default class EventList extends React.Component {
                 </span>
                 </div>
               </div>
-              <div className="mt-2 pt-2"> {
+              <div className="mt-2 pt-4"> {
                 profile !== user ? <>
                   <div className="text-center">
                     <button
