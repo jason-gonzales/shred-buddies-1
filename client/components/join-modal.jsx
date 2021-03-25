@@ -49,11 +49,13 @@ function JoinModal(props) {
           {
 
             content: {
-
+              borderRadius: '30px',
               margin: 'auto',
               width: '300px',
               height: '300px',
-              padding: '40px'
+              padding: '40px',
+              background: '#c9d6df',
+              overflow: 'hidden'
 
             }
           }
@@ -63,6 +65,7 @@ function JoinModal(props) {
           <div className="form-group">
             <label>name</label>
             <input
+              className="input-width"
               type="text"
               name="profileId"
               id={data.profileId}
@@ -74,6 +77,7 @@ function JoinModal(props) {
           <div className="form-group">
             <label>event</label>
             <input
+              className="input-width"
               type="text"
               name="eventId"
               id={data.eventId}
