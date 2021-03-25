@@ -575,3 +575,7 @@ width: 100%;
 input, label {
   display: block;
 }
+
+.input-width {
+  width: 220px;
+}
