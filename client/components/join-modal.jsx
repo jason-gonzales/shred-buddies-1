@@ -60,8 +60,11 @@ function JoinModal(props) {
             }
           }
         }>
-        <h2 className="m-auto text-center">Join Event</h2>
+        <div className="mt-n2">
+          <h2 className="m-auto text-center mt-n2">Join Event</h2>
+        </div>
         <form>
+
           <div className="form-group">
             <label>name</label>
             <input
@@ -86,7 +89,7 @@ function JoinModal(props) {
               value={props.event}></input>
           </div>
           <div className="text-center pt-2">
-            <button className="btn-modal p-2" onClick={handleSubmit}>confirm</button>
+            <button className="btn-modal p-1" onClick={handleSubmit}>confirm</button>
           </div>
         </form>
 

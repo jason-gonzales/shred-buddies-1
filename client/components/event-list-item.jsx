@@ -44,6 +44,19 @@ export default class EventList extends React.Component {
   }
 
   render() {
+    // const arr = this.state.guests;
+
+    // if (arr) {
+    //   function userExists(profileId) {
+    //     return arr.some(function (el) {
+    //       return el.profileId === profileId;
+    //     });
+
+    //   } console.log(userExists('152'));
+    //   console.log(userExists('101'));
+    // } else {
+    //   return null;
+    // }
 
     const eventCard = this.props.events.eventId;
     let joined;
