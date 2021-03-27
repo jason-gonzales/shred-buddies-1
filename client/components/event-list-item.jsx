@@ -47,13 +47,10 @@ export default class EventList extends React.Component {
     // const arr = this.state.guests;
 
     // if (arr) {
-    //   function userExists(profileId) {
-    //     return arr.some(function (el) {
-    //       return el.profileId === profileId;
-    //     });
 
-    //   } console.log(userExists('152'));
-    //   console.log(userExists('101'));
+    //   const index = arr.findIndex(x => x.profileId === '155');
+    //   console.log(index);
+
     // } else {
     //   return null;
     // }
