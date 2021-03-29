@@ -18,17 +18,6 @@ export default class AddEvent extends React.Component {
 
   }
 
-  // componentDidMount() {
-  //   fetch(`/api/resort/${this.props.params.resortId}`)
-  //     .then(res => res.json())
-  //     .then(resort =>
-  //       this.setState({
-  //         resort: resort
-  //       }))
-  //     .catch(err => console.error(err));
-
-  // }
-
   componentDidMount() {
     this.setState({
       resortName: this.props.params.resortId.name,
