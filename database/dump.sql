@@ -16,6 +16,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+DROP INDEX IF EXISTS public.uq_attendees;
 ALTER TABLE IF EXISTS public.resort ALTER COLUMN "resortId" DROP DEFAULT;
 ALTER TABLE IF EXISTS public.profile ALTER COLUMN "profileId" DROP DEFAULT;
 ALTER TABLE IF EXISTS public.event ALTER COLUMN "eventId" DROP DEFAULT;
@@ -260,6 +261,13 @@ SELECT pg_catalog.setval('public."profile_profileId_seq"', 155, true);
 --
 
 SELECT pg_catalog.setval('public."resort_resortId_seq"', 3, true);
+
+
+--
+-- Name: uq_attendees; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX uq_attendees ON public.attendees USING btree ("profileId", "eventId");
 
 
 --
