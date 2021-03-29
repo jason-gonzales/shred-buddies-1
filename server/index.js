@@ -235,8 +235,8 @@ app.post('/api/attendees/:event', (req, res, next) => {
   const insert = `
  insert into "attendees"("profileId","eventId")
  values($1,$2)
-  on conflict ("profileId") do nothing
- returning *;
+on conflict ("profileId", "eventId") do nothing
+returning *;
 `;
 
   const values = [req.body.profileId, req.params.event];
