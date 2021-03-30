@@ -48,6 +48,10 @@ export default class JoinEvent extends React.Component {
   }
 
   render() {
+    const guestPic = this.props.params.guestPicture;
+
+    const guestPicture = guestPic.map((join, index) =>
+      <img src={join} key={index} className="attending-pic" />);
 
     const start = new Date(this.props.params.events.start);
     const end = new Date(this.props.params.events.end);
@@ -82,6 +86,7 @@ export default class JoinEvent extends React.Component {
                           src={this.props.params.guestImage}
                           alt={this.props.params.guestName} /> : null
                       }
+                      {guestPicture}
                     </p>
 
                     <div className="eventdetaildesc mt-1"><h5 className="bold">Details</h5>

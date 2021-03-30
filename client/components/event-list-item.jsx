@@ -44,16 +44,6 @@ export default class EventList extends React.Component {
   }
 
   render() {
-    // const arr = this.state.guests;
-
-    // if (arr) {
-
-    //   const index = arr.findIndex(x => x.profileId === '155');
-    //   console.log(index);
-
-    // } else {
-    //   return null;
-    // }
 
     const eventCard = this.props.events.eventId;
     let joined;
@@ -87,6 +77,15 @@ export default class EventList extends React.Component {
 
     const start = new Date(events.start);
     const end = new Date(events.end);
+
+    const joinPics = [];
+
+    if (guestPicture) {
+
+      for (let i = 0; i < guestPicture.length; i++) {
+        joinPics.push(guestPicture[i].props.src);
+      }
+    }
 
     return (
       <>
@@ -141,7 +140,7 @@ export default class EventList extends React.Component {
                           attendees: this.props.user,
                           events: this.props.events,
                           guest: this.props.guest,
-                          guestPicture: [...guestPicture]
+                          guestPicture: joinPics
 
                         })}
                       className="join-button"
