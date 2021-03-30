@@ -199,9 +199,6 @@ ALTER TABLE ONLY public.resort ALTER COLUMN "resortId" SET DEFAULT nextval('publ
 
 COPY public.attendees ("profileId", "eventId") FROM stdin;
 152	187
-154	186
-153	186
-154	187
 \.
 
 
