@@ -90,7 +90,7 @@ export default class UpdateEvent extends React.Component {
               <option value="3">mountain high</option>
             </select> */}
           </div>
-          <div className="d-flex col-md-9 mx-auto">
+          <div className="col-md-9 mx-auto">
             <div className="form-group">
               <label>start date</label>
               <input
