@@ -225,11 +225,12 @@ font-size: 15px;
 
 .card {
   border-radius: 30px;
-  /* width: 350px; */
+  width: 350px;
 }
 
 .card-title {
 letter-spacing: 2px;
+height: 30px;
 
 }
 .event-img {
@@ -262,9 +263,9 @@ letter-spacing: 2px;
   height: 100%
 } */
 
-.start-input, .end-input {
+/* .start-input, .end-input {
   width:178px;
-}
+} */
 
 .main-logo {
   width: 250px;
@@ -363,10 +364,12 @@ letter-spacing: 2px;
    align-items: center;
 
 
+
 }
 .nav-events {
     border-top:  solid white;
     position: fixed;
+    top: 10;
     z-index:12;
     width: 100%;
     background-color: #3d474e;
@@ -492,6 +495,10 @@ object-fit: cover;
 }
 
 @media only screen and (min-width: 1024px) {
+
+  .add-form, .update-form {
+    display : flex;
+  }
   .event-info {
     width: 400px;
   }
@@ -560,6 +567,10 @@ width: 100%;
   }
   .event-info {
     border-radius: 0 0 30px 30px;
+  }
+
+  .btn-event-card, .join-button {
+    bottom: -80px;
   }
 }
 

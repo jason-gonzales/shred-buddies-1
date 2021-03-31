@@ -101,7 +101,7 @@ export default class EventList extends React.Component {
                     src={this.props.events.profileImage}
                     alt="shredder-host" />
                 </div>
-                <p className=''>Hosted by <b>{this.props.events.profileName}</b></p>
+                <p className="pt-2">Hosted by <b>{this.props.events.profileName}</b></p>
                 <p className="mt-n2">{start.toDateString()} - {end.toDateString()}</p>
 
                 <div>attending: <span className="pl-2">
