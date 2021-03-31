@@ -12,7 +12,7 @@ a full stack Node.js and React.js application where a user can look up a ski/sno
 * Babel
 * Webpack
 ## Live Demo
-Try the live application at 
+Try the live application at https://shred-buddies.jgonzales.dev/
 ## Features
 * User can create profile - Back End.
 * User can create profile - Front End.
