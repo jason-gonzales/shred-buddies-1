@@ -116,7 +116,7 @@ export default class EventList extends React.Component {
               onClick={() => this.props.setView('host', {})}>Your Event</a>
           </li>
         </ul>
-        <div className="row justify-content-center my-5">
+        <div className="d-flex flex-wrap justify-content-center my-5">
           {list}
           {/* <Attending guest={this.props.guest} /> */}
         </div>
