@@ -40,7 +40,12 @@ class Login extends React.Component {
 
     return (
       <div className="login col">
-        <h2 className="head-title d-flex justify-content-center mt-5 pt-5">Shred Buddies</h2>
+        <div className="head-title d-flex justify-content-center mt-5 pt-5">
+          <h2 onClick={() => this.props.setView('home', {})} className="head-title">
+            <i className="fas fa-chevron-left pr-2"></i></h2>
+          <h2 className="head-title d-flex ">Shred Buddies</h2>
+        </div>
+
         <div className="d-flex justify-content-center align-items-center pt-4">
           <select className="form-control-lg col-md-7 mt-3" onChange={this.handleChange} id={this.state.users} >
             <option className="col-9">Select User</option>

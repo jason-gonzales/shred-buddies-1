@@ -44,9 +44,15 @@ header {
   top:40%;
 }
 
+
 .fa-snowboarding,.fa-newspaper, .fa-bell {
-  font-size: 40px;
-  color: black;
+  font-size: 25px;
+
+}
+
+.icon-des {
+  color: #f0f5f9;
+  font-size:13px;
 }
 /* .fa-bell {
   color: red;
@@ -87,9 +93,7 @@ h2 {
 
 /*Resort Detail */
 
-/* .resort-img {
-  padding-top: 10px;
-} */
+
 @media only screen and (min-width: 768px) {
   .resort-img img{
    width: 300px;
@@ -98,6 +102,7 @@ h2 {
   }
   .resort-main {
   display: flex;
+
 
 }
 
@@ -204,10 +209,11 @@ h2 {
 }
 
 
-.img-detail{
+/* .img-detail{
+  object-fit: cover;
   height: 250px;
   width: 250px;
-}
+} */
 
 
 
@@ -363,8 +369,10 @@ height: 30px;
    height: 60px;
    align-items: center;
 
+}
 
-
+.nav-link {
+  color: #f0f5f9;
 }
 .nav-events {
     border-top:  solid white;

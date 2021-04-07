@@ -2,7 +2,7 @@ import React from 'react';
 
 // import MyContext from './my-context';
 
-export default class EventList extends React.Component {
+export default class EventListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

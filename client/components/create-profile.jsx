@@ -38,8 +38,8 @@ export default class CreateProfile extends React.Component {
 
     return (
       <div className="create-form">
-        <header className="create-header d-flex justify-content-center align-items-center">
-          <h2 className="head-title">Shred Buddies</h2></header>
+        <header className="create-header d-flex align-items-center">
+          <h2 onClick={() => this.props.setView('home', {})} className="col-11 head-title"><i className="fas fa-chevron-left"></i></h2></header>
 
         <form className="container col-11">
           <div className="form-group">
