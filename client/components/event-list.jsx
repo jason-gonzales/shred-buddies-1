@@ -110,11 +110,11 @@ export default class EventList extends React.Component {
               href="#"
               onClick={() => this.props.setView('login', {})}>Change User</a>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a className="nav-link"
               href="#"
               onClick={() => this.props.setView('host', {})}>Your Event</a>
-          </li>
+          </li> */}
         </ul>
         <div className="d-flex flex-wrap justify-content-center my-5">
           {list}
