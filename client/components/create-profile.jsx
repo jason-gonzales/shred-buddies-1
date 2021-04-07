@@ -39,9 +39,9 @@ export default class CreateProfile extends React.Component {
     return (
       <div className="create-form">
         <header className="create-header d-flex align-items-center">
-          <h2 onClick={() => this.props.setView('home', {})} className="col-11 head-title"><i className="fas fa-chevron-left"></i></h2></header>
+          <h2 onClick={() => this.props.setView('home', {})} className="m-auto col-11 col-lg-8 col-xl-7 head-title"><i className="fas fa-chevron-left"></i></h2></header>
 
-        <form className="container col-11">
+        <form className="container col-11 col-lg-8 col-xl-7">
           <div className="form-group">
             <label htmlFor="formGroupExampleInput">
               <h3 className="mt-2">Create Profile</h3>
