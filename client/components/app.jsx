@@ -34,11 +34,9 @@ export default class App extends React.Component {
       guest: null
     };
     this.setView = this.setView.bind(this);
-    // this.setUser = this.setUser.bind(this);
     this.createProfile = this.createProfile.bind(this);
     this.createEvent = this.createEvent.bind(this);
     this.addUser = this.addUser.bind(this);
-    // this.isAttending = this.isAttending.bind(this);
     this.addGuest = this.addGuest.bind(this);
   }
 
@@ -57,12 +55,6 @@ export default class App extends React.Component {
     });
 
   }
-
-  // setUser(user) {
-  //   this.setState({
-  //     user: user
-  //   });
-  // }
 
   setView(name, params) {
     this.setState({
@@ -108,21 +100,6 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  // isAttending(object) {
-  //   const requestOption = {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(object)
-  //   };
-
-  //   fetch(`/api/attendees/${this.state.user.profileId}`, requestOption)
-  //     .then(result => result.json())
-  //     .then(data => this.setState({
-  //       attend: data
-  //     }))
-  //     .catch(err => console.error(err));
-  // }
-
   deleteEvent(object) {
 
     const eventId = object;
@@ -137,9 +114,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    // if (!this.state.attend) {
-    //   console.log(this.state.attend);
-    // }
 
     let view = <>
 
@@ -166,7 +140,6 @@ export default class App extends React.Component {
             params={this.state.view.params}
             profile={this.state.profile}
             addUser={this.addUser}
-            // setUser={this.setUser}
             getUserProfile={this.getUserProfile} />
           <Footer setView={this.setView} />
         </>;

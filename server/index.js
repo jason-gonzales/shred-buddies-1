@@ -195,23 +195,6 @@ app.put('/api/event/:eventId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// app.put('/api/event/:eventId', (req, res, next) => {
-
-//   const values = [req.params.eventId, req.body.attendees];
-
-//   const sql =
-//     `update "event"
-//     set "attendees" = $1
-//     where "eventId" = $2;
-
-//   `;
-//   db.query(sql, values)
-//     .then(result => {
-//       res.status(200).json({});
-//     })
-//     .catch(err => next(err));
-// });
-
 app.get('/api/attendees', (req, res, next) => {
   // const profileId = parseInt(req.params.profileId, 10);
 
@@ -344,28 +327,3 @@ app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log('Listening on port', process.env.PORT);
 });
-
-// select "e"."eventId",
-//   "p"."profileId",
-//     "a"."isCheckedIn"
-// from "attendees" as "a"
-// join "profile" as "p" using("profileId")
-// join "event" as "e" using("eventId")
-// where "a"."profileId" = $1
-//   `;
-
-// SELECT profileId, eventId, isCheckedIn
-// FROM profile p
-// INNER JOIN attendees a
-// ON p.profileId = a.profileId
-// INNER JOIN event e
-// ON e.eventId = a.eventId
-// WHERE p profileId = $1
-
-// select "e"."eventId",
-//   "p"."profileId" as "profileId",
-//     "p"."name" as "profileName",
-//       "p"."imgUrl" as "profileImage",
-//         from "attendees" as "a"
-// join "profile" as "p" using("profileId")
-// join "event" as "e" using("eventId");
