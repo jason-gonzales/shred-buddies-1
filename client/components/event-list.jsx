@@ -12,14 +12,8 @@ export default class EventList extends React.Component {
       // isLoading: false
     };
     this.getEvents = this.getEvents.bind(this);
-    // this.eventList = this.eventList.bind(this);
-    // this.getGuests = this.getGuests.bind(this);
 
   }
-
-  // componentDidMount() {
-  //   this.setState({ isLoading: true });
-  // }
 
   getEvents() {
     fetch('/api/events')
@@ -72,15 +66,11 @@ export default class EventList extends React.Component {
 
   componentDidMount() {
     this.getEvents();
-    // this.props.setView('eventListItem', { guest: this.props.guest });
-    // this.getGuests();
+
   }
 
   render() {
-    // console.log(this.props.guest);
-    // if (this.state.events) {
-    //   console.log(this.state.events);
-    // }
+
     const list = this.state.events.map(event =>
       <EventListItem
         addGuest={this.props.addGuest}

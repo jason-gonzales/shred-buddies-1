@@ -10,15 +10,6 @@ export default class EventDetails extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  // componentDidMount(object) {
-  //   fetch(`/api/event/${this.props.params.eventsId}`)
-  //     .then(res => res.json())
-  //     .then(events => this.setState({
-  //       events: events
-  //     }))
-  //     .catch(err => console.error(err));
-  // }
-
   handleClick() {
     this.setState(prevState => ({
       participants: prevState.participants + 1
@@ -26,8 +17,7 @@ export default class EventDetails extends React.Component {
   }
 
   render() {
-    // console.log(this.props.params.guest.name);
-    // const { events } = this.props.params;
+
     const start = new Date(this.props.params.events.start);
     const end = new Date(this.props.params.events.end);
 

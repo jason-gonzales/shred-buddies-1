@@ -12,18 +12,11 @@ export default class EventListItem extends React.Component {
       attend: null,
       attendees: []
     };
-    // this.handleClick = this.handleClick.bind(this);
+
     this.handleDelete = this.handleDelete.bind(this);
-    // this.isAttending = this.isAttending.bind(this);
     this.getAttendees = this.getAttendees.bind(this);
 
   }
-
-  // handleClick() {
-  //   // if (this.state.events) {
-  //   this.props.setView('eventDetails', { events: this.props.events, guest: this.props.guest });
-  //   // }
-  // }
 
   handleDelete() {
     this.props.deleteEvent(this.props.events.eventId);
@@ -152,18 +145,14 @@ export default class EventListItem extends React.Component {
               <div className="text-center">
                 {profile === user
                   ? <>
-                    {/* <div> */}
+
                     <button
                       onClick={() => this.props.setView('updateEvent', { event: this.props.events })}
                       className="btn-event-card update-btn">update</button>
 
-                    {/* </div> */}
-
-                    {/* <div> */}
                     <button
                       onClick={this.handleDelete}
                       className="btn-event-card delete-btn ml-2">delete</button>
-                    {/* </div> */}
 
                   </> : null}
 
