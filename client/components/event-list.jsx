@@ -66,8 +66,7 @@ export default class EventList extends React.Component {
 
   componentDidMount() {
     this.getEvents();
-    // this.props.setView('eventListItem', { guest: this.props.guest });
-    // this.getGuests();
+
   }
 
   render() {
