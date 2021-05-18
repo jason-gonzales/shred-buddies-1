@@ -67,9 +67,10 @@ export default class EventListItem extends React.Component {
     const profile = this.props.events.profileId;
     const user = this.props.user;
     const { events } = this.props;
-
-    const start = new Date(events.start);
-    const end = new Date(events.end);
+    // eslint-disable-next-line
+    const start = new Date(events.start.replace(/-/g, '\/').replace(/T.+/, ''));
+    // eslint-disable-next-line
+    const end = new Date(events.end.replace(/-/g, '\/').replace(/T.+/, ''));
 
     const joinPics = [];
 
