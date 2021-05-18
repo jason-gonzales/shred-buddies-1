@@ -128,7 +128,9 @@ h2 {
     padding: 30px;
 
   }
-
+  .main-logo {
+    margin-top: 0px;
+  }
 }
 
 
@@ -276,14 +278,7 @@ height: 30px;
   width:178px;
 } */
 
-.main-logo {
-  width: 250px;
-  margin-top: 100px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
 
-}
 .homepage-container{
 
   width: 100%;
@@ -294,6 +289,7 @@ height: 30px;
   background-size: cover;
   position: fixed;
 }
+
 
 .homepage-overlay {
   position: absolute;
@@ -505,6 +501,15 @@ object-fit: cover;
 .event-info {
   border-radius: 0 0 30px 30px;
 }
+
+.main-logo {
+  width: 250px;
+  margin-top: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
 }
 
 @media only screen and (min-width: 1024px) {
@@ -528,6 +533,15 @@ object-fit: cover;
   .btn-eventdetail {
     margin: 40px;
   }
+
+  .main-logo {
+  width: 200px;
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
 }
 
 /*Host Page*/
@@ -625,11 +639,11 @@ input, label {
   width: 220px;
 }
 
-@media only screen and (min-width: 375px) {
+/* @media only screen and (min-width: 375px) {
   .profile-page {
     position: fixed;
   }
-}
+} */
 
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
   html {
