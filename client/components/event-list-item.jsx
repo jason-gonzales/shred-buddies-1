@@ -84,7 +84,7 @@ export default class EventListItem extends React.Component {
       <>
 
         <div className="d-flex flex-column event-size">
-          <div className="card bg-dark text-white my-3 mx-md-2">
+          <div className="card bg-dark text-white mb-3 mx-md-2">
             <img className="event-img" src={this.props.events.resortImage} alt="Card image" />
             <div className="d-flex flex-column card-img-overlay">
               <div className=""> {/* onClick={this.handleClick}> */}

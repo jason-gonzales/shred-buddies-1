@@ -100,13 +100,12 @@ export default class EventList extends React.Component {
               href="#"
               onClick={() => this.props.setView('login', {})}>Change User</a>
           </li>
-          {/* <li className="nav-item">
-            <a className="nav-link"
-              href="#"
-              onClick={() => this.props.setView('host', {})}>Your Event</a>
-          </li> */}
         </ul>
-        <div className="d-flex flex-wrap justify-content-center my-5">
+        <div className="text-center welcome">
+          <h3>Welcome {this.props.user.name}</h3>
+          <h5>select an event to join</h5>
+        </div>
+        <div className="d-flex flex-wrap justify-content-center mb-5">
           {list}
           {/* <Attending guest={this.props.guest} /> */}
         </div>

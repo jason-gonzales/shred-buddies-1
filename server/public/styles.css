@@ -234,6 +234,10 @@ font-size: 15px;
 
 /*Event Cards*/
 
+.welcome {
+  padding-top: 70px;
+}
+
 .card {
   border-radius: 30px;
   width: 350px;
@@ -262,21 +266,6 @@ height: 30px;
   font-family: 'Roboto', sans-serif;
 }
 
-/* .equal-height-columns {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.equal-column-content {
-  height: 100%
-} */
-
-/* .start-input, .end-input {
-  width:178px;
-} */
 
 
 .homepage-container{
@@ -407,9 +396,7 @@ height: 30px;
   .about, .level, .description {
     font-size: 20px;
   }
-  /* .event-img{
-    height: 220px;
-  } */
+
 }
 .content-container {
   height: 90vh;
@@ -522,7 +509,7 @@ object-fit: cover;
   }
   .event-page {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
   }
   .imgEventDetails {

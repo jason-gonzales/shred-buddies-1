@@ -11,7 +11,6 @@ function JoinModal(props) {
 
   }, []);
 
-  // setEventId(props.eventId);
   function addAttendees(object) {
     const requestOption = {
       method: 'POST',
@@ -27,21 +26,20 @@ function JoinModal(props) {
   function handleSubmit(event) {
     event.preventDefault();
     addAttendees(data);
-
     setModalIsOpen(false);
+    props.setView('main');
   }
 
   function handle(e) {
     const newdata = { ...data };
     newdata[e.target.id] = e.target.value;
     setData(newdata);
-    // console.log(newdata);
 
   }
 
   return (
 
-    <div className="join-modal p-2">
+    <div className="join-modal p-4">
       <button className="btn-detail" onClick={() => setModalIsOpen(true)}>join</button>
       <Modal isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
@@ -72,7 +70,6 @@ function JoinModal(props) {
               type="text"
               name="profileId"
               id={data.profileId}
-              // id={Number(name.profileId)}
               onChange = {e => handle(e) }
               // onChange={e => setName({ ...name, profileId: e.target.value })}
               value={props.name}></input>
