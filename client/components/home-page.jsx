@@ -9,7 +9,7 @@ export default function Homepage(props) {
             <div className="justify-content-center">
               <img src="images/shred-logo-ol.png" alt="logo" className="main-logo" />
               <h1 className="home-title text-center">SHRED  BUDDIES</h1>
-              {/* <div className="mt-5 border"> */}
+
             </div>
 
             <div className="row justify-content-center mt-5 home-btn">
