@@ -3,7 +3,7 @@ import React from 'react';
 export default function Homepage(props) {
   return (
     <>
-      <div className="homepage-container">
+      <div className="homepage-container turn">
         <div className="homepage-overlay">
           <div className="home-logo-name">
             <div className="justify-content-center">

@@ -146,7 +146,7 @@ export default class App extends React.Component {
     } else if (this.state.view.name === 'main') {
       view =
         <>
-          <Header setView={this.setView} />
+          {/* <Header setView={this.setView} /> */}
           <EventList
             addGuest={this.addGuest}
             deleteEvent={this.deleteEvent}
