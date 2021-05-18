@@ -53,18 +53,6 @@ export default class UpdateEvent extends React.Component {
 
   }
 
-  // handleClick(event) {
-
-  //   event.preventDefault();
-  //   this.props.createEvent(this.state);
-  //   this.props.isAttending(this.state);
-  //   if (this.props.event) {
-
-  //     this.props.setView('host');
-
-  //   }
-  // }
-
   render() {
     return (
       <div className="add-event">
@@ -78,7 +66,8 @@ export default class UpdateEvent extends React.Component {
               value={this.state.resortName}
               onChange={this.handleChange}
               id="" />
-            {/* <input onChange={this.handleChange} value={this.props.params.resortId}>{this.props.params.resortId}</input> */}
+            {/* <input onChange={this.handleChange} value={this.props.params.resortId}>
+            {this.props.params.resortId}</input> */}
             {/* <select
               className="ml-4"
               onChange={this.handleChange}
@@ -110,25 +99,6 @@ export default class UpdateEvent extends React.Component {
                 id="end-id" />
             </div>
           </div>
-          {/* <div className="form-group mt-2 col-md-9 mx-auto">
-            <label htmlFor="exampleFormControlSelect1">how many shredders</label>
-            <select
-              onChange={this.handleChange}
-              value="" name="profileId"
-              className="form-control"
-              id="exampleFormControlSelect1">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9</option>
-              <option>10</option>
-            </select>
-          </div> */}
           <div className="form-group col-md-9 mx-auto">
             <label htmlFor="exampleFormControlTextarea1">event details</label>
             <textarea
