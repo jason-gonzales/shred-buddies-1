@@ -65,7 +65,7 @@ export default class JoinEvent extends React.Component {
         <>
 
           <div className="event-detail pt-3">
-            <div className="container px-0">
+            <div className="container px-0 col-lg-9">
               <h2 className="text-center"><i className="fas fa-tram"></i>{this.props.params.events.resortName}</h2>
               <div className="text-center pb-3">Hosted by <b>{this.props.params.events.profileName}</b></div>
               <div className="event-page">
@@ -97,6 +97,7 @@ export default class JoinEvent extends React.Component {
               </div>
               <div className="text-center">
                 <JoinModal
+                  setView={this.props.setView}
                   name={this.props.params.userName}
                   event={this.props.params.eventName}
                   profileId={this.props.params.attendees}
