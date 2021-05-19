@@ -45,6 +45,7 @@ export default class App extends React.Component {
       profile: userName,
       user: userName
     });
+
   }
 
   addGuest(guestName) {
@@ -146,7 +147,6 @@ export default class App extends React.Component {
     } else if (this.state.view.name === 'main') {
       view =
         <>
-          {/* <Header setView={this.setView} /> */}
           <EventList
             addGuest={this.addGuest}
             deleteEvent={this.deleteEvent}
