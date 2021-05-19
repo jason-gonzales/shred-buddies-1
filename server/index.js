@@ -89,33 +89,6 @@ app.post('/api/profile', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// app.get('/api/event', (req, res, next) => {
-//   const select = `
-//           select *
-//           from event
-//   `;
-//   db.query(select)
-//     .then(result => res.status(200).json(result.rows))
-//     .catch(err => next(err));
-// });
-
-// app.get('/api/event/:eventId', (req, res, next) => {
-//   const eventId = parseInt(req.params.eventId, 10);
-//   const select = `
-//         select *
-//         from "event"
-//         where "eventId" = $1
-//   `;
-//   db.query(select, [eventId])
-//     .then(result => {
-//       if (!result.rows[0]) {
-//         next(new ClientError(`cannot find eventId of ${eventId}`, 404));
-//       } else {
-//         res.status(200).json(result.rows[0]);
-//       }
-//     });
-// });
-
 app.get('/api/events', (req, res, next) => {
   const sql = `
   select "e"."eventId",
@@ -245,33 +218,6 @@ returning *;
       next(err);
     });
 });
-
-// app.put('api/attendees/:profileId', (req, res, next) => {
-//   const profileId = parseInt(req.params.profileId, req.body);
-
-//   if (profileId < 0 || isNaN(profileId)) {
-//     throw (new ClientError(`Request Id ${req.params.profileId} is not valid`, 400));
-//   }
-
-//   const sql = `
-//   update "attendees"
-//   set "isCheckedIn" = true
-//   where "profileId" = $1
-//   returning *
-//   `;
-
-//   const values = [profileId];
-
-//   db.query(sql, values)
-//     .then(result => {
-//       if (result.rows.length === 0) {
-//         next(new ClientError(`Request Id ${profileId} returned no requests`, 404));
-//       } else {
-//         return res.status(200).json(result.rows[0]);
-//       }
-//     })
-//     .catch(err => next(err));
-// });
 
 app.delete('/api/event/:eventId', (req, res) => {
   const eventId = parseInt(req.params.eventId, 10);

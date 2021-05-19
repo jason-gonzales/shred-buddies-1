@@ -43,7 +43,6 @@ header {
 }
 
 .home-btn {
-  /* position: fixed; */
   top:40%;
 }
 
@@ -57,11 +56,6 @@ header {
   color: #f0f5f9;
   font-size:13px;
 }
-/* .fa-bell {
-  color: red;
-  font-size: 40px;
-
-} */
 
 h2 {
   font-family: 'Roboto', sans-serif;
