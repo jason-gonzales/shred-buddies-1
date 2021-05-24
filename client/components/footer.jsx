@@ -7,9 +7,6 @@ function Footer(props) {
   function handleProfile() {
     props.setView('profile', {});
   }
-  // function handleNotification() {
-  //   props.setView('notification', {});
-  // }
 
   return (
     <div className="footer">

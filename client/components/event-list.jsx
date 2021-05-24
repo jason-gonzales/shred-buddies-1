@@ -24,46 +24,6 @@ export default class EventList extends React.Component {
       .catch(err => console.error(err));
   }
 
-  // getGuests() {
-  //   fetch('/api/profile')
-  //     .then(result => result.json())
-  //     .then(data => this.setState({
-  //       guests: data
-  //       // isLoading: false
-  //     }))
-  //     .catch(err => console.error(err));
-  // }
-  // updateEvent(object) {
-  //   const requestOption = {
-  //     method: 'PUT',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(object)
-  //   };
-  //   fetch(`/api/event/${this.state.events.eventId}`, requestOption)
-  //     .then(() => {
-  //       this.setView('updateEvent');
-  //     });
-  // }
-
-  // eventList() {
-  //   const list = this.state.events.map(event =>
-  //     <EventListItem
-  //       addGuest={this.props.addGuest}
-  //       user={this.props.user.profileId}
-  //       key={event.eventId}
-  //       getEvents={this.getEvents}
-  //       updateEvent={this.updateEvent}
-  //       deleteEvent = { this.props.deleteEvent }
-  //       events={event}
-  //       setView={this.props.setView}
-  //       guest={this.props.guest}
-  //       isAttending={this.props.isAttending}
-  //     />);
-
-  //   return list;
-
-  // }
-
   componentDidMount() {
     this.getEvents();
 
@@ -107,7 +67,7 @@ export default class EventList extends React.Component {
         </div>
         <div className="d-flex flex-wrap justify-content-center mb-5">
           {list}
-          {/* <Attending guest={this.props.guest} /> */}
+
         </div>
 
       </div>

@@ -159,7 +159,7 @@ h2 {
   background:  #52616b;
   height: 100vh;
   width: 100%;
-  position: fixed;
+  /* position: fixed; */
 }
 .main-page {
    background:#c9d6df;
