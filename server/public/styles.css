@@ -159,7 +159,7 @@ h2 {
   background:  #52616b;
   height: 100vh;
   width: 100%;
-  /* position: fixed; */
+  position: fixed;
 }
 .main-page {
    background:#c9d6df;
@@ -179,7 +179,7 @@ h2 {
 
 
 
-.btn-detail, .btn-eventdetail{
+.btn-detail, .btn-eventdetail, .cancel-btn {
   background-color: #52616b;
   color: #fff;
   border-radius: 30px;
@@ -262,7 +262,7 @@ height: 30px;
 
 /*Homepage*/
 
-@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+/* @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
   html {
     transform: rotate(-90deg);
     transform-origin: left top;
@@ -272,7 +272,7 @@ height: 30px;
     top: 100%;
     left: 0;
   }
-}
+} */
 .homepage-container{
 
   width: 100%;
@@ -644,5 +644,25 @@ input, label {
     position: absolute;
     top: 100%;
     left: 0;
+  }
+}
+
+@media (orientation:landscape) {
+.home-logo-name {
+  padding: 10px;
+  text-align: center;
+}
+img {
+  height: 220px;
+
+}
+.content-container {
+  height: 600px;
+}
+}
+
+@media screen and (min-width: 1355px) {
+  .home-logo-name {
+    padding: 180px;
   }
 }

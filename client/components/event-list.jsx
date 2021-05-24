@@ -36,6 +36,7 @@ export default class EventList extends React.Component {
         addGuest={this.props.addGuest}
         user={this.props.user.profileId}
         userName={this.props.user.name}
+        userPic={this.props.user.imgUrl}
         key={event.eventId}
         getEvents={this.getEvents}
         updateEvent={this.updateEvent}
