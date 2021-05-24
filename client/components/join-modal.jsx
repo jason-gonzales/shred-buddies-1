@@ -30,16 +30,16 @@ function JoinModal(props) {
     props.setView('main');
   }
 
-  function handle(e) {
-    const newdata = { ...data };
-    newdata[e.target.id] = e.target.value;
-    setData(newdata);
+  // function handle(e) {
+  //   const newdata = { ...data };
+  //   newdata[e.target.id] = e.target.value;
+  //   setData(newdata);
 
-  }
+  // }
 
   return (
 
-    <div className="join-modal p-4">
+    <div className="join-modal p-2">
       <button className="btn-detail" onClick={() => setModalIsOpen(true)}>join</button>
       <Modal isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
@@ -65,25 +65,25 @@ function JoinModal(props) {
 
           <div className="form-group">
             <label>name</label>
-            <input
+            <div>{props.name}</div>
+            {/* <input
               className="input-width"
               type="text"
               name="profileId"
               id={data.profileId}
               onChange = {e => handle(e) }
-              // onChange={e => setName({ ...name, profileId: e.target.value })}
-              value={props.name}></input>
+              value={props.name}></input> */}
           </div>
           <div className="form-group">
             <label>event</label>
-            <input
+            <div>{props.event}</div>
+            {/* <input
               className="input-width"
               type="text"
               name="eventId"
               id={data.eventId}
               onChange={e => handle(e)}
-              // onChange={e => setName({ ...name, eventId: e.target.value })}
-              value={props.event}></input>
+              value={props.event}></input> */}
           </div>
           <div className="text-center pt-2">
             <button className="btn-modal p-1" onClick={handleSubmit}>confirm</button>

@@ -39,6 +39,7 @@ export default class EventListItem extends React.Component {
   render() {
 
     const eventCard = this.props.events.eventId;
+
     let joined;
     const guestPic = [];
     const a = [];
@@ -134,7 +135,8 @@ export default class EventListItem extends React.Component {
                           attendees: this.props.user,
                           events: this.props.events,
                           guest: this.props.guest,
-                          guestPicture: joinPics
+                          guestPicture: joinPics,
+                          userPic: this.props.userPic
 
                         })}
                       className="join-button"
