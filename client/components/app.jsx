@@ -120,7 +120,7 @@ export default class App extends React.Component {
       method: 'DELETE'
     })
       .then(res => {
-        this.getEvent();
+        // console.log(res);
       })
       .catch(err => console.error(err));
   }

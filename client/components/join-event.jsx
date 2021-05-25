@@ -9,7 +9,7 @@ export default class JoinEvent extends React.Component {
       eventId: ''
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.addAttendee = this.addAttendee.bind(this);
 
@@ -27,13 +27,13 @@ export default class JoinEvent extends React.Component {
       .catch(err => console.error(err));
   }
 
-  handleSubmit(event) {
+  // handleSubmit(event) {
 
-    event.preventDefault();
-    this.addAttendee(this.state);
-    this.props.setView('main');
+  //   event.preventDefault();
+  //   this.addAttendee(this.state);
+  //   this.props.setView('main');
 
-  }
+  // }
 
   componentDidMount() {
     this.setState({
@@ -48,12 +48,13 @@ export default class JoinEvent extends React.Component {
   }
 
   handleUnJoin(profile) {
-    // console.log('unjoin', this.state.profileId);
+    // if (this.props.params.event === this.state.eventId) {
     this.props.unJoin(profile);
+    this.props.setView('main', {});
   }
 
   render() {
-
+    // console.log(this.props.params.event, this.state.eventId);
     const userPic = this.props.params.userPic;
     const guestPic = this.props.params.guestPicture;
 
@@ -94,7 +95,7 @@ export default class JoinEvent extends React.Component {
                   </div>
                 </div>
                 <div className="text-center p-3">
-                  <button onClick={this.handleUnJoin(this.state.profileId)} className="cancel-btn">unjoin</button>
+                  <button onClick={() => { this.handleUnJoin(this.state.profileId); }} className="cancel-btn">unjoin</button>
                 </div>
 
               </div>

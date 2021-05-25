@@ -187,7 +187,7 @@ on "attendees"."eventId" = "event"."eventId"
 
 app.post('/api/attendees/:event', (req, res, next) => {
 
-  if (!req.body.profileId && !req.body.eventId) throw new ClientError('profileId, eventId, isCheckedIn must be filled out', 400);
+  if (!req.body.profileId && !req.body.eventId) { throw new ClientError('profileId, eventId, isCheckedIn must be filled out', 400); }
   const insert = `
  insert into "attendees"("profileId","eventId")
  values($1,$2)
