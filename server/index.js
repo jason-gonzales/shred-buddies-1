@@ -198,24 +198,57 @@ returning *;
   const values = [req.body.profileId, req.params.event];
   db.query(insert, values)
     .then(result => result.rows[0])
-  //   .then(result => {
-  //     const select = `s
-  //     select "event"."eventId" as "eventId",
-  //           "attendees"."profileId" as "profileId",
-  //     from "attendees"
-  //     join "event" using ("eventId")
-  //     where "a"."eventId" = $1
+    //   .then(result => {
+    //     const select = `s
+    //     select "event"."eventId" as "eventId",
+    //           "attendees"."profileId" as "profileId",
+    //     from "attendees"
+    //     join "event" using ("eventId")
+    //     where "a"."eventId" = $1
 
-  // `;
-  //     db.query(select, [result.profileId])
-  //       .then(result => {
-  //         res.status(201).json(result.rows[0]);
-  //       });
-  //   })
+    // `;
+    //     db.query(select, [result.profileId])
+    //       .then(result => {
+    //         res.status(201).json(result.rows[0]);
+    //       });
+    //   })
     .catch(err => {
       console.error('err');
 
       next(err);
+    });
+});
+
+app.delete('/api/attendees/:profileId', (req, res) => {
+  const profileId = parseInt(req.params.profileId, 10);
+  if (!Number.isInteger(profileId) || profileId <= 0) {
+    res.status(400).json({
+      error: `${profileId} is an invalid profileId`
+    });
+  }
+  const sql = `
+  delete from "attendees"
+  where "profileId" = $1
+  returning *
+  `;
+  const values = [profileId];
+
+  db.query(sql, values)
+    .then(result => {
+      const profile = result.rows[0];
+      if (!profile) {
+        res.status(404).json({
+          error: 'The profile cant be found'
+        });
+      } else {
+        res.status(204).json(profile);
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'An unexpected error occurred'
+      });
     });
 });
 

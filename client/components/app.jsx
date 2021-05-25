@@ -114,6 +114,17 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  unJoin(object) {
+    const profileId = object;
+    fetch('/api/attendees/' + profileId, {
+      method: 'DELETE'
+    })
+      .then(res => {
+        this.getEvent();
+      })
+      .catch(err => console.error(err));
+  }
+
   render() {
 
     let view = <>
@@ -154,6 +165,7 @@ export default class App extends React.Component {
             user={this.state.user}
             guest={this.state.guest}
             isAttending={this.isAttending}
+
           />
           <Footer setView={this.setView} />
 
@@ -207,7 +219,7 @@ export default class App extends React.Component {
         <>
           <Header setView = {this.setView} />
           <JoinEvent
-
+            unJoin={this.unJoin}
             setView={this.setView}
             params={this.state.view.params} />
           <Footer setView={this.setView} />
