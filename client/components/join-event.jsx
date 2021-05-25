@@ -47,7 +47,13 @@ export default class JoinEvent extends React.Component {
 
   }
 
+  handleUnJoin(profile) {
+    // console.log('unjoin', this.state.profileId);
+    this.props.unJoin(profile);
+  }
+
   render() {
+
     const userPic = this.props.params.userPic;
     const guestPic = this.props.params.guestPicture;
 
@@ -88,7 +94,7 @@ export default class JoinEvent extends React.Component {
                   </div>
                 </div>
                 <div className="text-center p-3">
-                  <button className="cancel-btn">cancel</button>
+                  <button onClick={this.handleUnJoin(this.state.profileId)} className="cancel-btn">unjoin</button>
                 </div>
 
               </div>
