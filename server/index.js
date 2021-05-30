@@ -219,8 +219,9 @@ returning *;
     });
 });
 
-app.delete('/api/attendees/:profileId', (req, res) => {
+app.delete('/api/attendees/:profileId/:eventId', (req, res) => {
   const profileId = parseInt(req.params.profileId, 10);
+  const eventId = parseInt(req.params.eventId, 10);
   if (!Number.isInteger(profileId) || profileId <= 0) {
     res.status(400).json({
       error: `${profileId} is an invalid profileId`
@@ -228,10 +229,10 @@ app.delete('/api/attendees/:profileId', (req, res) => {
   }
   const sql = `
   delete from "attendees"
-  where "profileId" = $1
+  where "profileId" = $1 and "eventId" = $2
   returning *
   `;
-  const values = [profileId];
+  const values = [profileId, eventId];
 
   db.query(sql, values)
     .then(result => {
