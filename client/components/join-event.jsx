@@ -9,7 +9,6 @@ export default class JoinEvent extends React.Component {
       eventId: ''
     };
 
-    // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.addAttendee = this.addAttendee.bind(this);
 
@@ -26,14 +25,6 @@ export default class JoinEvent extends React.Component {
       .then(result => result.json())
       .catch(err => console.error(err));
   }
-
-  // handleSubmit(event) {
-
-  //   event.preventDefault();
-  //   this.addAttendee(this.state);
-  //   this.props.setView('main');
-
-  // }
 
   componentDidMount() {
     this.setState({
