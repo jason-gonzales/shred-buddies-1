@@ -114,9 +114,10 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  unJoin(object) {
+  unJoin(object, object2) {
     const profileId = object;
-    fetch('/api/attendees/' + profileId, {
+    const eventId = object2;
+    fetch('/api/attendees/' + profileId + '/' + eventId, {
       method: 'DELETE'
     })
       .then(res => {
