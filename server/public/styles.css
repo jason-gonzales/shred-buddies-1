@@ -208,14 +208,6 @@ h2 {
 }
 
 
-/* .img-detail{
-  object-fit: cover;
-  height: 250px;
-  width: 250px;
-} */
-
-
-
 
 .img-list{
   height: 75px;
@@ -258,6 +250,10 @@ height: 30px;
 }
 .join-event {
   font-family: 'Roboto', sans-serif;
+}
+
+.verify-info {
+  font-weight: bold;
 }
 
 /*Homepage*/
@@ -546,15 +542,16 @@ object-fit: cover;
 
 }
 .host-img {
-width: 100%;
-
+  width: 100%;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
 
 }
 
 
 .host-content {
   background: white;
-
+  border-radius: 30px;
 
 }
 

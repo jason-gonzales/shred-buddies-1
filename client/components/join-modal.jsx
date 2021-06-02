@@ -65,25 +65,11 @@ function JoinModal(props) {
 
           <div className="form-group">
             <label>name</label>
-            <div>{props.name}</div>
-            {/* <input
-              className="input-width"
-              type="text"
-              name="profileId"
-              id={data.profileId}
-              onChange = {e => handle(e) }
-              value={props.name}></input> */}
+            <div className="verify-info">{props.name}</div>
           </div>
           <div className="form-group">
             <label>event</label>
-            <div>{props.event}</div>
-            {/* <input
-              className="input-width"
-              type="text"
-              name="eventId"
-              id={data.eventId}
-              onChange={e => handle(e)}
-              value={props.event}></input> */}
+            <div className="verify-info">{props.event}</div>
           </div>
           <div className="text-center pt-2">
             <button className="btn-modal p-1" onClick={handleSubmit}>confirm</button>
