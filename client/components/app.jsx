@@ -114,17 +114,17 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  unJoin(object, object2) {
-    const profileId = object;
-    const eventId = object2;
-    fetch('/api/attendees/' + profileId + '/' + eventId, {
-      method: 'DELETE'
-    })
-      .then(res => {
-        // console.log(res);
-      })
-      .catch(err => console.error(err));
-  }
+  // unJoin(object, object2) {
+  //   const profileId = object;
+  //   const eventId = object2;
+  //   fetch('/api/attendees/' + profileId + '/' + eventId, {
+  //     method: 'DELETE'
+  //   })
+  //     .then(res => {
+  //       // console.log(res);
+  //     })
+  //     .catch(err => console.error(err));
+  // }
 
   render() {
 
@@ -220,7 +220,7 @@ export default class App extends React.Component {
         <>
           <Header setView = {this.setView} />
           <JoinEvent
-            unJoin={this.unJoin}
+            // unJoin={this.unJoin}
             setView={this.setView}
             params={this.state.view.params} />
           <Footer setView={this.setView} />

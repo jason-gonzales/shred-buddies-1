@@ -26,6 +26,18 @@ export default class JoinEvent extends React.Component {
       .catch(err => console.error(err));
   }
 
+  unJoin(object, object2) {
+    const profileId = object;
+    const eventId = object2;
+    fetch('/api/attendees/' + profileId + '/' + eventId, {
+      method: 'DELETE'
+    })
+      .then(res => {
+        // console.log(res);
+      })
+      .catch(err => console.error(err));
+  }
+
   componentDidMount() {
     this.setState({
       profileId: this.props.params.attendees,
@@ -38,14 +50,17 @@ export default class JoinEvent extends React.Component {
 
   }
 
-  handleUnJoin(profile) {
-    // if (this.props.params.event === this.state.eventId) {
-    this.props.unJoin(profile);
+  handleUnJoin(profile, event) {
+
+    fetch('/api/attendees/' + profile + '/' + event, {
+      method: 'DELETE'
+    })
+      .catch(err => console.error(err));
+
     this.props.setView('main', {});
   }
 
   render() {
-    // console.log(this.props.params.event, this.state.eventId);
     const userPic = this.props.params.userPic;
     const guestPic = this.props.params.guestPicture;
 
@@ -86,7 +101,7 @@ export default class JoinEvent extends React.Component {
                   </div>
                 </div>
                 <div className="text-center p-3">
-                  <button onClick={() => { this.handleUnJoin(this.state.profileId); }} className="cancel-btn">unjoin</button>
+                  <button onClick={() => { this.handleUnJoin(this.state.profileId, this.state.eventId); }} className="cancel-btn">unjoin</button>
                 </div>
 
               </div>
