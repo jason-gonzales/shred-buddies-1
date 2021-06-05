@@ -169,7 +169,6 @@ app.put('/api/event/:eventId', (req, res, next) => {
 });
 
 app.get('/api/attendees', (req, res, next) => {
-  // const profileId = parseInt(req.params.profileId, 10);
 
   const sql = `
 select *
